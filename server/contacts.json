@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1776666505775,
+    "name": "Test User",
+    "email": "test@example.com",
+    "subject": "Hello",
+    "message": "Testing",
+    "receivedAt": "2026-04-20T06:28:25.775Z"
+  },
+  {
+    "id": 1776666592625,
+    "name": "Test",
+    "email": "komal.giri@lmsathena.com",
+    "subject": "Project",
+    "message": "hello",
+    "receivedAt": "2026-04-20T06:29:52.625Z"
+  }
+]
