@@ -3,8 +3,7 @@ import {
     HiOutlineShieldCheck,
     HiOutlineSparkles,
     HiOutlineCodeBracket,
-    HiOutlineDevicePhoneMobile,
-    HiOutlineCube
+    HiOutlineDevicePhoneMobile
 } from "react-icons/hi2";
 
 export const projects = [
