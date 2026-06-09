@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { fadeUp, staggerContainer } from "../../utils/scrollAnimations";
 import {
     HiOutlineTrophy,
     HiOutlineUserGroup,
@@ -62,14 +63,18 @@ const Achievements = () => {
                     </motion.p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <motion.div
+                    className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: '-80px' }}
+                >
                     {achievements.map((item, idx) => (
                         <motion.div
                             key={idx}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 }}
+                            variants={fadeUp}
+                            whileHover={{ y: -8, transition: { duration: 0.3 } }}
                             className="group relative"
                         >
                             {/* Card Background accent */}
@@ -104,7 +109,7 @@ const Achievements = () => {
                             </div>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

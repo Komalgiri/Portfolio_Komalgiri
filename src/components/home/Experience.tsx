@@ -1,4 +1,6 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { fadeLeft, fadeRight } from '../../utils/scrollAnimations';
 import {
     HiOutlineBriefcase,
     HiOutlineAcademicCap,
@@ -63,6 +65,13 @@ const experiences: ExperienceItem[] = [
 ];
 
 const Experience = () => {
+    const timelineRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: timelineRef,
+        offset: ['start 85%', 'end 40%'],
+    });
+    const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
     return (
         <section id="experience" className="py-24 md:py-28 bg-[#0f172a] relative overflow-hidden">
 
@@ -85,28 +94,39 @@ const Experience = () => {
                     </motion.div>
                 </div>
 
-                <div className="relative">
+                <div className="relative" ref={timelineRef}>
                     {/* Vertical Timeline Line */}
-                    <div className="absolute left-[18px] md:left-1/2 top-0 bottom-0 w-[2px] bg-purple-500/30 md:-translate-x-1/2 hidden sm:block"></div>
+                    <div className="absolute left-[18px] md:left-1/2 top-0 bottom-0 w-[2px] bg-purple-500/15 md:-translate-x-1/2 hidden sm:block" />
+                    <motion.div
+                        className="absolute left-[18px] md:left-1/2 top-0 bottom-0 w-[2px] origin-top bg-gradient-to-b from-purple-500 via-indigo-500 to-purple-500/40 md:-translate-x-1/2 hidden sm:block"
+                        style={{ scaleY: lineScale }}
+                    />
 
                     <div className="space-y-16 md:space-y-20">
                         {experiences.map((exp, idx) => (
                             <motion.div
                                 key={exp.id}
-                                initial={{ opacity: 0, y: 50 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
-                                transition={{ duration: 0.8, delay: idx * 0.1 }}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: '-100px' }}
+                                variants={idx % 2 === 0 ? fadeLeft : fadeRight}
+                                transition={{ duration: 0.75, delay: idx * 0.08 }}
                                 className={`relative flex flex-col ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-0`}
                             >
                                 {/* Timeline Dot */}
-                                <div className="absolute left-0 md:left-1/2 top-0 md:top-8 w-10 h-10 rounded-xl bg-[#1e293b] border-2 border-purple-500/50 flex items-center justify-center z-20 md:-translate-x-1/2 shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+                                <motion.div
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    whileInView={{ scale: 1, opacity: 1 }}
+                                    viewport={{ once: true, margin: '-80px' }}
+                                    transition={{ duration: 0.5, delay: idx * 0.1 + 0.2, type: 'spring', stiffness: 200 }}
+                                    className="absolute left-0 md:left-1/2 top-0 md:top-8 w-10 h-10 rounded-xl bg-[#1e293b] border-2 border-purple-500/50 flex items-center justify-center z-20 md:-translate-x-1/2 shadow-[0_0_20px_rgba(168,85,247,0.2)]"
+                                >
                                     {exp.type === 'work' ? (
                                         <HiOutlineBriefcase className="text-purple-400 text-xl" />
                                     ) : (
                                         <HiOutlineAcademicCap className="text-indigo-400 text-xl" />
                                     )}
-                                </div>
+                                </motion.div>
 
                                 {/* Content Card */}
                                 <div className={`w-full md:w-[45%] ${idx % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'} pl-12 md:pl-0`}>

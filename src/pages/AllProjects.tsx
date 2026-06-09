@@ -124,8 +124,18 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
                                                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-400/60" />
                                                     </div>
                                                     {/* Content */}
-                                                    <div className="w-full h-full flex items-center justify-center text-4xl text-slate-600 group-hover:text-indigo-400 transition-colors pb-6">
-                                                        {project.icon}
+                                                    <div className="h-full w-full overflow-hidden pb-6">
+                                                        {project.image ? (
+                                                            <img
+                                                                src={project.image}
+                                                                alt={project.title}
+                                                                className="h-full w-full object-cover object-top"
+                                                            />
+                                                        ) : (
+                                                            <div className="flex h-full w-full items-center justify-center text-4xl text-slate-600 transition-colors group-hover:text-indigo-400">
+                                                                {project.icon}
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 </motion.div>
                                             ) : (
@@ -138,8 +148,18 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
                                                     {/* Notch */}
                                                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-[#1e293b] rounded-b-xl z-20" />
                                                     {/* Content */}
-                                                    <div className="w-full h-full flex items-center justify-center text-3xl text-slate-600 group-hover:text-purple-400 transition-colors">
-                                                        {project.icon}
+                                                    <div className="h-full w-full overflow-hidden">
+                                                        {project.image ? (
+                                                            <img
+                                                                src={project.image}
+                                                                alt={project.title}
+                                                                className="h-full w-full object-cover object-top"
+                                                            />
+                                                        ) : (
+                                                            <div className="flex h-full w-full items-center justify-center text-3xl text-slate-600 transition-colors group-hover:text-purple-400">
+                                                                {project.icon}
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 </motion.div>
                                             )}
@@ -170,8 +190,19 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
                                         {/* Link */}
                                         <div className="flex items-center justify-between pt-6 border-t border-white/5">
                                             <div className="flex gap-4">
-                                                <HiOutlineCodeBracket className="text-slate-500 hover:text-white cursor-pointer transition-colors" />
-                                                <HiOutlineGlobeAlt className="text-slate-500 hover:text-white cursor-pointer transition-colors" />
+                                                <HiOutlineCodeBracket className="cursor-pointer text-slate-500 transition-colors hover:text-white" />
+                                                {project.liveUrl ? (
+                                                    <a
+                                                        href={project.liveUrl}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        aria-label={`Visit ${project.title}`}
+                                                    >
+                                                        <HiOutlineGlobeAlt className="cursor-pointer text-slate-500 transition-colors hover:text-white" />
+                                                    </a>
+                                                ) : (
+                                                    <HiOutlineGlobeAlt className="cursor-pointer text-slate-500 transition-colors hover:text-white" />
+                                                )}
                                             </div>
                                             <button
                                                 onClick={() => window.location.hash = `case-study/${project.id}`}

@@ -5,6 +5,9 @@ import {
     HiOutlineCodeBracket,
     HiOutlineDevicePhoneMobile
 } from "react-icons/hi2";
+import codpodImage from "../assets/codpod.png";
+import mentoraImage from "../assets/mentora.png";
+import agetechImage from "../assets/agetech.jpg";
 
 export const projects = [
     {
@@ -15,7 +18,9 @@ export const projects = [
         tech: ["Next.js", "Supabase", "Monaco Editor", "Tailwind"],
         color: "from-indigo-600 via-blue-500 to-cyan-400",
         icon: <HiOutlineCodeBracket className="text-indigo-400" />,
-        features: ["Live Code Editor", "Roadmap Voting", "Community Forums"]
+        features: ["Live Code Editor", "Roadmap Voting", "Community Forums"],
+        image: codpodImage,
+        liveUrl: "https://codepod-six.vercel.app/"
     },
     {
         id: "udyampath",
@@ -35,7 +40,9 @@ export const projects = [
         tech: ["React Native", "React JS", "Firebase", "Netlify", "GitHub"],
         color: "from-emerald-600 via-teal-500 to-green-400",
         icon: <HiOutlineSparkles className="text-emerald-400" />,
-        features: ["Mood Tracker", "AI Chatbot", "Self-Care Resources"]
+        features: ["Mood Tracker", "AI Chatbot", "Self-Care Resources"],
+        image: mentoraImage,
+        liveUrl: "https://mentora-gray-eight.vercel.app/"
     },
     {
         id: "ai-sewa",
@@ -49,12 +56,13 @@ export const projects = [
     },
     {
         id: "agetech-app",
-        title: "AgeTech App",
+        title: "Agetech Connect",
         type: "Mobile App",
-        description: "A specialized health and connectivity platform for the elderly, featuring medication reminders, emergency SOS, and simplified digital communication.",
+        description: "A matching platform connecting families, care facilities, and aging-tech innovators to discover the right aging technology faster.",
         tech: ["React Native", "Firebase", "Expo", "Native APIs"],
         color: "from-rose-600 via-pink-500 to-red-400",
         icon: <HiOutlineDevicePhoneMobile className="text-rose-400" />,
-        features: ["Emergency SOS", "Meds Reminder", "Simplified UI"]
+        features: ["Care Matching", "Trusted Providers", "Mobile-First UX"],
+        image: agetechImage
     },
 ];

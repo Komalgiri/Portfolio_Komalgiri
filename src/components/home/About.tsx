@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ScrollReveal from '../ui/ScrollReveal';
+import AnimatedCounter from '../ui/AnimatedCounter';
+import { fadeUp, staggerContainer } from '../../utils/scrollAnimations';
 import {
     HiOutlineCommandLine,
     HiOutlineSparkles,
@@ -162,7 +165,7 @@ const About = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
 
                     {/* Column 1: Condensed Bio */}
-                    <div className="lg:col-span-4 space-y-10">
+                    <ScrollReveal variant="fadeLeft" className="lg:col-span-4 space-y-10">
                         <div className="space-y-6">
                             <p className="text-lg text-slate-300 font-medium leading-relaxed">
                                 I build <span className="text-white">scalable web and mobile applications</span> integrating AI-driven features and clean, responsive interfaces.
@@ -173,20 +176,30 @@ const About = () => {
                             </p>
                         </div>
 
-                        <div className="space-y-4">
-                            <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Soft Skills</p>
+                        <motion.div
+                            className="space-y-4"
+                            variants={staggerContainer}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: '-60px' }}
+                        >
+                            <motion.p variants={fadeUp} className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Soft Skills</motion.p>
                             <div className="flex flex-wrap gap-2">
                                 {['Problem-solving', 'Team Collaboration', 'Adaptability', 'Communication'].map(skill => (
-                                    <span key={skill} className="px-3 py-1.5 rounded-md bg-white/5 border border-white/10 text-slate-400 text-[10px] font-bold uppercase tracking-wider">
+                                    <motion.span
+                                        key={skill}
+                                        variants={fadeUp}
+                                        className="px-3 py-1.5 rounded-md bg-white/5 border border-white/10 text-slate-400 text-[10px] font-bold uppercase tracking-wider"
+                                    >
                                         {skill}
-                                    </span>
+                                    </motion.span>
                                 ))}
                             </div>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </ScrollReveal>
 
                     {/* Column 2: Focused Tech Stack */}
-                    <div className="lg:col-span-4 relative">
+                    <ScrollReveal variant="scaleIn" delay={0.1} className="lg:col-span-4 relative">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={index}
@@ -232,31 +245,35 @@ const About = () => {
                                 />
                             ))}
                         </div>
-                    </div>
+                    </ScrollReveal>
 
                     {/* Column 3: Professional Metrics */}
-                    <div className="lg:col-span-4 grid grid-cols-2 gap-y-12 gap-x-8 pl-8">
-                        <div className="space-y-1">
-                            <h4 className="text-4xl font-black text-white italic tracking-tighter">1+</h4>
-                            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] leading-tight">Years Professional<br />Experience</p>
-                        </div>
+                    <motion.div
+                        className="lg:col-span-4 grid grid-cols-2 gap-y-12 gap-x-8 pl-8"
+                        variants={staggerContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: '-80px' }}
+                    >
+                        {[
+                            { id: 'experience', value: 1.5, decimals: 1, suffix: '+', label: <>Years Professional<br />Experience</> },
+                            { id: 'projects', value: 10, decimals: 0, suffix: '+', label: <>Projects &<br />Deployments</> },
+                            { id: 'certs', value: 7, decimals: 0, suffix: '+', label: <>Certifications<br />Earned</> },
+                            { id: 'awards', value: 3, decimals: 0, suffix: '+', label: <>Major Awards &<br />Recognitions</> },
+                        ].map((metric) => (
+                            <motion.div key={metric.id} variants={fadeUp} className="space-y-1">
+                                <h4 className="text-4xl font-black text-white italic tracking-tighter">
+                                    <AnimatedCounter
+                                        value={metric.value}
+                                        decimals={metric.decimals}
+                                        suffix={metric.suffix}
+                                    />
+                                </h4>
+                                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] leading-tight">{metric.label}</p>
+                            </motion.div>
+                        ))}
 
-                        <div className="space-y-1">
-                            <h4 className="text-4xl font-black text-white italic tracking-tighter">10+</h4>
-                            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] leading-tight">Projects &<br />Deployments</p>
-                        </div>
-
-                        <div className="space-y-1">
-                            <h4 className="text-4xl font-black text-white italic tracking-tighter">7+</h4>
-                            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] leading-tight">Certifications<br />Earned</p>
-                        </div>
-
-                        <div className="space-y-1">
-                            <h4 className="text-4xl font-black text-white italic tracking-tighter">3+</h4>
-                            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] leading-tight">Major Awards &<br />Recognitions</p>
-                        </div>
-
-                        <div className="col-span-2 pt-6 border-t border-white/5">
+                        <motion.div variants={fadeUp} className="col-span-2 pt-6 border-t border-white/5">
                             <div className="flex items-center gap-3">
                                 <span className="relative flex h-2.5 w-2.5">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -264,8 +281,8 @@ const About = () => {
                                 </span>
                                 <h4 className="text-sm font-black text-white uppercase tracking-[0.3em]">Available for Hire</h4>
                             </div>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
 
                 </div>
             </div>

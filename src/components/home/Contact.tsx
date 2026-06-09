@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
+import ScrollReveal from '../ui/ScrollReveal';
+import { fadeUp, staggerContainer } from '../../utils/scrollAnimations';
 import {
     HiOutlineEnvelope,
     HiOutlinePhone,
@@ -84,7 +87,7 @@ const Contact = () => {
         <section id="contact" className="py-20 md:py-24 bg-[#0f172a]">
             <div className="max-w-7xl mx-auto px-6">
                 {/* Section header */}
-                <div className="mb-14">
+                <ScrollReveal className="mb-14">
                     <h2 className="text-5xl md:text-7xl font-black text-white flex items-center gap-6">
                         <span className="w-16 h-[2px] bg-indigo-500"></span>
                         Contact.
@@ -92,14 +95,21 @@ const Contact = () => {
                     <p className="text-slate-400 max-w-xl text-lg font-medium pl-20 mt-4">
                         Whether you have a project in mind or just want to connect — I'm always open.
                     </p>
-                </div>
+                </ScrollReveal>
 
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
                     {/* Left — contact info */}
-                    <div className="lg:col-span-2 flex flex-col gap-4">
+                    <motion.div
+                        className="lg:col-span-2 flex flex-col gap-4"
+                        variants={staggerContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: '-60px' }}
+                    >
                         {contactLinks.map(({ icon, label, href, external }) => (
-                            <div
+                            <motion.div
                                 key={label}
+                                variants={fadeUp}
                                 className="flex items-center gap-4 p-4 rounded-2xl bg-[#1e293b] border border-white/5 hover:border-indigo-500/30 transition-all group"
                             >
                                 <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-indigo-400 shrink-0 group-hover:bg-indigo-500/10 transition-colors">
@@ -116,21 +126,21 @@ const Contact = () => {
                                 ) : (
                                     <span className="text-slate-300 text-sm font-medium">{label}</span>
                                 )}
-                            </div>
+                            </motion.div>
                         ))}
 
                         {/* Availability badge */}
-                        <div className="mt-2 flex items-center gap-3 p-4 rounded-2xl bg-[#1e293b] border border-white/5">
+                        <motion.div variants={fadeUp} className="mt-2 flex items-center gap-3 p-4 rounded-2xl bg-[#1e293b] border border-white/5">
                             <span className="relative flex h-2.5 w-2.5 shrink-0">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
                             </span>
                             <p className="text-sm font-bold text-white uppercase tracking-widest">Available for Hire</p>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
 
                     {/* Right — form */}
-                    <div className="lg:col-span-3 bg-[#1e293b] rounded-3xl border border-white/5 p-8">
+                    <ScrollReveal variant="fadeRight" delay={0.15} className="lg:col-span-3 bg-[#1e293b] rounded-3xl border border-white/5 p-8">
                         <div className="flex items-center gap-3 mb-6">
                             <HiOutlineChatBubbleLeftRight className="text-2xl text-indigo-400" />
                             <h3 className="text-xl font-bold text-white">Send a Message</h3>
@@ -253,7 +263,7 @@ const Contact = () => {
                                 </button>
                             </form>
                         )}
-                    </div>
+                    </ScrollReveal>
                 </div>
             </div>
         </section>

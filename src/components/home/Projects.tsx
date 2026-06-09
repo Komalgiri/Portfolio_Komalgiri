@@ -138,27 +138,42 @@ const Projects = () => {
                                     className="relative mx-auto overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.5)] bg-[#0f172a]"
                                 >
                                     {/* Visual Background */}
-                                    <div className="absolute inset-0 bg-[#1e293b] opacity-60" />
-                                    <div className="absolute inset-0 bg-[#0f172a]/90" />
+                                    {!topProjects[activeIndex]?.image && (
+                                        <>
+                                            <div className="absolute inset-0 bg-[#1e293b] opacity-60" />
+                                            <div className="absolute inset-0 bg-[#0f172a]/90" />
+                                        </>
+                                    )}
 
-                                    {/* Content Placeholder / Video */}
+                                    {/* Project preview */}
                                     <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-                                        <div key={topProjects[activeIndex]?.id} className="w-full h-full flex flex-col items-center justify-center opacity-60">
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                className="text-8xl mb-6 filter drop-shadow-2xl"
-                                            >
-                                                {topProjects[activeIndex]?.icon}
-                                            </motion.div>
-                                            <div className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 font-mono text-[9px] uppercase tracking-widest text-slate-400">
-                                                Preview Stream Active
+                                        {topProjects[activeIndex]?.image ? (
+                                            <img
+                                                key={topProjects[activeIndex]?.id}
+                                                src={topProjects[activeIndex].image}
+                                                alt={topProjects[activeIndex].title}
+                                                className={`h-full w-full object-cover ${topProjects[activeIndex]?.type === 'Mobile App' ? 'object-top' : ''}`}
+                                            />
+                                        ) : (
+                                            <div key={topProjects[activeIndex]?.id} className="flex h-full w-full flex-col items-center justify-center opacity-60">
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: 20 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    className="mb-6 text-8xl filter drop-shadow-2xl"
+                                                >
+                                                    {topProjects[activeIndex]?.icon}
+                                                </motion.div>
+                                                <div className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 font-mono text-[9px] uppercase tracking-widest text-slate-400">
+                                                    Preview Stream Active
+                                                </div>
                                             </div>
-                                        </div>
+                                        )}
                                     </div>
 
                                     {/* Overlay for depth */}
-                                    <div className="absolute inset-0 bg-[#0f172a]/30 pointer-events-none" />
+                                    {!topProjects[activeIndex]?.image && (
+                                        <div className="pointer-events-none absolute inset-0 bg-[#0f172a]/30" />
+                                    )}
 
                                     {/* Device Decorations */}
                                     {topProjects[activeIndex]?.type === 'Web' ? (
@@ -213,10 +228,20 @@ const Projects = () => {
                                 {/* Mobile Visual Only */}
                                 <div className={`lg:hidden mb-12 w-full rounded-3xl overflow-hidden relative shadow-2xl ${project.type === 'Web' ? 'aspect-video' : 'aspect-[9/16] max-w-[300px] mx-auto'
                                     }`}>
-                                    <div className="absolute inset-0 bg-[#1e293b] opacity-20" />
-                                    <div className="absolute inset-0 bg-[#0f172a] border border-white/5 flex items-center justify-center text-8xl">
-                                        {project?.icon}
-                                    </div>
+                                    {project.image ? (
+                                        <img
+                                            src={project.image}
+                                            alt={project.title}
+                                            className={`h-full w-full object-cover ${project.type === 'Mobile App' ? 'object-top' : ''}`}
+                                        />
+                                    ) : (
+                                        <>
+                                            <div className="absolute inset-0 bg-[#1e293b] opacity-20" />
+                                            <div className="absolute inset-0 flex items-center justify-center border border-white/5 bg-[#0f172a] text-8xl">
+                                                {project?.icon}
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
 
                                 <div className="space-y-8">
@@ -255,13 +280,26 @@ const Projects = () => {
                                         ))}
                                     </div>
 
-                                    <button
-                                        onClick={() => window.location.hash = `case-study/${project.id}`}
-                                        className="mt-12 px-10 py-5 rounded-full bg-white text-black font-black uppercase text-xs tracking-widest flex items-center gap-4 hover:scale-105 transition-transform"
-                                    >
-                                        Open Live Case
-                                        <HiOutlineArrowRight className="w-4 h-4" />
-                                    </button>
+                                    <div className="mt-12 flex flex-wrap gap-4">
+                                        {project.liveUrl && (
+                                            <a
+                                                href={project.liveUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-4 rounded-full bg-indigo-600 px-10 py-5 text-xs font-black uppercase tracking-widest text-white transition-transform hover:scale-105"
+                                            >
+                                                View Live
+                                                <HiOutlineArrowRight className="h-4 w-4" />
+                                            </a>
+                                        )}
+                                        <button
+                                            onClick={() => window.location.hash = `case-study/${project.id}`}
+                                            className="flex items-center gap-4 rounded-full bg-white px-10 py-5 text-xs font-black uppercase tracking-widest text-black transition-transform hover:scale-105"
+                                        >
+                                            Open Case Study
+                                            <HiOutlineArrowRight className="h-4 w-4" />
+                                        </button>
+                                    </div>
                                 </div>
                             </motion.div>
                         ))}

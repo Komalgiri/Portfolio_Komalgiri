@@ -66,7 +66,7 @@ const projectDetails: Record<string, any> = {
             satisfaction: "4.7/5"
         },
         links: {
-            live: "https://codepod-demo.vercel.app",
+            live: "https://codepod-six.vercel.app/",
             github: "https://github.com/yourusername/codepod"
         },
         color: "from-indigo-600 via-blue-500 to-cyan-400",
@@ -178,7 +178,7 @@ const projectDetails: Record<string, any> = {
             satisfaction: "4.8/5"
         },
         links: {
-            live: "https://mentora-demo.netlify.app",
+            live: "https://mentora-gray-eight.vercel.app/",
             github: "https://github.com/yourusername/mentora"
         },
         color: "from-emerald-600 via-teal-500 to-green-400",
