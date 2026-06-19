@@ -11,7 +11,7 @@ import profilePhoto from '../../assets/profile_port.png';
 const roles = ['Full Stack Developer', 'React Native Builder', 'API-Focused Engineer'];
 
 const cardBase =
-    'w-[155px] rounded-2xl border border-white/10 bg-[#111827]/92 p-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur-sm sm:w-[165px] sm:p-4';
+    'w-[155px] rounded-2xl border border-theme-border bg-[var(--color-card-glass)] p-3.5 shadow-lg backdrop-blur-sm sm:w-[165px] sm:p-4';
 
 const ARC_RADIUS = 188;
 const ARC_CENTER_Y = 258;
@@ -35,8 +35,8 @@ const infoCards = [
             <div className="flex items-start justify-between gap-2">
                 <div>
                     <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-slate-500">What I Build</p>
-                    <p className="mt-1 text-sm font-black text-white">Web & mobile products</p>
-                    <p className="mt-1 text-[11px] leading-relaxed text-slate-400">
+                    <p className="mt-1 text-sm font-black text-theme-text">Web & mobile products</p>
+                    <p className="mt-1 text-[11px] leading-relaxed text-theme-muted">
                         React dashboards, React Native apps & Node.js APIs — designed for clarity and scale.
                     </p>
                 </div>
@@ -53,8 +53,8 @@ const infoCards = [
                     <HiOutlineGlobeAlt className="text-base" />
                     <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-slate-500">Availability</span>
                 </div>
-                <p className="mt-1.5 text-sm font-black text-white">Open to full-time roles</p>
-                <p className="mt-1 text-[11px] leading-relaxed text-slate-400">
+                <p className="mt-1.5 text-sm font-black text-theme-text">Open to full-time roles</p>
+                <p className="mt-1 text-[11px] leading-relaxed text-theme-muted">
                     Frontend, full-stack & product engineering — remote-friendly.
                 </p>
             </>
@@ -69,8 +69,8 @@ const infoCards = [
                     <HiOutlineRocketLaunch className="text-base" />
                     <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-slate-500">Momentum</span>
                 </div>
-                <p className="mt-1.5 text-sm font-black text-white">1.5+ years building</p>
-                <p className="mt-1 text-[11px] leading-relaxed text-slate-400">
+                <p className="mt-1.5 text-sm font-black text-theme-text">1.5+ years building</p>
+                <p className="mt-1 text-[11px] leading-relaxed text-theme-muted">
                     Shipping end-to-end features across UI, APIs & mobile with fast iteration.
                 </p>
             </>
@@ -108,7 +108,7 @@ const Hero = () => {
     return (
         <section
             ref={sectionRef}
-            className="relative min-h-[92vh] overflow-x-clip bg-[#0f172a] pt-28 pb-16 md:pt-32 md:pb-20"
+            className="relative min-h-[92vh] overflow-x-clip bg-theme-bg pt-28 pb-16 transition-colors duration-300 md:pt-32 md:pb-20"
             onMouseMove={handlePointerMove}
         >
             <div className="absolute inset-0 opacity-40" aria-hidden="true">
@@ -116,9 +116,9 @@ const Hero = () => {
                     className="absolute h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl transition-transform duration-300"
                     style={{ transform: `translate(${pointer.x * 0.8}%, ${pointer.y * 0.45}%)` }}
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:36px_36px]" />
+                <div className="absolute inset-0 hero-grid-pattern opacity-40" />
             </div>
-            <div className="pointer-events-none absolute inset-x-0 top-20 text-center font-black uppercase tracking-[-0.08em] text-white/[0.04] select-none">
+            <div className="pointer-events-none absolute inset-x-0 top-20 text-center font-black uppercase tracking-[-0.08em] text-[var(--color-hero-watermark)] select-none">
                 <span className="block text-[24vw] leading-none md:text-[17vw]">Developer</span>
             </div>
 
@@ -130,7 +130,7 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 24 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium text-indigo-300"
+                        className="inline-flex items-center gap-3 rounded-full border border-theme-border bg-theme-surface/50 px-5 py-2 text-sm font-medium text-indigo-500 dark:text-indigo-300"
                     >
                         <span className="h-2 w-2 rounded-full bg-green-400" />
                         Open for Full-Time Opportunities
@@ -140,7 +140,7 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 32 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="mt-8 text-4xl font-black leading-tight tracking-tight text-white md:text-5xl lg:text-6xl"
+                        className="mt-8 text-4xl font-black leading-tight tracking-tight text-theme-text md:text-5xl lg:text-6xl"
                     >
                         Hello, Komal Giri.
                     </motion.h1>
@@ -158,7 +158,7 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 24 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="mt-8 max-w-lg text-lg leading-relaxed text-slate-400"
+                        className="mt-8 max-w-lg text-lg leading-relaxed text-theme-muted"
                     >
                         I design and ship web and mobile applications with React, React Native, Node.js, and backend APIs.
                     </motion.p>
@@ -178,7 +178,7 @@ const Hero = () => {
                         </a>
                         <a
                             href="#contact"
-                            className="inline-flex items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/5 px-8 py-3.5 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10"
+                            className="inline-flex items-center justify-center gap-3 rounded-xl border border-theme-border bg-theme-surface/50 px-8 py-3.5 font-semibold text-theme-text transition-all duration-300 hover:-translate-y-0.5 hover:bg-theme-surface"
                         >
                             Hire Me
                         </a>
@@ -214,7 +214,7 @@ const Hero = () => {
 
                     {/* Faint semi-circle guide */}
                     <div
-                        className="pointer-events-none absolute left-1/2 top-[248px] z-0 h-[130px] w-[280px] -translate-x-1/2 rounded-b-full border border-white/[0.05] sm:top-[258px] sm:h-[145px] sm:w-[310px]"
+                        className="pointer-events-none absolute left-1/2 top-[248px] z-0 h-[130px] w-[280px] -translate-x-1/2 rounded-b-full border border-theme-border sm:top-[258px] sm:h-[145px] sm:w-[310px]"
                         aria-hidden="true"
                     />
 

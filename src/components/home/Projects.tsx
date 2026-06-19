@@ -54,7 +54,7 @@ const Projects = () => {
     if (topProjects.length === 0) return null;
 
     return (
-        <section id="projects" className="relative bg-[#0f172a]" ref={containerRef}>
+        <section id="projects" className="relative bg-theme-bg transition-colors duration-300" ref={containerRef}>
             {/* Background Glow */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
             </div>
@@ -66,7 +66,7 @@ const Projects = () => {
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-5xl md:text-7xl font-black text-white mb-6 uppercase tracking-tight"
+                        className="text-5xl md:text-7xl font-black text-theme-text mb-6 uppercase tracking-tight"
                     >
                         Featured <span className="text-indigo-400">Innovations</span>
                     </motion.h2>
@@ -75,14 +75,14 @@ const Projects = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-slate-500 max-w-2xl mx-auto text-xl font-light"
+                        className="text-theme-muted max-w-2xl mx-auto text-xl font-light"
                     >
                         A gallery of digital solutions built with cutting-edge technologies.
                     </motion.p>
 
                     {/* Platform Switcher */}
                     <div className="mt-12 flex justify-center sticky top-24 z-[100]">
-                        <div className="bg-[#0f172a]/80 backdrop-blur-xl p-1 rounded-2xl border border-white/5 flex gap-1 shadow-2xl">
+                        <div className="bg-theme-nav backdrop-blur-xl p-1 rounded-2xl border border-theme-border flex gap-1 shadow-2xl">
                             {[
                                 { id: 'all', label: 'All', icon: <HiOutlineSquares2X2 /> },
                                 { id: 'web', label: 'Web', icon: <HiOutlineGlobeAlt /> },
@@ -94,7 +94,7 @@ const Projects = () => {
                                         setFilter(t.id as any);
                                         setActiveIndex(0);
                                     }}
-                                    className={`relative px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-[0.2em] transition-all core-transition flex items-center gap-3 ${filter === t.id ? "text-white" : "text-slate-600 hover:text-slate-400"
+                                    className={`relative px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-[0.2em] transition-all core-transition flex items-center gap-3 ${filter === t.id ? "text-theme-text" : "text-theme-muted hover:text-theme-text"
                                         }`}
                                 >
                                     {filter === t.id && (
@@ -135,13 +135,13 @@ const Projects = () => {
                                         duration: 0.6,
                                         ease: [0.32, 0.72, 0, 1]
                                     }}
-                                    className="relative mx-auto overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.5)] bg-[#0f172a]"
+                                    className="relative mx-auto overflow-hidden shadow-2xl bg-theme-bg"
                                 >
                                     {/* Visual Background */}
                                     {!topProjects[activeIndex]?.image && (
                                         <>
-                                            <div className="absolute inset-0 bg-[#1e293b] opacity-60" />
-                                            <div className="absolute inset-0 bg-[#0f172a]/90" />
+                                            <div className="absolute inset-0 bg-theme-card opacity-60" />
+                                            <div className="absolute inset-0 bg-theme-bg/90" />
                                         </>
                                     )}
 
@@ -163,7 +163,7 @@ const Projects = () => {
                                                 >
                                                     {topProjects[activeIndex]?.icon}
                                                 </motion.div>
-                                                <div className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 font-mono text-[9px] uppercase tracking-widest text-slate-400">
+                                                <div className="rounded-full border border-theme-border bg-theme-surface/50 px-4 py-1.5 font-mono text-[9px] uppercase tracking-widest text-theme-muted">
                                                     Preview Stream Active
                                                 </div>
                                             </div>
@@ -172,19 +172,19 @@ const Projects = () => {
 
                                     {/* Overlay for depth */}
                                     {!topProjects[activeIndex]?.image && (
-                                        <div className="pointer-events-none absolute inset-0 bg-[#0f172a]/30" />
+                                        <div className="pointer-events-none absolute inset-0 bg-theme-bg/30" />
                                     )}
 
                                     {/* Device Decorations */}
                                     {topProjects[activeIndex]?.type === 'Web' ? (
-                                        <div className="absolute top-0 left-0 right-0 h-10 bg-white/5 border-b border-white/5 flex items-center px-5 gap-2 z-20 backdrop-blur-md">
+                                        <div className="absolute top-0 left-0 right-0 h-10 bg-theme-surface/50 border-b border-theme-border flex items-center px-5 gap-2 z-20 backdrop-blur-md">
                                             <div className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
                                             <div className="w-2.5 h-2.5 rounded-full bg-amber-500/40" />
                                             <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/40" />
                                             <div className="ml-4 h-4 w-48 bg-white/5 rounded-full" />
                                         </div>
                                     ) : (
-                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-8 bg-[#1e293b] rounded-b-3xl z-20 flex items-center justify-center border-x border-b border-white/5">
+                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-8 bg-theme-card rounded-b-3xl z-20 flex items-center justify-center border-x border-b border-theme-border">
                                             <div className="w-12 h-1.5 bg-white/5 rounded-full" />
                                         </div>
                                     )}
@@ -236,8 +236,8 @@ const Projects = () => {
                                         />
                                     ) : (
                                         <>
-                                            <div className="absolute inset-0 bg-[#1e293b] opacity-20" />
-                                            <div className="absolute inset-0 flex items-center justify-center border border-white/5 bg-[#0f172a] text-8xl">
+                                            <div className="absolute inset-0 bg-theme-card opacity-20" />
+                                            <div className="absolute inset-0 flex items-center justify-center border border-theme-border bg-theme-bg text-8xl">
                                                 {project?.icon}
                                             </div>
                                         </>
@@ -248,14 +248,14 @@ const Projects = () => {
                                     <div className="flex items-center gap-6">
                                         <h4 className="text-indigo-500 font-mono text-xl tracking-tighter">PROJECT.0{index + 1}</h4>
                                         <div className="h-px w-24 bg-indigo-500/20" />
-                                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500">{project.type}</span>
+                                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-theme-muted">{project.type}</span>
                                     </div>
 
-                                    <h3 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-[0.8] transition-colors">
+                                    <h3 className="text-6xl md:text-8xl font-black text-theme-text tracking-tighter leading-[0.8] transition-colors">
                                         {project.title}
                                     </h3>
 
-                                    <p className="text-slate-400 text-xl font-light leading-relaxed max-w-xl">
+                                    <p className="text-theme-muted text-xl font-light leading-relaxed max-w-xl">
                                         {project.description}
                                     </p>
 
@@ -273,9 +273,9 @@ const Projects = () => {
 
                                     <div className="flex flex-wrap gap-4 pt-4">
                                         {project.features.map((feature) => (
-                                            <div key={feature} className="flex items-center gap-3 px-4 py-2 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors group">
+                                            <div key={feature} className="flex items-center gap-3 px-4 py-2 rounded-xl bg-theme-surface/50 border border-theme-border hover:bg-theme-surface transition-colors group">
                                                 <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-                                                <span className="text-sm font-medium text-slate-300 group-hover:text-white">{feature}</span>
+                                                <span className="text-sm font-medium text-theme-muted group-hover:text-theme-text">{feature}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -312,10 +312,10 @@ const Projects = () => {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => window.location.hash = "#all-projects"}
-                        className="group relative px-16 py-6 rounded-[2rem] font-black text-white overflow-hidden shadow-2xl transition-all"
+                        className="group relative px-16 py-6 rounded-[2rem] font-black text-theme-text overflow-hidden shadow-2xl transition-all"
                     >
                         <div className="absolute inset-0 bg-indigo-600/20 group-hover:bg-indigo-600/40 transition-all" />
-                        <div className="absolute inset-0 bg-black/40 backdrop-blur-3xl border border-white/10 group-hover:border-indigo-500/50" />
+                        <div className="absolute inset-0 bg-theme-surface/40 backdrop-blur-3xl border border-theme-border group-hover:border-indigo-500/50" />
                         <span className="relative flex items-center justify-center gap-4 uppercase tracking-[0.3em] text-xs">
                             Discover Full Archive
                             <HiOutlineArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-500" />

@@ -73,7 +73,7 @@ const Experience = () => {
     const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
     return (
-        <section id="experience" className="py-24 md:py-28 bg-[#0f172a] relative overflow-hidden">
+        <section id="experience" className="py-24 md:py-28 bg-theme-bg relative overflow-hidden transition-colors duration-300">
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 {/* Section Header */}
@@ -84,11 +84,11 @@ const Experience = () => {
                         viewport={{ once: true }}
                         className="space-y-4"
                     >
-                        <h2 className="text-5xl md:text-7xl font-black text-white flex items-center gap-6">
+                        <h2 className="text-5xl md:text-7xl font-black text-theme-text flex items-center gap-6">
                             <span className="w-16 h-[2px] bg-purple-500"></span>
-                            Experience.
+                            What do I do
                         </h2>
-                        <p className="text-slate-400 max-w-2xl text-lg font-medium pl-20">
+                        <p className="text-theme-muted max-w-2xl text-lg font-medium pl-20">
                             A chronological journey through my professional growth, technical milestones, and academic foundation.
                         </p>
                     </motion.div>
@@ -119,7 +119,7 @@ const Experience = () => {
                                     whileInView={{ scale: 1, opacity: 1 }}
                                     viewport={{ once: true, margin: '-80px' }}
                                     transition={{ duration: 0.5, delay: idx * 0.1 + 0.2, type: 'spring', stiffness: 200 }}
-                                    className="absolute left-0 md:left-1/2 top-0 md:top-8 w-10 h-10 rounded-xl bg-[#1e293b] border-2 border-purple-500/50 flex items-center justify-center z-20 md:-translate-x-1/2 shadow-[0_0_20px_rgba(168,85,247,0.2)]"
+                                    className="absolute left-0 md:left-1/2 top-0 md:top-8 w-10 h-10 rounded-xl bg-theme-card border-2 border-purple-500/50 flex items-center justify-center z-20 md:-translate-x-1/2 shadow-[0_0_20px_rgba(168,85,247,0.2)]"
                                 >
                                     {exp.type === 'work' ? (
                                         <HiOutlineBriefcase className="text-purple-400 text-xl" />
@@ -135,8 +135,8 @@ const Experience = () => {
                                             <span className="text-purple-400 font-bold uppercase tracking-[0.2em] text-[10px]">
                                                 {exp.period}
                                             </span>
-                                            <h3 className="text-2xl font-black text-white">{exp.role}</h3>
-                                            <div className="flex items-center gap-2 text-slate-400 font-bold text-sm">
+                                            <h3 className="text-2xl font-black text-theme-text">{exp.role}</h3>
+                                            <div className="flex items-center gap-2 text-theme-muted font-bold text-sm">
                                                 <HiOutlineMapPin className="text-purple-500" />
                                                 <span>{exp.company}</span>
                                                 <span className="w-1 h-1 rounded-full bg-slate-600"></span>
@@ -148,14 +148,14 @@ const Experience = () => {
                                             {exp.description.map((point, pIdx) => (
                                                 <div key={pIdx} className={`flex gap-3 ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
                                                     <HiOutlineCheckCircle className="text-purple-500 text-lg mt-1 shrink-0" />
-                                                    <p className="text-slate-400 text-sm leading-relaxed">{point}</p>
+                                                    <p className="text-theme-muted text-sm leading-relaxed">{point}</p>
                                                 </div>
                                             ))}
                                         </div>
 
                                         <div className={`flex flex-wrap gap-2 pt-4 ${idx % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
                                             {exp.tech.map(t => (
-                                                <span key={t} className="px-3 py-1 rounded-md bg-white/5 border border-white/5 text-[10px] font-bold text-slate-300 uppercase tracking-widest">
+                                                <span key={t} className="px-3 py-1 rounded-md bg-theme-surface/50 border border-theme-border text-[10px] font-bold text-theme-muted uppercase tracking-widest">
                                                     {t}
                                                 </span>
                                             ))}
@@ -180,16 +180,16 @@ const Experience = () => {
                     >
                         <button
                             onClick={() => window.location.hash = "#github-stats"}
-                            className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-2xl font-bold text-white overflow-hidden shadow-2xl transition-all duration-300 cursor-pointer bg-white/5"
+                            className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-2xl font-bold text-theme-text overflow-hidden shadow-2xl transition-all duration-300 cursor-pointer bg-theme-surface/50"
                         >
                             <div className="absolute inset-0 bg-indigo-600/20 group-hover:bg-indigo-600/30 transition-opacity" />
-                            <div className="absolute inset-0 bg-white/5 backdrop-blur-md border border-white/10" />
+                            <div className="absolute inset-0 bg-theme-surface/30 backdrop-blur-md border border-theme-border" />
                             <span className="relative flex items-center gap-3">
                                 View Technical Footprint
-                                <div className="p-1 px-2 rounded-md bg-white/10 text-[10px] text-purple-300 font-mono tracking-tighter">
+                                <div className="p-1 px-2 rounded-md bg-theme-surface/50 text-[10px] text-purple-400 dark:text-purple-300 font-mono tracking-tighter">
                                     GITHUB_ECOSYSTEM
                                 </div>
-                                <div className="w-8 h-[1px] bg-white/20 group-hover:w-12 transition-all duration-300" />
+                                <div className="w-8 h-[1px] bg-theme-border group-hover:w-12 transition-all duration-300" />
                             </span>
                         </button>
                         <p className="mt-6 text-slate-500 text-sm font-medium tracking-wide flex items-center justify-center gap-2">

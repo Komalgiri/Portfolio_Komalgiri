@@ -9,7 +9,8 @@ import {
     HiOutlineCpuChip,
     HiOutlineCloud,
     HiOutlineChartBar,
-    HiOutlinePaintBrush
+    HiOutlinePaintBrush,
+    HiOutlineDevicePhoneMobile,
 } from 'react-icons/hi2';
 import {
     SiReact,
@@ -20,12 +21,46 @@ import {
     SiMongodb,
     SiFigma,
     SiNumpy,
-    SiJupyter
+    SiJupyter,
+    SiAndroidstudio,
+    SiFirebase,
+    SiNetlify,
+    SiExpo,
+    SiGithub,
+    SiGit,
+    SiJira,
+    SiCanva,
+    SiMysql,
+    SiOpenai,
+    SiAnthropic,
+    SiClaude,
+    SiGooglegemini,
+    SiGithubcopilot,
+    SiPerplexity,
+    SiHuggingface,
+    SiReplit,
+    SiNotion,
+    SiPostman,
+    SiLeetcode,
+    SiHackerrank,
+    SiOpenjdk,
+    SiFramer,
+    SiCodeium,
+    SiLangchain,
+    SiOllama,
+    SiStackblitz,
+    SiGooglecolab,
+    SiMeta,
 } from 'react-icons/si';
+import { FaFileWord, FaFileExcel, FaFilePowerpoint, FaUniversalAccess } from 'react-icons/fa6';
+import type { IconType } from 'react-icons';
 
 interface SkillItem {
     name: string;
-    icon?: React.ReactNode;
+    Icon?: IconType;
+    imageSrc?: string;
+    color: string;
+    invertOnDark?: boolean;
 }
 
 interface SkillCategory {
@@ -38,39 +73,186 @@ interface SkillCategory {
     color: string;
 }
 
+const BrandIcon = ({
+    Icon,
+    imageSrc,
+    color,
+    invertOnDark,
+    className = 'text-[28px]',
+}: {
+    Icon?: IconType;
+    imageSrc?: string;
+    color?: string;
+    invertOnDark?: boolean;
+    className?: string;
+}) => {
+    if (imageSrc) {
+        return (
+            <img
+                src={imageSrc}
+                alt=""
+                aria-hidden="true"
+                className={`${className} h-7 w-7 object-contain ${invertOnDark ? 'dark:invert' : ''}`}
+            />
+        );
+    }
+    if (Icon) {
+        return (
+            <Icon
+                className={`${className} ${invertOnDark ? 'dark:brightness-0 dark:invert' : ''}`}
+                style={{ color }}
+            />
+        );
+    }
+    return null;
+};
+
+const SkillChip = ({ name, Icon, imageSrc, color, invertOnDark }: SkillItem) => (
+    <motion.div
+        whileHover={{ y: -5, scale: 1.06 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 22 }}
+        className="group flex flex-col items-center justify-center gap-2 rounded-2xl border border-transparent p-2.5 transition-all duration-300 hover:border-indigo-500/20 hover:bg-theme-surface/40"
+    >
+        <BrandIcon
+            Icon={Icon}
+            imageSrc={imageSrc}
+            color={color}
+            invertOnDark={invertOnDark}
+            className="text-[28px] transition-transform duration-300 group-hover:scale-110"
+        />
+        <span className="text-center text-[9px] font-bold uppercase tracking-wide text-theme-muted leading-tight group-hover:text-theme-text">
+            {name}
+        </span>
+    </motion.div>
+);
+
+interface AiTool {
+    name: string;
+    Icon?: IconType;
+    imageSrc?: string;
+    color: string;
+    invertOnDark?: boolean;
+}
+
+const aiTools: AiTool[] = [
+    { name: 'Cursor', imageSrc: '/icons/cursor.svg', color: '#000000', invertOnDark: true },
+    { name: 'Antigravity', imageSrc: '/icons/antigravity.svg', color: '#4285F4' },
+    { name: 'ChatGPT', Icon: SiOpenai, color: '#10A37F' },
+    { name: 'Claude', Icon: SiClaude, color: '#D97757' },
+    { name: 'Gemini', Icon: SiGooglegemini, color: '#8E75B2' },
+    { name: 'Windsurf', imageSrc: 'https://cdn.simpleicons.org/windsurf', color: '#0B8FCC' },
+    { name: 'v0', imageSrc: 'https://cdn.simpleicons.org/v0', color: '#000000', invertOnDark: true },
+    { name: 'DeepSeek', imageSrc: 'https://cdn.simpleicons.org/deepseek', color: '#4D6BFE' },
+    { name: 'Mistral', imageSrc: 'https://cdn.simpleicons.org/mistralai', color: '#F7D046' },
+    { name: 'GitHub Copilot', Icon: SiGithubcopilot, color: '#000000', invertOnDark: true },
+    { name: 'Codeium', Icon: SiCodeium, color: '#09B6A2' },
+    { name: 'Perplexity', Icon: SiPerplexity, color: '#1FB8CD' },
+    { name: 'Hugging Face', Icon: SiHuggingface, color: '#FFD21E' },
+    { name: 'Ollama', Icon: SiOllama, color: '#000000', invertOnDark: true },
+    { name: 'LangChain', Icon: SiLangchain, color: '#1C3C3C' },
+    { name: 'Bolt', Icon: SiStackblitz, color: '#1385FD' },
+    { name: 'Colab', Icon: SiGooglecolab, color: '#F9AB00' },
+    { name: 'Anthropic', Icon: SiAnthropic, color: '#CC785C' },
+    { name: 'Meta AI', Icon: SiMeta, color: '#0081FB' },
+    { name: 'Replit', Icon: SiReplit, color: '#F26207' },
+    { name: 'Notion AI', Icon: SiNotion, color: '#000000', invertOnDark: true },
+];
+
+const AiToolsMarquee = () => {
+    const items = [...aiTools, ...aiTools];
+
+    return (
+        <div className="mt-16 w-full md:mt-20">
+            <p className="mb-8 text-center text-[10px] font-black uppercase tracking-[0.35em] text-theme-muted">
+                AI Tools I Work With
+            </p>
+            <div className="relative w-full overflow-hidden py-2">
+                <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-theme-bg to-transparent" />
+                <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-theme-bg to-transparent" />
+                <div className="flex w-max animate-marquee items-center gap-14 px-8">
+                    {items.map((tool, i) => (
+                        <div
+                            key={`${tool.name}-${i}`}
+                            className="flex shrink-0 flex-col items-center gap-2.5 opacity-85 transition-opacity hover:opacity-100"
+                        >
+                            <BrandIcon
+                                Icon={tool.Icon}
+                                imageSrc={tool.imageSrc}
+                                color={tool.color}
+                                invertOnDark={tool.invertOnDark}
+                                className="text-3xl"
+                            />
+                            <span className="text-[9px] font-bold uppercase tracking-wider text-theme-muted whitespace-nowrap">
+                                {tool.name}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const skillCategories: SkillCategory[] = [
     {
-        id: 'languages',
-        category: 'Foundation',
-        title: 'Programming Languages',
-        description: 'Strong foundation in core programming languages with problem-solving, OOP, and performance-oriented coding.',
-        skills: [
-            { name: 'C++', icon: <HiOutlineCpuChip /> },
-            { name: 'Python', icon: <SiPython /> },
-            { name: 'Java' },
-            { name: 'DSA', icon: <HiOutlineCommandLine /> },
-            { name: 'OOP', icon: <HiOutlineSparkles /> },
-            { name: 'Problem Solving' }
-        ],
-        icon: <HiOutlineCpuChip className="text-3xl text-indigo-400" />,
-        color: 'from-indigo-500/20 to-purple-500/10'
-    },
-    {
         id: 'fullstack',
-        category: 'Development',
-        title: 'Full-Stack & Mobile',
-        description: 'End-to-end development of scalable web and mobile applications using modern stacks and architectures.',
+        category: 'Full Stack',
+        title: 'Web Development',
+        description: 'Building scalable web applications with modern frontend frameworks, backend APIs, and databases.',
         skills: [
-            { name: 'React JS', icon: <SiReact /> },
-            { name: 'React Native', icon: <SiReact /> },
-            { name: 'Node JS', icon: <SiNodedotjs /> },
-            { name: 'Django', icon: <SiDjango /> },
-            { name: 'PostgreSQL', icon: <SiPostgresql /> },
-            { name: 'MongoDB', icon: <SiMongodb /> },
-            { name: 'SQL' }
+            { name: 'React JS', Icon: SiReact, color: '#61DAFB' },
+            { name: 'Node JS', Icon: SiNodedotjs, color: '#339933' },
+            { name: 'Django', Icon: SiDjango, color: '#092E20' },
+            { name: 'PostgreSQL', Icon: SiPostgresql, color: '#4169E1' },
+            { name: 'MongoDB', Icon: SiMongodb, color: '#47A248' },
+            { name: 'SQL', Icon: SiMysql, color: '#4479A1' },
+            { name: 'REST APIs', Icon: SiPostman, color: '#FF6C37' },
         ],
         icon: <HiOutlineCommandLine className="text-3xl text-blue-400" />,
-        color: 'from-blue-400/20 to-indigo-500/10'
+        color: 'from-blue-400/20 to-indigo-500/10',
+    },
+    {
+        id: 'mobile',
+        category: 'Mobile Dev',
+        title: 'Mobile Development',
+        description: 'Cross-platform mobile apps with React Native, Expo, Firebase, and Android Studio.',
+        skills: [
+            { name: 'React Native', Icon: SiReact, color: '#61DAFB' },
+            { name: 'Android Studio', Icon: SiAndroidstudio, color: '#3DDC84' },
+            { name: 'Expo', Icon: SiExpo, color: '#000020', invertOnDark: true },
+            { name: 'Firebase', Icon: SiFirebase, color: '#FFCA28' },
+        ],
+        icon: <HiOutlineDevicePhoneMobile className="text-3xl text-cyan-400" />,
+        color: 'from-cyan-400/20 to-blue-500/10',
+    },
+    {
+        id: 'languages',
+        category: 'Languages',
+        title: 'Programming Languages',
+        description: 'Strong foundation in core programming with problem-solving, OOP, and performance-oriented coding.',
+        skills: [
+            { name: 'Python', Icon: SiPython, color: '#3776AB' },
+            { name: 'Java', Icon: SiOpenjdk, color: '#437291' },
+            { name: 'DSA', Icon: SiLeetcode, color: '#FFA116' },
+            { name: 'OOP', Icon: SiOpenjdk, color: '#ED8B00' },
+            { name: 'Problem Solving', Icon: SiHackerrank, color: '#00EA64' },
+        ],
+        icon: <HiOutlineCpuChip className="text-3xl text-indigo-400" />,
+        color: 'from-indigo-500/20 to-purple-500/10',
+    },
+    {
+        id: 'design',
+        category: 'UI / UX',
+        title: 'Design & Prototyping',
+        description: 'Crafting visually appealing, accessible, and user-centric interfaces with a product mindset.',
+        skills: [
+            { name: 'Figma', Icon: SiFigma, color: '#F24E1E' },
+            { name: 'Framer', Icon: SiFramer, color: '#0055FF' },
+            { name: 'Canva', Icon: SiCanva, color: '#00C4CC' },
+            { name: 'Accessibility', Icon: FaUniversalAccess, color: '#2563EB' },
+        ],
+        icon: <HiOutlinePaintBrush className="text-3xl text-orange-400" />,
+        color: 'from-orange-400/20 to-red-500/10',
     },
     {
         id: 'aiml',
@@ -78,58 +260,41 @@ const skillCategories: SkillCategory[] = [
         title: 'AI & Data Science',
         description: 'Building AI-integrated applications and data analysis tools with Python-based scientific libraries.',
         skills: [
-            { name: 'NumPy', icon: <SiNumpy /> },
-            { name: 'Jupyter Notebook', icon: <SiJupyter /> },
-            { name: 'AI Services', icon: <HiOutlineSparkles /> },
-            { name: 'REST APIs', icon: <HiOutlineCommandLine /> }
+            { name: 'NumPy', Icon: SiNumpy, color: '#013243' },
+            { name: 'Jupyter', Icon: SiJupyter, color: '#F37626' },
+            { name: 'OpenAI', Icon: SiOpenai, color: '#10A37F' },
+            { name: 'Gemini', Icon: SiGooglegemini, color: '#8E75B2' },
         ],
         icon: <HiOutlineSparkles className="text-3xl text-purple-400" />,
-        color: 'from-purple-400/20 to-pink-500/10'
+        color: 'from-purple-400/20 to-pink-500/10',
+    },
+    {
+        id: 'deployment',
+        category: 'Deployment',
+        title: 'Deployment & DevOps',
+        description: 'Shipping and hosting applications with modern deployment platforms and version control.',
+        skills: [
+            { name: 'Netlify', Icon: SiNetlify, color: '#00C7B7' },
+            { name: 'GitHub', Icon: SiGithub, color: '#181717', invertOnDark: true },
+            { name: 'Git', Icon: SiGit, color: '#F05032' },
+        ],
+        icon: <HiOutlineCloud className="text-3xl text-sky-400" />,
+        color: 'from-sky-400/20 to-blue-500/10',
     },
     {
         id: 'productivity',
         category: 'Productivity',
         title: 'Tools & Platforms',
-        description: 'Professional productivity and project management tools for effective team collaboration and delivery.',
+        description: 'Professional productivity and project management tools for effective team collaboration.',
         skills: [
-            { name: 'Jira', icon: <HiOutlineChartBar /> },
-            { name: 'Git / GitHub' },
-            { name: 'Word / Excel' },
-            { name: 'PowerPoint' },
-            { name: 'Canva' }
+            { name: 'Jira', Icon: SiJira, color: '#0052CC' },
+            { name: 'Word', Icon: FaFileWord, color: '#2B579A' },
+            { name: 'Excel', Icon: FaFileExcel, color: '#217346' },
+            { name: 'PowerPoint', Icon: FaFilePowerpoint, color: '#D24726' },
         ],
         icon: <HiOutlineChartBar className="text-3xl text-emerald-400" />,
-        color: 'from-emerald-400/20 to-cyan-500/10'
+        color: 'from-emerald-400/20 to-cyan-500/10',
     },
-    {
-        id: 'design',
-        category: 'Creative',
-        title: 'UI / UX Design',
-        description: 'Crafting visually appealing, accessible, and user-centric interfaces with a product mindset.',
-        skills: [
-            { name: 'Figma', icon: <SiFigma /> },
-            { name: 'UI/UX Design', icon: <HiOutlinePaintBrush /> },
-            { name: 'Canva' },
-            { name: 'Accessibility' }
-        ],
-        icon: <HiOutlinePaintBrush className="text-3xl text-orange-400" />,
-        color: 'from-orange-400/20 to-red-500/10'
-    },
-    {
-        id: 'deployment',
-        category: 'Deployment',
-        title: 'Deployment & Mobile Dev',
-        description: 'Shipping cross-platform mobile and web apps using Firebase, Netlify, and Android Studio.',
-        skills: [
-            { name: 'Firebase', icon: <HiOutlineCloud /> },
-            { name: 'Netlify' },
-            { name: 'Android Studio' },
-            { name: 'Expo / React Native' },
-            { name: 'GitHub' }
-        ],
-        icon: <HiOutlineCloud className="text-3xl text-sky-400" />,
-        color: 'from-sky-400/20 to-blue-500/10'
-    }
 ];
 
 const About = () => {
@@ -142,8 +307,10 @@ const About = () => {
         return () => clearTimeout(timer);
     }, [index]);
 
+    const activeCategory = skillCategories[index];
+
     return (
-        <section id="about" className="py-24 md:py-28 bg-[#0f172a] relative overflow-hidden border-t border-white/5">
+        <section id="about" className="py-24 md:py-28 bg-theme-bg relative overflow-hidden border-t border-theme-border transition-colors duration-300">
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
 
@@ -155,9 +322,9 @@ const About = () => {
                         viewport={{ once: true }}
                         className="space-y-4"
                     >
-                        <h2 className="text-5xl md:text-7xl font-black text-white flex items-center gap-6">
+                        <h2 className="text-5xl md:text-7xl font-black text-theme-text flex items-center gap-6">
                             <span className="w-16 h-[2px] bg-indigo-500"></span>
-                            About Me
+                            A little bit about me
                         </h2>
                     </motion.div>
                 </div>
@@ -167,8 +334,8 @@ const About = () => {
                     {/* Column 1: Condensed Bio */}
                     <ScrollReveal variant="fadeLeft" className="lg:col-span-4 space-y-10">
                         <div className="space-y-6">
-                            <p className="text-lg text-slate-300 font-medium leading-relaxed">
-                                I build <span className="text-white">scalable web and mobile applications</span> integrating AI-driven features and clean, responsive interfaces.
+                            <p className="text-lg text-theme-muted font-medium leading-relaxed">
+                                I build <span className="text-theme-text">scalable web and mobile applications</span> integrating AI-driven features and clean, responsive interfaces.
                                 Specializing in React, React Native, and Node.js.
                             </p>
                             <p className="text-slate-500 text-sm leading-relaxed">
@@ -189,7 +356,7 @@ const About = () => {
                                     <motion.span
                                         key={skill}
                                         variants={fadeUp}
-                                        className="px-3 py-1.5 rounded-md bg-white/5 border border-white/10 text-slate-400 text-[10px] font-bold uppercase tracking-wider"
+                                        className="px-3 py-1.5 rounded-md bg-theme-surface/50 border border-theme-border text-theme-muted text-[10px] font-bold uppercase tracking-wider"
                                     >
                                         {skill}
                                     </motion.span>
@@ -203,47 +370,58 @@ const About = () => {
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={index}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 1.05 }}
-                                transition={{ duration: 0.6, ease: "circOut" }}
-                                className={`w-full min-h-[420px] p-10 rounded-xl bg-[#1e293b] border-2 border-white/10 relative shadow-2xl flex flex-col justify-center`}
+                                initial={{ opacity: 0, scale: 0.95, y: 12 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.98, y: -8 }}
+                                transition={{ duration: 0.55, ease: 'circOut' }}
+                                className="relative w-full min-h-[460px] overflow-hidden rounded-2xl border-2 border-theme-border bg-theme-card p-8 shadow-2xl"
                             >
-                                <div className="space-y-6 relative z-10">
-                                    <div className="space-y-4">
-                                        <div className="flex items-center gap-4">
-                                            <span className="text-indigo-400 font-bold uppercase tracking-[4px] text-[10px]">
-                                                {skillCategories[index].category}
-                                            </span>
-                                            <h3 className="text-lg font-black text-white uppercase tracking-tighter leading-tight">
-                                                {skillCategories[index].title}
-                                            </h3>
-                                        </div>
-                                        <p className="text-xs text-slate-400 leading-relaxed font-medium">
-                                            {skillCategories[index].description}
-                                        </p>
-                                    </div>
-                                </div>
+                                <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${activeCategory.color} opacity-60`} />
+                                <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-indigo-500/10 blur-3xl" />
 
-                                <div className="flex flex-wrap gap-2 content-start">
-                                    {skillCategories[index].skills.map((skill) => (
-                                        <div key={skill.name} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 border border-white/5 text-xs text-slate-200 font-bold">
-                                            <span className="text-indigo-400">{skill.icon || <HiOutlineSparkles />}</span>
-                                            {skill.name}
+                                <div className="relative z-10 space-y-5">
+                                    <div className="flex items-start gap-4">
+                                        <div className="shrink-0 pt-1">
+                                            {activeCategory.icon}
                                         </div>
-                                    ))}
+                                        <div className="space-y-1.5">
+                                            <span className="text-indigo-400 font-bold uppercase tracking-[0.25em] text-[10px]">
+                                                {activeCategory.category}
+                                            </span>
+                                            <h3 className="text-xl font-black text-theme-text uppercase tracking-tight leading-tight">
+                                                {activeCategory.title}
+                                            </h3>
+                                            <p className="text-xs text-theme-muted leading-relaxed font-medium">
+                                                {activeCategory.description}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-3 gap-1 pt-2 sm:grid-cols-3">
+                                        {activeCategory.skills.map((skill) => (
+                                            <SkillChip key={skill.name} {...skill} />
+                                        ))}
+                                    </div>
                                 </div>
                             </motion.div>
                         </AnimatePresence>
 
-                        {/* Minimalist Progress */}
-                        <div className="flex gap-2 mt-8 px-2">
-                            {skillCategories.map((_, i) => (
-                                <div
-                                    key={i}
-                                    className={`h-1 flex-grow rounded-full transition-all duration-700 ${i === index ? 'bg-indigo-500' : 'bg-white/10'}`}
-                                />
-                            ))}
+                        {/* Category progress + labels */}
+                        <div className="mt-6 space-y-3 px-1">
+                            <div className="flex gap-2">
+                                {skillCategories.map((cat, i) => (
+                                    <button
+                                        key={cat.id}
+                                        type="button"
+                                        onClick={() => setIndex(i)}
+                                        aria-label={`Show ${cat.title}`}
+                                        className={`h-1.5 flex-grow rounded-full transition-all duration-500 ${i === index ? 'bg-indigo-500' : 'bg-theme-border hover:bg-indigo-500/40'}`}
+                                    />
+                                ))}
+                            </div>
+                            <p className="text-center text-[10px] font-bold uppercase tracking-[0.2em] text-theme-muted">
+                                {activeCategory.category}
+                            </p>
                         </div>
                     </ScrollReveal>
 
@@ -262,7 +440,7 @@ const About = () => {
                             { id: 'awards', value: 3, decimals: 0, suffix: '+', label: <>Major Awards &<br />Recognitions</> },
                         ].map((metric) => (
                             <motion.div key={metric.id} variants={fadeUp} className="space-y-1">
-                                <h4 className="text-4xl font-black text-white italic tracking-tighter">
+                                <h4 className="text-4xl font-black text-theme-text italic tracking-tighter">
                                     <AnimatedCounter
                                         value={metric.value}
                                         decimals={metric.decimals}
@@ -273,20 +451,22 @@ const About = () => {
                             </motion.div>
                         ))}
 
-                        <motion.div variants={fadeUp} className="col-span-2 pt-6 border-t border-white/5">
+                        <motion.div variants={fadeUp} className="col-span-2 pt-6 border-t border-theme-border">
                             <div className="flex items-center gap-3">
                                 <span className="relative flex h-2.5 w-2.5">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
                                 </span>
-                                <h4 className="text-sm font-black text-white uppercase tracking-[0.3em]">Available for Hire</h4>
+                                <h4 className="text-sm font-black text-theme-text uppercase tracking-[0.3em]">Available for Hire</h4>
                             </div>
                         </motion.div>
                     </motion.div>
 
                 </div>
             </div>
-        </section >
+
+            <AiToolsMarquee />
+        </section>
     );
 };
 

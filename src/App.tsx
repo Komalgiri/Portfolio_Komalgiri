@@ -52,7 +52,7 @@ function App() {
   };
 
   return (
-    <div className="bg-[#0f172a] min-h-screen">
+    <div className="bg-theme-bg min-h-screen text-theme-text transition-colors duration-300">
       {renderContent()}
     </div>
   );

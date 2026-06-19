@@ -36,7 +36,7 @@ const achievements = [
 
 const Achievements = () => {
     return (
-        <section id="achievements" className="py-20 md:py-24 bg-[#0f172a] relative overflow-hidden">
+        <section id="achievements" className="py-20 md:py-24 bg-theme-bg relative overflow-hidden transition-colors duration-300">
 
             <div className="max-w-7xl mx-auto px-6">
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -46,7 +46,7 @@ const Achievements = () => {
                         viewport={{ once: true }}
                         className="space-y-4"
                     >
-                        <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase italic">
+                        <h2 className="text-4xl md:text-6xl font-black text-theme-text tracking-tighter uppercase italic">
                             Milestones & <br />
                             <span className="text-indigo-400">Achievements</span>
                         </h2>
@@ -57,7 +57,7 @@ const Achievements = () => {
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="text-slate-400 max-w-md text-lg font-light leading-relaxed"
+                        className="text-theme-muted max-w-md text-lg font-light leading-relaxed"
                     >
                         Recognitions and contributions that define my proactive approach to technology and leadership.
                     </motion.p>
@@ -80,29 +80,29 @@ const Achievements = () => {
                             {/* Card Background accent */}
                             <div className="absolute inset-0 bg-indigo-500/0 group-hover:bg-indigo-500/5 rounded-3xl transition-all duration-500" />
 
-                            <div className="relative h-full p-8 rounded-3xl bg-white/5 border border-white/5 hover:border-white/10 transition-all duration-300 backdrop-blur-sm flex flex-col">
+                            <div className="relative h-full p-8 rounded-3xl bg-theme-surface/50 border border-theme-border hover:border-indigo-500/20 transition-all duration-300 backdrop-blur-sm flex flex-col">
                                 <div className="flex justify-between items-start mb-8">
-                                    <div className="p-4 rounded-2xl bg-white/10 text-white text-3xl shadow-lg">
+                                    <div className="p-4 rounded-2xl bg-theme-card text-theme-text text-3xl shadow-lg">
                                         {item.icon}
                                     </div>
-                                    <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                                    <span className="px-3 py-1 rounded-full bg-theme-surface/50 border border-theme-border text-[10px] font-bold uppercase tracking-widest text-theme-muted">
                                         {item.tag}
                                     </span>
                                 </div>
 
                                 <div className="space-y-4 flex-grow">
-                                    <h3 className="text-2xl font-bold text-white group-hover:text-slate-300 transition-all duration-300">
+                                    <h3 className="text-2xl font-bold text-theme-text group-hover:text-indigo-500 dark:group-hover:text-slate-300 transition-all duration-300">
                                         {item.title}
                                     </h3>
                                     <p className="text-indigo-400 font-bold text-sm uppercase tracking-wider">
                                         {item.organization}
                                     </p>
-                                    <p className="text-slate-400 text-sm leading-relaxed font-light">
+                                    <p className="text-theme-muted text-sm leading-relaxed font-light">
                                         {item.description}
                                     </p>
                                 </div>
 
-                                <div className="mt-8 pt-6 border-t border-white/5 flex items-center gap-2 text-indigo-300 text-xs font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                                <div className="mt-8 pt-6 border-t border-theme-border flex items-center gap-2 text-indigo-500 dark:text-indigo-300 text-xs font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                                     <HiOutlineStar className="text-amber-400" />
                                     <span>Achievement Unlocked</span>
                                 </div>

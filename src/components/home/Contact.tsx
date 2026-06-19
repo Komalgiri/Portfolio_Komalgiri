@@ -71,8 +71,8 @@ const Contact = () => {
         }
     };
 
-    const inputBase = 'w-full px-4 py-3.5 rounded-xl bg-[#0f172a] border text-white text-sm focus:outline-none focus:ring-1 transition-all placeholder:text-slate-600';
-    const inputNormal = `${inputBase} border-white/10 focus:border-indigo-500 focus:ring-indigo-500`;
+    const inputBase = 'w-full px-4 py-3.5 rounded-xl bg-theme-bg border text-theme-text text-sm focus:outline-none focus:ring-1 transition-all placeholder:text-theme-muted/60';
+    const inputNormal = `${inputBase} border-theme-border focus:border-indigo-500 focus:ring-indigo-500`;
     const inputError = `${inputBase} border-red-500/60 focus:border-red-500 focus:ring-red-500`;
 
     const contactLinks = [
@@ -84,15 +84,15 @@ const Contact = () => {
     ];
 
     return (
-        <section id="contact" className="py-20 md:py-24 bg-[#0f172a]">
+        <section id="contact" className="py-20 md:py-24 bg-theme-bg transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-6">
                 {/* Section header */}
                 <ScrollReveal className="mb-14">
-                    <h2 className="text-5xl md:text-7xl font-black text-white flex items-center gap-6">
+                    <h2 className="text-5xl md:text-7xl font-black text-theme-text flex items-center gap-6">
                         <span className="w-16 h-[2px] bg-indigo-500"></span>
                         Contact.
                     </h2>
-                    <p className="text-slate-400 max-w-xl text-lg font-medium pl-20 mt-4">
+                    <p className="text-theme-muted max-w-xl text-lg font-medium pl-20 mt-4">
                         Whether you have a project in mind or just want to connect — I'm always open.
                     </p>
                 </ScrollReveal>
@@ -110,40 +110,40 @@ const Contact = () => {
                             <motion.div
                                 key={label}
                                 variants={fadeUp}
-                                className="flex items-center gap-4 p-4 rounded-2xl bg-[#1e293b] border border-white/5 hover:border-indigo-500/30 transition-all group"
+                                className="flex items-center gap-4 p-4 rounded-2xl bg-theme-card border border-theme-border hover:border-indigo-500/30 transition-all group"
                             >
-                                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-indigo-400 shrink-0 group-hover:bg-indigo-500/10 transition-colors">
+                                <div className="w-10 h-10 rounded-xl bg-theme-surface/50 border border-theme-border flex items-center justify-center text-indigo-400 shrink-0 group-hover:bg-indigo-500/10 transition-colors">
                                     {icon}
                                 </div>
                                 {href ? (
                                     <a
                                         href={href}
                                         {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                                        className="text-slate-300 text-sm font-medium hover:text-indigo-400 transition-colors break-all"
+                                        className="text-theme-muted text-sm font-medium hover:text-indigo-400 transition-colors break-all"
                                     >
                                         {label}
                                     </a>
                                 ) : (
-                                    <span className="text-slate-300 text-sm font-medium">{label}</span>
+                                    <span className="text-theme-muted text-sm font-medium">{label}</span>
                                 )}
                             </motion.div>
                         ))}
 
                         {/* Availability badge */}
-                        <motion.div variants={fadeUp} className="mt-2 flex items-center gap-3 p-4 rounded-2xl bg-[#1e293b] border border-white/5">
+                        <motion.div variants={fadeUp} className="mt-2 flex items-center gap-3 p-4 rounded-2xl bg-theme-card border border-theme-border">
                             <span className="relative flex h-2.5 w-2.5 shrink-0">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
                             </span>
-                            <p className="text-sm font-bold text-white uppercase tracking-widest">Available for Hire</p>
+                            <p className="text-sm font-bold text-theme-text uppercase tracking-widest">Available for Hire</p>
                         </motion.div>
                     </motion.div>
 
                     {/* Right — form */}
-                    <ScrollReveal variant="fadeRight" delay={0.15} className="lg:col-span-3 bg-[#1e293b] rounded-3xl border border-white/5 p-8">
+                    <ScrollReveal variant="fadeRight" delay={0.15} className="lg:col-span-3 bg-theme-card rounded-3xl border border-theme-border p-8">
                         <div className="flex items-center gap-3 mb-6">
                             <HiOutlineChatBubbleLeftRight className="text-2xl text-indigo-400" />
-                            <h3 className="text-xl font-bold text-white">Send a Message</h3>
+                            <h3 className="text-xl font-bold text-theme-text">Send a Message</h3>
                         </div>
 
                         {status === 'success' ? (
@@ -151,11 +151,11 @@ const Contact = () => {
                                 <div className="w-16 h-16 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center">
                                     <HiOutlineCheckCircle className="text-4xl text-green-400" />
                                 </div>
-                                <p className="text-white font-bold text-lg">Message Sent!</p>
-                                <p className="text-slate-400 text-sm">{feedback}</p>
+                                <p className="text-theme-text font-bold text-lg">Message Sent!</p>
+                                <p className="text-theme-muted text-sm">{feedback}</p>
                                 <button
                                     onClick={() => setStatus('idle')}
-                                    className="mt-2 px-6 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-all"
+                                    className="mt-2 px-6 py-2.5 rounded-xl bg-theme-surface/50 border border-theme-border text-sm text-theme-muted hover:text-theme-text hover:bg-theme-surface transition-all"
                                 >
                                     Send another
                                 </button>
