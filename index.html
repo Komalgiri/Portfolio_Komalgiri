@@ -4,8 +4,8 @@
     <script>
       (function () {
         var stored = localStorage.getItem('theme');
-        var theme = stored === 'light' || stored === 'dark' ? stored : 'light';
-        document.documentElement.classList.add(theme);
+        var isDark = stored === 'dark';
+        document.documentElement.classList.toggle('dark', isDark);
       })();
     </script>
     <meta charset="UTF-8" />

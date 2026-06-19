@@ -14,9 +14,21 @@
  *    VITE_CONTACT_SECRET=<same SECRET as below>
  */
 
-const SHEET_NAME = 'Sheet1';
+const SHEET_NAME = 'Portfolio'; // Must match the tab name at the bottom of your spreadsheet (case-sensitive)
 const SECRET = 'Portfolio_Komal_2026_x7Kp2mNq';
 const NOTIFY_EMAIL = 'komalgiri789@gmail.com';
+
+function getContactSheet() {
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const namedSheet = spreadsheet.getSheetByName(SHEET_NAME);
+  if (namedSheet) return namedSheet;
+  // Fallback: use whichever tab is open / first tab if name doesn't match
+  const activeSheet = spreadsheet.getActiveSheet();
+  if (activeSheet) return activeSheet;
+  const sheets = spreadsheet.getSheets();
+  if (sheets.length > 0) return sheets[0];
+  throw new Error('No sheets found in this spreadsheet.');
+}
 
 function doPost(e) {
   try {
@@ -38,10 +50,7 @@ function doPost(e) {
     if (!message) return jsonResponse({ error: 'Message is required.' }, 400);
 
     const timestamp = new Date().toISOString();
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
-    if (!sheet) {
-      return jsonResponse({ error: 'Sheet not found: ' + SHEET_NAME }, 500);
-    }
+    const sheet = getContactSheet();
 
     sheet.appendRow([timestamp, name, email, phone, message]);
 
