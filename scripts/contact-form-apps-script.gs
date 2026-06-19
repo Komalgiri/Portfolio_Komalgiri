@@ -15,7 +15,7 @@
  */
 
 const SHEET_NAME = 'Sheet1';
-const SECRET = 'change-this-to-a-long-random-string';
+const SECRET = 'Portfolio_Komal_2026_x7Kp2mNq';
 const NOTIFY_EMAIL = 'komalgiri789@gmail.com';
 
 function doPost(e) {
