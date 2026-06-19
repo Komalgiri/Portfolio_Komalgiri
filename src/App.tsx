@@ -1,11 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import Home from './pages/Home';
-import AllProjects from './pages/AllProjects';
-import GithubStats from './pages/GithubStats';
-import CaseStudy from './pages/CaseStudy';
 
+const AllProjects = lazy(() => import('./pages/AllProjects'));
+const GithubStats = lazy(() => import('./pages/GithubStats'));
+const CaseStudy = lazy(() => import('./pages/CaseStudy'));
+const SystemDesignGallery = lazy(() => import('./pages/SystemDesignGallery'));
+const UIDesignGallery = lazy(() => import('./pages/UIDesignGallery'));
 
-
+const PageLoader = () => (
+    <div className="flex min-h-screen items-center justify-center bg-theme-bg">
+        <div className="h-10 w-10 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent" />
+    </div>
+);
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -15,7 +21,6 @@ function App() {
     const handleNavigation = () => {
       const hash = window.location.hash;
 
-      // Use a switch or cleaner if/else for routing
       if (hash.includes('case-study/')) {
         const projectId = hash.split('case-study/')[1];
         setSelectedProjectId(projectId);
@@ -27,26 +32,58 @@ function App() {
       } else if (hash.includes('github-stats')) {
         setCurrentPage('github');
         window.scrollTo(0, 0);
+      } else if (hash.includes('system-design')) {
+        setCurrentPage('system-design');
+        window.scrollTo(0, 0);
+      } else if (hash.includes('ui-design')) {
+        setCurrentPage('ui-design');
+        window.scrollTo(0, 0);
       } else {
         setCurrentPage('home');
       }
     };
 
     window.addEventListener('hashchange', handleNavigation);
-    handleNavigation(); // Initial check
+    handleNavigation();
 
     return () => window.removeEventListener('hashchange', handleNavigation);
   }, []);
 
   const renderContent = () => {
     if (currentPage === 'case-study') {
-      return <CaseStudy projectId={selectedProjectId} onBack={() => window.location.hash = 'all-projects'} />;
+      return (
+        <Suspense fallback={<PageLoader />}>
+          <CaseStudy projectId={selectedProjectId} onBack={() => window.location.hash = 'all-projects'} />
+        </Suspense>
+      );
     }
     if (currentPage === 'projects') {
-      return <AllProjects onBack={() => window.location.hash = ''} />;
+      return (
+        <Suspense fallback={<PageLoader />}>
+          <AllProjects onBack={() => window.location.hash = ''} />
+        </Suspense>
+      );
     }
     if (currentPage === 'github') {
-      return <GithubStats onBack={() => window.location.hash = ''} />;
+      return (
+        <Suspense fallback={<PageLoader />}>
+          <GithubStats onBack={() => window.location.hash = ''} />
+        </Suspense>
+      );
+    }
+    if (currentPage === 'system-design') {
+      return (
+        <Suspense fallback={<PageLoader />}>
+          <SystemDesignGallery onBack={() => window.location.hash = ''} />
+        </Suspense>
+      );
+    }
+    if (currentPage === 'ui-design') {
+      return (
+        <Suspense fallback={<PageLoader />}>
+          <UIDesignGallery onBack={() => window.location.hash = ''} />
+        </Suspense>
+      );
     }
     return <Home />;
   };

@@ -1,42 +1,30 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { fadeUp, staggerContainer } from '../../utils/scrollAnimations';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 import {
     HiOutlineArrowRight,
+    HiOutlineArrowDownTray,
     HiOutlineGlobeAlt,
     HiOutlineRocketLaunch,
 } from 'react-icons/hi2';
+import { SiGithub, SiLinkedin } from 'react-icons/si';
 import profilePhoto from '../../assets/profile_port.png';
 
 const roles = ['Full Stack Developer', 'React Native Builder', 'API-Focused Engineer'];
 
 const cardBase =
-    'w-[155px] rounded-2xl border border-theme-border bg-[var(--color-card-glass)] p-3.5 shadow-lg backdrop-blur-sm sm:w-[165px] sm:p-4';
-
-const ARC_RADIUS = 188;
-const ARC_CENTER_Y = 258;
-
-const arcPosition = (angle: number) => {
-    const rad = (angle * Math.PI) / 180;
-    const x = Math.cos(rad) * ARC_RADIUS;
-    const y = Math.sin(rad) * ARC_RADIUS;
-    return {
-        left: `calc(50% + ${x}px)`,
-        top: `${ARC_CENTER_Y + y}px`,
-        transform: 'translate(-50%, -50%)',
-    };
-};
+    'w-full rounded-2xl border border-theme-border bg-[var(--color-card-glass)] p-4 shadow-lg backdrop-blur-sm';
 
 const infoCards = [
     {
         id: 'build',
-        angle: 52,
         content: (
             <div className="flex items-start justify-between gap-2">
                 <div>
-                    <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-slate-500">What I Build</p>
+                    <p className="text-xs font-bold uppercase tracking-[0.22em] text-theme-muted">What I Build</p>
                     <p className="mt-1 text-sm font-black text-theme-text">Web & mobile products</p>
-                    <p className="mt-1 text-[11px] leading-relaxed text-theme-muted">
+                    <p className="mt-1 text-xs leading-relaxed text-theme-muted">
                         React dashboards, React Native apps & Node.js APIs — designed for clarity and scale.
                     </p>
                 </div>
@@ -46,31 +34,29 @@ const infoCards = [
     },
     {
         id: 'avail',
-        angle: 90,
         content: (
             <>
                 <div className="flex items-center gap-1.5 text-indigo-400">
                     <HiOutlineGlobeAlt className="text-base" />
-                    <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-slate-500">Availability</span>
+                    <span className="text-xs font-bold uppercase tracking-[0.22em] text-theme-muted">Availability</span>
                 </div>
-                <p className="mt-1.5 text-sm font-black text-theme-text">Open to full-time roles</p>
-                <p className="mt-1 text-[11px] leading-relaxed text-theme-muted">
-                    Frontend, full-stack & product engineering — remote-friendly.
+                <p className="mt-1.5 text-sm font-black text-theme-text">Open to freelance & full-time</p>
+                <p className="mt-1 text-xs leading-relaxed text-theme-muted">
+                    Mobile apps, full-stack products & contract builds — remote-friendly.
                 </p>
             </>
         ),
     },
     {
         id: 'momentum',
-        angle: 128,
         content: (
             <>
                 <div className="flex items-center gap-1.5 text-indigo-400">
                     <HiOutlineRocketLaunch className="text-base" />
-                    <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-slate-500">Momentum</span>
+                    <span className="text-xs font-bold uppercase tracking-[0.22em] text-theme-muted">Momentum</span>
                 </div>
                 <p className="mt-1.5 text-sm font-black text-theme-text">1.5+ years building</p>
-                <p className="mt-1 text-[11px] leading-relaxed text-theme-muted">
+                <p className="mt-1 text-xs leading-relaxed text-theme-muted">
                     Shipping end-to-end features across UI, APIs & mobile with fast iteration.
                 </p>
             </>
@@ -82,28 +68,46 @@ const Hero = () => {
     const sectionRef = useRef<HTMLElement>(null);
     const [pointer, setPointer] = useState({ x: 50, y: 50 });
     const [roleIndex, setRoleIndex] = useState(0);
+    const [isCoarsePointer, setIsCoarsePointer] = useState(
+        () => typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches,
+    );
+    const reducedMotion = useReducedMotion();
 
     const { scrollYProgress } = useScroll({
         target: sectionRef,
         offset: ['start start', 'end start'],
     });
-    const photoY = useTransform(scrollYProgress, [0, 1], [0, 80]);
-    const contentY = useTransform(scrollYProgress, [0, 1], [0, 50]);
+    const photoY = useTransform(scrollYProgress, [0, 1], [0, reducedMotion ? 0 : 80]);
+    const contentY = useTransform(scrollYProgress, [0, 1], [0, reducedMotion ? 0 : 50]);
 
     useEffect(() => {
+        const mq = window.matchMedia('(pointer: coarse)');
+        const handler = (e: MediaQueryListEvent) => setIsCoarsePointer(e.matches);
+        mq.addEventListener('change', handler);
+        return () => mq.removeEventListener('change', handler);
+    }, []);
+
+    useEffect(() => {
+        if (reducedMotion) return;
         const timer = window.setInterval(() => {
             setRoleIndex((current) => (current + 1) % roles.length);
         }, 2400);
         return () => window.clearInterval(timer);
-    }, []);
+    }, [reducedMotion]);
 
     const handlePointerMove = (event: React.MouseEvent<HTMLElement>) => {
+        if (isCoarsePointer || reducedMotion) return;
         const bounds = event.currentTarget.getBoundingClientRect();
         setPointer({
             x: ((event.clientX - bounds.left) / bounds.width) * 100,
             y: ((event.clientY - bounds.top) / bounds.height) * 100,
         });
     };
+
+    const parallaxStyle =
+        !isCoarsePointer && !reducedMotion
+            ? { transform: `translate(${pointer.x * 0.8}%, ${pointer.y * 0.45}%)` }
+            : undefined;
 
     return (
         <section
@@ -114,7 +118,7 @@ const Hero = () => {
             <div className="absolute inset-0 opacity-40" aria-hidden="true">
                 <div
                     className="absolute h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl transition-transform duration-300"
-                    style={{ transform: `translate(${pointer.x * 0.8}%, ${pointer.y * 0.45}%)` }}
+                    style={parallaxStyle}
                 />
                 <div className="absolute inset-0 hero-grid-pattern opacity-40" />
             </div>
@@ -122,22 +126,20 @@ const Hero = () => {
                 <span className="block text-[24vw] leading-none md:text-[17vw]">Developer</span>
             </div>
 
-            {/* 50 / 50 split */}
             <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-6 lg:grid-cols-2 lg:gap-12">
-                {/* ——— LEFT 50% ——— */}
                 <motion.div style={{ y: contentY }} className="w-full">
                     <motion.div
-                        initial={{ opacity: 0, y: 24 }}
+                        initial={reducedMotion ? false : { opacity: 0, y: 24 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                         className="inline-flex items-center gap-3 rounded-full border border-theme-border bg-theme-surface/50 px-5 py-2 text-sm font-medium text-indigo-500 dark:text-indigo-300"
                     >
                         <span className="h-2 w-2 rounded-full bg-green-400" />
-                        Open for Full-Time Opportunities
+                        Open for freelance & full-time
                     </motion.div>
 
                     <motion.h1
-                        initial={{ opacity: 0, y: 32 }}
+                        initial={reducedMotion ? false : { opacity: 0, y: 32 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="mt-8 text-4xl font-black leading-tight tracking-tight text-theme-text md:text-5xl lg:text-6xl"
@@ -145,17 +147,26 @@ const Hero = () => {
                         Hello, Komal Giri.
                     </motion.h1>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.15 }}
-                        className="mt-3 text-2xl font-bold text-indigo-400 md:text-3xl lg:text-4xl"
+                    <p
+                        aria-live="polite"
+                        className="mt-3 h-[1.2em] overflow-hidden text-2xl font-bold text-indigo-400 md:text-3xl lg:text-4xl"
                     >
-                        {roles[roleIndex]}
-                    </motion.p>
+                        <AnimatePresence mode="wait">
+                            <motion.span
+                                key={roles[roleIndex]}
+                                initial={reducedMotion ? false : { opacity: 0, y: 16 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={reducedMotion ? undefined : { opacity: 0, y: -16 }}
+                                transition={{ duration: 0.4 }}
+                                className="block"
+                            >
+                                {roles[roleIndex]}
+                            </motion.span>
+                        </AnimatePresence>
+                    </p>
 
                     <motion.p
-                        initial={{ opacity: 0, y: 24 }}
+                        initial={reducedMotion ? false : { opacity: 0, y: 24 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="mt-8 max-w-lg text-lg leading-relaxed text-theme-muted"
@@ -164,63 +175,87 @@ const Hero = () => {
                     </motion.p>
 
                     <motion.div
-                        initial={{ opacity: 0, y: 24 }}
+                        initial={reducedMotion ? false : { opacity: 0, y: 24 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
-                        className="mt-10 flex flex-col gap-4 sm:flex-row"
+                        className="mt-10 flex flex-col gap-4"
                     >
-                        <a
-                            href="#projects"
-                            className="inline-flex items-center justify-center gap-3 rounded-xl border border-white/10 bg-indigo-600 px-8 py-3.5 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-indigo-700"
-                        >
-                            Explore Projects
-                            <HiOutlineArrowRight className="text-lg" />
-                        </a>
-                        <a
-                            href="#contact"
-                            className="inline-flex items-center justify-center gap-3 rounded-xl border border-theme-border bg-theme-surface/50 px-8 py-3.5 font-semibold text-theme-text transition-all duration-300 hover:-translate-y-0.5 hover:bg-theme-surface"
-                        >
-                            Hire Me
-                        </a>
+                        <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+                            <a
+                                href="#projects"
+                                className="inline-flex items-center justify-center gap-3 rounded-xl border border-white/10 bg-indigo-600 px-8 py-3.5 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-indigo-700"
+                            >
+                                Explore Projects
+                                <HiOutlineArrowRight className="text-lg" />
+                            </a>
+                            <a
+                                href="/resume.pdf"
+                                download
+                                className="inline-flex items-center justify-center gap-3 rounded-xl border border-theme-border bg-theme-surface/50 px-8 py-3.5 font-semibold text-theme-text transition-all duration-300 hover:-translate-y-0.5 hover:bg-theme-surface"
+                            >
+                                Download Resume
+                                <HiOutlineArrowDownTray className="text-lg" />
+                            </a>
+                            <a
+                                href="#contact"
+                                className="inline-flex items-center justify-center gap-3 rounded-xl border border-theme-border bg-theme-surface/50 px-8 py-3.5 font-semibold text-theme-text transition-all duration-300 hover:-translate-y-0.5 hover:bg-theme-surface"
+                            >
+                                Hire Me
+                            </a>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <a
+                                href="https://github.com/Komalgiri"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="GitHub profile"
+                                className="flex h-11 w-11 items-center justify-center rounded-xl border border-theme-border bg-theme-surface/50 text-theme-muted transition-colors hover:border-indigo-500/30 hover:text-theme-text"
+                            >
+                                <SiGithub className="text-xl" />
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/in/komalgiri/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="LinkedIn profile"
+                                className="flex h-11 w-11 items-center justify-center rounded-xl border border-theme-border bg-theme-surface/50 text-theme-muted transition-colors hover:border-indigo-500/30 hover:text-theme-text"
+                            >
+                                <SiLinkedin className="text-xl" />
+                            </a>
+                        </div>
                     </motion.div>
                 </motion.div>
 
-                {/* ——— RIGHT 50% ——— */}
+                {/* Right column — photo + cards */}
                 <motion.div
-                    initial={{ opacity: 0, x: 24 }}
+                    initial={reducedMotion ? false : { opacity: 0, x: 24 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
-                    className="relative mx-auto h-[470px] w-full max-w-[420px] sm:h-[500px] lg:mx-0 lg:max-w-none"
+                    className="relative mx-auto w-full max-w-md lg:max-w-none"
                 >
-                    {/* Photo — centered on top */}
-                    <motion.div
-                        style={{ y: photoY }}
-                        className="pointer-events-none absolute left-1/2 top-0 z-20 -translate-x-1/2"
-                    >
+                    <motion.div style={{ y: photoY }} className="relative mx-auto flex justify-center">
                         <div className="relative">
-                            <div className="absolute left-1/2 top-1/2 -z-10 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.06] blur-[70px]" aria-hidden="true" />
-                            <div className="absolute left-1/2 top-1/2 -z-10 h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.14] blur-[40px]" aria-hidden="true" />
-                            <div className="absolute left-1/2 top-1/2 -z-10 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.2] blur-[24px]" aria-hidden="true" />
+                            <div
+                                className="absolute left-1/2 top-1/2 -z-10 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.06] blur-[70px]"
+                                aria-hidden="true"
+                            />
                             <motion.img
-                                initial={{ opacity: 0, scale: 0.95 }}
+                                initial={reducedMotion ? false : { opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.8, delay: 0.25 }}
                                 src={profilePhoto}
                                 alt="Komal Giri"
-                                className="relative block h-auto w-[200px] select-none object-contain sm:w-[230px] lg:w-[250px] xl:w-[270px]"
+                                width={270}
+                                height={270}
+                                loading="eager"
+                                fetchPriority="high"
+                                className="relative block h-auto w-[200px] select-none object-contain md:w-[230px] lg:w-[250px] xl:w-[270px]"
                             />
                         </div>
                     </motion.div>
 
-                    {/* Faint semi-circle guide */}
-                    <div
-                        className="pointer-events-none absolute left-1/2 top-[248px] z-0 h-[130px] w-[280px] -translate-x-1/2 rounded-b-full border border-theme-border sm:top-[258px] sm:h-[145px] sm:w-[310px]"
-                        aria-hidden="true"
-                    />
-
-                    {/* 3 cards in semi-circle below photo */}
                     <motion.div
-                        className="absolute inset-0 z-30"
+                        className="mt-8 grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-3 xl:gap-4"
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="visible"
@@ -230,9 +265,8 @@ const Hero = () => {
                             <motion.div
                                 key={card.id}
                                 variants={fadeUp}
-                                whileHover={{ y: -4 }}
-                                className={`${cardBase} absolute`}
-                                style={arcPosition(card.angle)}
+                                whileHover={reducedMotion ? undefined : { y: -4 }}
+                                className={cardBase}
                             >
                                 {card.content}
                             </motion.div>

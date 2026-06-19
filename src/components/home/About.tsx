@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '../ui/ScrollReveal';
 import AnimatedCounter from '../ui/AnimatedCounter';
 import { fadeUp, staggerContainer } from '../../utils/scrollAnimations';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 import {
     HiOutlineCommandLine,
     HiOutlineSparkles,
@@ -140,10 +141,10 @@ const aiTools: AiTool[] = [
     { name: 'ChatGPT', Icon: SiOpenai, color: '#10A37F' },
     { name: 'Claude', Icon: SiClaude, color: '#D97757' },
     { name: 'Gemini', Icon: SiGooglegemini, color: '#8E75B2' },
-    { name: 'Windsurf', imageSrc: 'https://cdn.simpleicons.org/windsurf', color: '#0B8FCC' },
-    { name: 'v0', imageSrc: 'https://cdn.simpleicons.org/v0', color: '#000000', invertOnDark: true },
-    { name: 'DeepSeek', imageSrc: 'https://cdn.simpleicons.org/deepseek', color: '#4D6BFE' },
-    { name: 'Mistral', imageSrc: 'https://cdn.simpleicons.org/mistralai', color: '#F7D046' },
+    { name: 'Windsurf', imageSrc: '/icons/windsurf.svg', color: '#0B8FCC' },
+    { name: 'v0', imageSrc: '/icons/v0.svg', color: '#000000', invertOnDark: true },
+    { name: 'DeepSeek', imageSrc: '/icons/deepseek.svg', color: '#4D6BFE' },
+    { name: 'Mistral', imageSrc: '/icons/mistral.svg', color: '#F7D046' },
     { name: 'GitHub Copilot', Icon: SiGithubcopilot, color: '#000000', invertOnDark: true },
     { name: 'Codeium', Icon: SiCodeium, color: '#09B6A2' },
     { name: 'Perplexity', Icon: SiPerplexity, color: '#1FB8CD' },
@@ -159,17 +160,18 @@ const aiTools: AiTool[] = [
 ];
 
 const AiToolsMarquee = () => {
+    const reducedMotion = useReducedMotion();
     const items = [...aiTools, ...aiTools];
 
     return (
         <div className="mt-16 w-full md:mt-20">
-            <p className="mb-8 text-center text-[10px] font-black uppercase tracking-[0.35em] text-theme-muted">
+            <p className="mb-8 text-center text-xs font-black uppercase tracking-[0.35em] text-theme-muted">
                 AI Tools I Work With
             </p>
             <div className="relative w-full overflow-hidden py-2">
                 <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-theme-bg to-transparent" />
                 <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-theme-bg to-transparent" />
-                <div className="flex w-max animate-marquee items-center gap-14 px-8">
+                <div className={`flex w-max items-center gap-14 px-8 ${reducedMotion ? 'flex-wrap justify-center' : 'animate-marquee'}`}>
                     {items.map((tool, i) => (
                         <div
                             key={`${tool.name}-${i}`}
@@ -299,13 +301,15 @@ const skillCategories: SkillCategory[] = [
 
 const About = () => {
     const [index, setIndex] = useState(0);
+    const reducedMotion = useReducedMotion();
 
     useEffect(() => {
+        if (reducedMotion) return;
         const timer = setTimeout(() => {
             setIndex((prev) => (prev + 1) % skillCategories.length);
         }, 6000);
         return () => clearTimeout(timer);
-    }, [index]);
+    }, [index, reducedMotion]);
 
     const activeCategory = skillCategories[index];
 
@@ -374,10 +378,10 @@ const About = () => {
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.98, y: -8 }}
                                 transition={{ duration: 0.55, ease: 'circOut' }}
-                                className="relative w-full min-h-[460px] overflow-hidden rounded-2xl border-2 border-theme-border bg-theme-card p-8 shadow-2xl"
+                                className="relative w-full min-h-[460px] overflow-hidden rounded-2xl border-2 border-theme-border bg-[var(--color-card-glass)] p-8 shadow-2xl backdrop-blur-sm"
                             >
-                                <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${activeCategory.color} opacity-60`} />
-                                <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-indigo-500/10 blur-3xl" />
+                                <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${activeCategory.color} opacity-20 dark:opacity-55`} />
+                                <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-indigo-500/5 blur-3xl dark:bg-indigo-500/10" />
 
                                 <div className="relative z-10 space-y-5">
                                     <div className="flex items-start gap-4">
@@ -419,7 +423,7 @@ const About = () => {
                                     />
                                 ))}
                             </div>
-                            <p className="text-center text-[10px] font-bold uppercase tracking-[0.2em] text-theme-muted">
+                            <p className="text-center text-xs font-black uppercase tracking-[0.24em] text-theme-text md:text-sm">
                                 {activeCategory.category}
                             </p>
                         </div>
@@ -436,7 +440,7 @@ const About = () => {
                         {[
                             { id: 'experience', value: 1.5, decimals: 1, suffix: '+', label: <>Years Professional<br />Experience</> },
                             { id: 'projects', value: 10, decimals: 0, suffix: '+', label: <>Projects &<br />Deployments</> },
-                            { id: 'certs', value: 7, decimals: 0, suffix: '+', label: <>Certifications<br />Earned</> },
+                            { id: 'certs', value: 8, decimals: 0, suffix: '+', label: <>Certifications<br />Earned</> },
                             { id: 'awards', value: 3, decimals: 0, suffix: '+', label: <>Major Awards &<br />Recognitions</> },
                         ].map((metric) => (
                             <motion.div key={metric.id} variants={fadeUp} className="space-y-1">
@@ -451,15 +455,6 @@ const About = () => {
                             </motion.div>
                         ))}
 
-                        <motion.div variants={fadeUp} className="col-span-2 pt-6 border-t border-theme-border">
-                            <div className="flex items-center gap-3">
-                                <span className="relative flex h-2.5 w-2.5">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
-                                </span>
-                                <h4 className="text-sm font-black text-theme-text uppercase tracking-[0.3em]">Available for Hire</h4>
-                            </div>
-                        </motion.div>
                     </motion.div>
 
                 </div>

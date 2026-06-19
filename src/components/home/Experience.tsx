@@ -1,67 +1,89 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { fadeLeft, fadeRight } from '../../utils/scrollAnimations';
-import {
-    HiOutlineBriefcase,
-    HiOutlineAcademicCap,
-    HiOutlineMapPin,
-    HiOutlineCheckCircle
-} from 'react-icons/hi2';
+import { fadeUp } from '../../utils/scrollAnimations';
+import { HiOutlineBriefcase, HiOutlineMapPin } from 'react-icons/hi2';
+
+interface ExperienceMetric {
+    value: string;
+    label: string;
+}
 
 interface ExperienceItem {
     id: number;
     role: string;
     company: string;
+    employmentType: string;
     location: string;
+    workMode: string;
     period: string;
-    description: string[];
+    duration: string;
+    summary: string;
+    highlights: string[];
+    metrics?: ExperienceMetric[];
     tech: string[];
-    type: 'work' | 'education';
 }
 
 const experiences: ExperienceItem[] = [
     {
         id: 1,
-        role: "Software Developer",
-        company: "Creditor Academy",
-        location: "Remote",
-        period: "May 2025 - Present",
-        type: 'work',
-        description: [
-            "Developed and optimized frontend interfaces using ReactJS with a focus on clean UI and responsive design.",
-            "Built and integrated REST APIs to connect backend services with the frontend for seamless data flow.",
-            "Implemented gamification features to improve user engagement and interaction."
+        role: 'Software Developer',
+        company: 'Creditor Academy',
+        employmentType: 'Full-time',
+        location: 'Kirkland, Washington, United States',
+        workMode: 'Remote',
+        period: 'May 2025 - Present',
+        duration: '1 yr 2 mos',
+        summary:
+            'Leading full-stack development for AI-powered eBook, Virtual Instructor, and LMS platforms — from architecture to production.',
+        highlights: [
+            'Shipped scalable React frontends with REST API integrations for real-time learning experiences.',
+            'Standardized 10+ reusable UI components, improving consistency and accelerating delivery by 30%.',
         ],
-        tech: ["ReactJS", "Node.js", "REST APIs", "Gamification", "UI/UX"]
+        metrics: [
+            { value: '25%', label: 'LMS load boost' },
+            { value: '10+', label: 'UI components' },
+            { value: '30%', label: 'Faster delivery' },
+        ],
+        tech: ['Full-Stack', 'MEAN Stack', 'React', 'REST APIs', 'LMS'],
     },
     {
         id: 2,
-        role: "Software Development Intern",
-        company: "VanTech Med",
-        location: "Vancouver, BC (Remote)",
-        period: "Aug 2024 - April 2025",
-        type: 'work',
-        description: [
-            "Extensively developed cross-platform healthcare applications for both Android and iOS.",
-            "Architected a health analytics engine with 5+ features to analyze health patterns and provide automated solutions.",
-            "Designed robust application structures using Firebase and RESTful architectures."
+        role: 'Software Developer',
+        company: 'VanTech Med',
+        employmentType: 'Part-time',
+        location: 'Vancouver, British Columbia, Canada',
+        workMode: 'Remote',
+        period: 'Aug 2024 - Present',
+        duration: '1 yr 11 mos',
+        summary:
+            'Building a cross-platform healthcare app with React Native and Firebase for health tracking and analytics.',
+        highlights: [
+            'Implemented 5+ analytics modules to track and interpret user health patterns.',
+            'Delivered Firebase auth, real-time data, and polished mobile UI across iOS and Android.',
         ],
-        tech: ["ReactJS", "Android Studio", "Firebase", "Java", "REST APIs", "Figma"]
+        metrics: [{ value: '5+', label: 'Analytics modules' }],
+        tech: ['React Native', 'Firebase', 'iOS', 'Android', 'Healthcare'],
     },
     {
         id: 3,
-        role: "Software Engineering Intern",
-        company: "Uma Robotic",
-        location: "Remote",
-        period: "Feb 2024 - April 2024",
-        type: 'work',
-        description: [
-            "Conducted in-depth software analysis and 50+ system tests to ensure maximum reliability.",
-            "Developed industrial automation solutions that optimized robotic task efficiency by 40%.",
-            "Collaborated on backend systems using Node.js and MongoDB for real-time task management."
+        role: 'Software Development Intern',
+        company: 'UMA ROBOTIC TECHNOLOGY',
+        employmentType: 'Internship',
+        location: 'Roorkee, Uttarakhand, India',
+        workMode: 'Hybrid',
+        period: 'Jan 2024 - Apr 2024',
+        duration: '4 mos',
+        summary: 'Contributed to robotic automation software through testing, debugging, and performance improvements.',
+        highlights: [
+            'Ran 50+ software tests to improve system reliability before deployment.',
+            'Helped raise industrial task efficiency by 40% through automation enhancements.',
         ],
-        tech: ["React Native", "NodeJS", "MongoDB", "Testing"]
-    }
+        metrics: [
+            { value: '50+', label: 'Tests executed' },
+            { value: '40%', label: 'Efficiency gain' },
+        ],
+        tech: ['Testing', 'Robotics', 'Automation', 'Debugging'],
+    },
 ];
 
 const Experience = () => {
@@ -73,10 +95,8 @@ const Experience = () => {
     const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
     return (
-        <section id="experience" className="py-24 md:py-28 bg-theme-bg relative overflow-hidden transition-colors duration-300">
-
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
-                {/* Section Header */}
+        <section id="experience" className="relative overflow-hidden bg-theme-bg py-24 transition-colors duration-300 md:py-28">
+            <div className="relative z-10 mx-auto max-w-7xl px-6">
                 <div className="mb-14 md:mb-16">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -84,123 +104,149 @@ const Experience = () => {
                         viewport={{ once: true }}
                         className="space-y-4"
                     >
-                        <h2 className="text-5xl md:text-7xl font-black text-theme-text flex items-center gap-6">
-                            <span className="w-16 h-[2px] bg-purple-500"></span>
+                        <h2 className="flex items-center gap-6 text-5xl font-black text-theme-text md:text-7xl">
+                            <span className="h-[2px] w-16 bg-purple-500" />
                             What do I do
                         </h2>
-                        <p className="text-theme-muted max-w-2xl text-lg font-medium pl-20">
-                            A chronological journey through my professional growth, technical milestones, and academic foundation.
+                        <p className="max-w-2xl pl-20 text-lg font-medium text-theme-muted">
+                            A chronological journey through my professional growth, technical milestones, and hands-on
+                            experience.
                         </p>
                     </motion.div>
                 </div>
 
                 <div className="relative" ref={timelineRef}>
-                    {/* Vertical Timeline Line */}
-                    <div className="absolute left-[18px] md:left-1/2 top-0 bottom-0 w-[2px] bg-purple-500/15 md:-translate-x-1/2 hidden sm:block" />
+                    <div className="pointer-events-none absolute bottom-0 left-6 top-0 w-px bg-purple-500/20 md:left-1/2 md:-translate-x-1/2" />
                     <motion.div
-                        className="absolute left-[18px] md:left-1/2 top-0 bottom-0 w-[2px] origin-top bg-gradient-to-b from-purple-500 via-indigo-500 to-purple-500/40 md:-translate-x-1/2 hidden sm:block"
-                        style={{ scaleY: lineScale }}
+                        className="pointer-events-none absolute left-6 top-0 w-px origin-top bg-gradient-to-b from-purple-500 via-indigo-500 to-purple-500/30 md:left-1/2 md:-translate-x-1/2"
+                        style={{ scaleY: lineScale, height: '100%' }}
                     />
 
-                    <div className="space-y-16 md:space-y-20">
-                        {experiences.map((exp, idx) => (
-                            <motion.div
-                                key={exp.id}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, margin: '-100px' }}
-                                variants={idx % 2 === 0 ? fadeLeft : fadeRight}
-                                transition={{ duration: 0.75, delay: idx * 0.08 }}
-                                className={`relative flex flex-col ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-0`}
-                            >
-                                {/* Timeline Dot */}
+                    <div className="relative space-y-12 md:space-y-16">
+                        {experiences.map((exp, idx) => {
+                            const isLeft = idx % 2 === 0;
+
+                            return (
                                 <motion.div
-                                    initial={{ scale: 0, opacity: 0 }}
-                                    whileInView={{ scale: 1, opacity: 1 }}
+                                    key={exp.id}
+                                    initial="hidden"
+                                    whileInView="visible"
                                     viewport={{ once: true, margin: '-80px' }}
-                                    transition={{ duration: 0.5, delay: idx * 0.1 + 0.2, type: 'spring', stiffness: 200 }}
-                                    className="absolute left-0 md:left-1/2 top-0 md:top-8 w-10 h-10 rounded-xl bg-theme-card border-2 border-purple-500/50 flex items-center justify-center z-20 md:-translate-x-1/2 shadow-[0_0_20px_rgba(168,85,247,0.2)]"
+                                    variants={fadeUp}
+                                    transition={{ duration: 0.6, delay: idx * 0.08 }}
+                                    className="grid grid-cols-[3rem_1fr] gap-x-5 md:grid-cols-[1fr_3rem_1fr] md:gap-x-10"
                                 >
-                                    {exp.type === 'work' ? (
-                                        <HiOutlineBriefcase className="text-purple-400 text-xl" />
-                                    ) : (
-                                        <HiOutlineAcademicCap className="text-indigo-400 text-xl" />
-                                    )}
-                                </motion.div>
+                                    {/* Desktop — left column content */}
+                                    <div
+                                        className={`hidden md:block ${isLeft ? 'md:col-start-1' : 'md:col-start-3'}`}
+                                    >
+                                        {isLeft && <ExperienceCard exp={exp} align="right" />}
+                                    </div>
 
-                                {/* Content Card */}
-                                <div className={`w-full md:w-[45%] ${idx % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'} pl-12 md:pl-0`}>
-                                    <div className="space-y-4">
-                                        <div className={`flex flex-col ${idx % 2 === 0 ? 'md:items-end' : 'md:items-start'} gap-1`}>
-                                            <span className="text-purple-400 font-bold uppercase tracking-[0.2em] text-[10px]">
-                                                {exp.period}
-                                            </span>
-                                            <h3 className="text-2xl font-black text-theme-text">{exp.role}</h3>
-                                            <div className="flex items-center gap-2 text-theme-muted font-bold text-sm">
-                                                <HiOutlineMapPin className="text-purple-500" />
-                                                <span>{exp.company}</span>
-                                                <span className="w-1 h-1 rounded-full bg-slate-600"></span>
-                                                <span>{exp.location}</span>
-                                            </div>
-                                        </div>
-
-                                        <div className={`space-y-3 ${idx % 2 === 0 ? 'md:items-end' : 'md:items-start'}`}>
-                                            {exp.description.map((point, pIdx) => (
-                                                <div key={pIdx} className={`flex gap-3 ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                                                    <HiOutlineCheckCircle className="text-purple-500 text-lg mt-1 shrink-0" />
-                                                    <p className="text-theme-muted text-sm leading-relaxed">{point}</p>
-                                                </div>
-                                            ))}
-                                        </div>
-
-                                        <div className={`flex flex-wrap gap-2 pt-4 ${idx % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
-                                            {exp.tech.map(t => (
-                                                <span key={t} className="px-3 py-1 rounded-md bg-theme-surface/50 border border-theme-border text-[10px] font-bold text-theme-muted uppercase tracking-widest">
-                                                    {t}
-                                                </span>
-                                            ))}
+                                    {/* Timeline rail — icon always centered in this column */}
+                                    <div
+                                        className={`relative col-start-1 row-start-1 flex justify-center md:col-start-2 md:row-start-1 ${
+                                            !isLeft ? 'md:col-start-2' : ''
+                                        }`}
+                                    >
+                                        <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2 border-purple-500/40 bg-theme-bg shadow-[0_0_0_4px_var(--color-bg)]">
+                                            <HiOutlineBriefcase className="text-xl text-purple-400" />
                                         </div>
                                     </div>
-                                </div>
 
-                                {/* Spacer for the other side */}
-                                <div className="hidden md:block w-[45%]"></div>
-                            </motion.div>
-                        ))}
+                                    {/* Mobile + desktop right-side content */}
+                                    <div className={`col-start-2 row-start-1 md:col-start-3 ${!isLeft ? 'md:col-start-3' : ''}`}>
+                                        <div className="md:hidden">
+                                            <ExperienceCard exp={exp} align="left" />
+                                        </div>
+                                        <div className="hidden md:block">
+                                            {!isLeft && <ExperienceCard exp={exp} align="left" />}
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
 
-                {/* View GitHub Stats CTA */}
-                <div className="mt-20 text-center relative z-20">
+                <div className="relative z-20 mt-20 text-center">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                     >
-                        <button
-                            onClick={() => window.location.hash = "#github-stats"}
-                            className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-2xl font-bold text-theme-text overflow-hidden shadow-2xl transition-all duration-300 cursor-pointer bg-theme-surface/50"
-                        >
-                            <div className="absolute inset-0 bg-indigo-600/20 group-hover:bg-indigo-600/30 transition-opacity" />
-                            <div className="absolute inset-0 bg-theme-surface/30 backdrop-blur-md border border-theme-border" />
-                            <span className="relative flex items-center gap-3">
-                                View Technical Footprint
-                                <div className="p-1 px-2 rounded-md bg-theme-surface/50 text-[10px] text-purple-400 dark:text-purple-300 font-mono tracking-tighter">
-                                    GITHUB_ECOSYSTEM
-                                </div>
-                                <div className="w-8 h-[1px] bg-theme-border group-hover:w-12 transition-all duration-300" />
-                            </span>
-                        </button>
-                        <p className="mt-6 text-slate-500 text-sm font-medium tracking-wide flex items-center justify-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                            Live Metrics & Language Analysis
-                        </p>
+                       
                     </motion.div>
                 </div>
             </div>
         </section>
     );
 };
+
+const ExperienceCard = ({ exp, align }: { exp: ExperienceItem; align: 'left' | 'right' }) => (
+    <div className={`space-y-4 ${align === 'right' ? 'md:text-right' : ''}`}>
+        <div className={`flex flex-col gap-1.5 ${align === 'right' ? 'md:items-end' : 'md:items-start'}`}>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-purple-400">
+                {exp.period} · {exp.duration}
+            </span>
+            <h3 className="text-2xl font-black text-theme-text">{exp.role}</h3>
+            <p className="text-sm font-bold text-theme-muted">
+                {exp.company} · {exp.employmentType}
+            </p>
+            <div
+                className={`flex items-center gap-2 text-sm text-theme-muted ${
+                    align === 'right' ? 'md:flex-row-reverse' : ''
+                }`}
+            >
+                <HiOutlineMapPin className="shrink-0 text-purple-500" />
+                <span>
+                    {exp.location} · {exp.workMode}
+                </span>
+            </div>
+        </div>
+
+        <p className="text-sm leading-relaxed text-theme-muted">{exp.summary}</p>
+
+        {exp.metrics && exp.metrics.length > 0 && (
+            <div className={`flex flex-wrap gap-2 ${align === 'right' ? 'md:justify-end' : ''}`}>
+                {exp.metrics.map((m) => (
+                    <div
+                        key={m.label}
+                        className="rounded-xl border border-purple-500/20 bg-purple-500/5 px-3 py-2 text-center"
+                    >
+                        <p className="text-base font-black text-purple-400">{m.value}</p>
+                        <p className="text-[10px] font-medium uppercase tracking-wider text-theme-muted">{m.label}</p>
+                    </div>
+                ))}
+            </div>
+        )}
+
+        <ul className={`space-y-2 ${align === 'right' ? 'md:text-right' : ''}`}>
+            {exp.highlights.map((point) => (
+                <li
+                    key={point}
+                    className={`flex gap-2 text-sm leading-relaxed text-theme-muted ${
+                        align === 'right' ? 'md:flex-row-reverse' : ''
+                    }`}
+                >
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-purple-500" />
+                    <span>{point}</span>
+                </li>
+            ))}
+        </ul>
+
+        <div className={`flex flex-wrap gap-2 ${align === 'right' ? 'md:justify-end' : ''}`}>
+            {exp.tech.map((t) => (
+                <span
+                    key={t}
+                    className="rounded-md border border-theme-border bg-theme-surface/50 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-theme-muted"
+                >
+                    {t}
+                </span>
+            ))}
+        </div>
+    </div>
+);
 
 export default Experience;

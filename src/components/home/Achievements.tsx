@@ -4,34 +4,41 @@ import {
     HiOutlineTrophy,
     HiOutlineUserGroup,
     HiOutlineAcademicCap,
-    HiOutlineStar
+    HiOutlineStar,
+    HiOutlineLightBulb,
 } from "react-icons/hi2";
+
+import Certifications from './Certifications';
 
 const achievements = [
     {
         title: "2nd Prize @ UTKARSH 1.0",
         organization: "State-Level Hackathon",
-        description: "Awarded for developing an AI-powered public service mobile application in a competitive field of 50+ technical teams.",
+        description:
+            "Awarded for developing an AI-powered public service mobile application in a competitive field of 50+ technical teams.",
         icon: <HiOutlineTrophy />,
-        color: "from-amber-400 to-orange-500",
-        tag: "Award"
+        tag: "Award",
     },
     {
-        title: "Campus Representative",
-        organization: "TechLearn",
-        description: "Successfully increased campus event participation by 25% through strategic student engagement and community building initiatives.",
-        icon: <HiOutlineUserGroup />,
-        color: "from-blue-400 to-indigo-500",
-        tag: "Leadership"
+        title: "Leadership & Club Revival",
+        organization: "Trojan Technical Club · Treasurer (2022–2025)",
+        description:
+            "Stepped into an inactive club and revived it into one of the most vibrant technical communities on campus — inspiring culture, collaboration, and lasting impact.",
+        highlights: [
+            "Organized hackathons, coding competitions, and workshops for hundreds of students.",
+            "Built peer-to-peer learning and a bridge between academics and industry.",
+        ],
+        icon: <HiOutlineLightBulb />,
+        tag: "Leadership",
     },
     {
-        title: "Workshop Coordinator",
-        organization: "IIT Roorkee",
-        description: "Coordinated 5+ specialized technical workshops at the Design Innovation Center (DIC), bridging the gap between theory and practice.",
+        title: "Academic Excellence Recognition",
+        organization: "Merit Scholarship · 2024–25",
+        description:
+            "Recognized for academic excellence alongside a merit scholarship — reflecting consistency, balance between studies and responsibilities, and the belief that dedication always finds its reward.",
         icon: <HiOutlineAcademicCap />,
-        color: "from-purple-400 to-pink-500",
-        tag: "Management"
-    }
+        tag: "Excellence",
+    },
 ];
 
 const Achievements = () => {
@@ -70,9 +77,9 @@ const Achievements = () => {
                     whileInView="visible"
                     viewport={{ once: true, margin: '-80px' }}
                 >
-                    {achievements.map((item, idx) => (
+                    {achievements.map((item) => (
                         <motion.div
-                            key={idx}
+                            key={item.title}
                             variants={fadeUp}
                             whileHover={{ y: -8, transition: { duration: 0.3 } }}
                             className="group relative"
@@ -100,6 +107,19 @@ const Achievements = () => {
                                     <p className="text-theme-muted text-sm leading-relaxed font-light">
                                         {item.description}
                                     </p>
+                                    {'highlights' in item && item.highlights && (
+                                        <ul className="space-y-2 pt-1">
+                                            {item.highlights.map((point) => (
+                                                <li
+                                                    key={point}
+                                                    className="flex gap-2 text-xs leading-relaxed text-theme-muted"
+                                                >
+                                                    <HiOutlineUserGroup className="mt-0.5 shrink-0 text-indigo-400" />
+                                                    <span>{point}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
                                 </div>
 
                                 <div className="mt-8 pt-6 border-t border-theme-border flex items-center gap-2 text-indigo-500 dark:text-indigo-300 text-xs font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
@@ -111,6 +131,8 @@ const Achievements = () => {
                     ))}
                 </motion.div>
             </div>
+
+            <Certifications />
         </section>
     );
 };

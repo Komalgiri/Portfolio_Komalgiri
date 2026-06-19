@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
+import SubpageHeader from "../components/layout/SubpageHeader";
 import {
-    HiOutlineArrowLeft,
     HiOutlineCodeBracket,
     HiOutlineGlobeAlt,
     HiOutlineRocketLaunch,
@@ -303,7 +303,7 @@ const CaseStudy = ({ projectId, onBack }: CaseStudyProps) => {
 
     if (!project) {
         return (
-            <div className="min-h-screen bg-[#0f172a] text-white flex items-center justify-center">
+            <div className="min-h-screen bg-theme-bg text-theme-text flex items-center justify-center transition-colors duration-300">
                 <div className="text-center">
                     <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
                     <button onClick={onBack} className="text-indigo-400 hover:underline">
@@ -315,24 +315,18 @@ const CaseStudy = ({ projectId, onBack }: CaseStudyProps) => {
     }
 
     return (
-        <div className="min-h-screen bg-[#0f172a] text-white selection:bg-indigo-500/30">
-            {/* Header */}
-            <header className="fixed top-0 left-0 right-0 z-50 bg-[#0f172a]/80 backdrop-blur-xl border-b border-white/5 py-4">
-                <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                    <button
-                        onClick={onBack}
-                        className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group"
-                    >
-                        <HiOutlineArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-                        Back to Projects
-                    </button>
+        <div className="min-h-screen bg-theme-bg text-theme-text selection:bg-indigo-500/30 transition-colors duration-300">
+            <SubpageHeader
+                backLabel="Back to Projects"
+                onBack={onBack}
+                rightContent={
                     <div className="flex items-center gap-4">
                         {project.links.github && (
                             <a
                                 href={project.links.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+                                className="p-2 rounded-lg bg-theme-surface/50 hover:bg-theme-surface transition-colors"
                             >
                                 <HiOutlineCodeBracket className="text-xl" />
                             </a>
@@ -342,15 +336,15 @@ const CaseStudy = ({ projectId, onBack }: CaseStudyProps) => {
                                 href={project.links.live}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 transition-colors font-bold text-sm flex items-center gap-2"
+                                className="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 transition-colors font-bold text-sm flex items-center gap-2 text-white"
                             >
                                 <HiOutlineGlobeAlt />
                                 View Live
                             </a>
                         )}
                     </div>
-                </div>
-            </header>
+                }
+            />
 
             <main className="pt-32 pb-24 px-6">
                 <div className="max-w-5xl mx-auto">
@@ -360,16 +354,16 @@ const CaseStudy = ({ projectId, onBack }: CaseStudyProps) => {
                         animate={{ opacity: 1, y: 0 }}
                         className="mb-20"
                     >
-                        <div className={`inline-block px-4 py-1.5 rounded-full bg-gradient-to-r ${project.color} bg-opacity-20 border border-white/10 text-xs font-bold uppercase tracking-widest mb-6`}>
+                        <div className={`inline-block px-4 py-1.5 rounded-full bg-gradient-to-r ${project.color} bg-opacity-20 border border-theme-border text-xs font-bold uppercase tracking-widest mb-6`}>
                             {project.type}
                         </div>
-                        <h1 className="text-5xl md:text-7xl font-black mb-6 bg-gradient-to-r from-white via-white to-slate-500 bg-clip-text text-transparent">
+                        <h1 className="text-5xl md:text-7xl font-black mb-6 bg-gradient-to-r from-theme-text via-theme-text to-theme-muted bg-clip-text text-transparent">
                             {project.title}
                         </h1>
                         <p className="text-2xl text-indigo-400 font-light mb-8">
                             {project.tagline}
                         </p>
-                        <p className="text-slate-400 text-lg leading-relaxed max-w-3xl">
+                        <p className="text-theme-muted text-lg leading-relaxed max-w-3xl">
                             {project.overview}
                         </p>
                     </motion.div>
@@ -385,7 +379,7 @@ const CaseStudy = ({ projectId, onBack }: CaseStudyProps) => {
                             <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
                                 <span className="text-red-400">⚠️</span> The Problem
                             </h3>
-                            <p className="text-slate-400 leading-relaxed">
+                            <p className="text-theme-muted leading-relaxed">
                                 {project.problem}
                             </p>
                         </motion.div>
@@ -399,7 +393,7 @@ const CaseStudy = ({ projectId, onBack }: CaseStudyProps) => {
                             <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
                                 <span className="text-emerald-400">✓</span> The Solution
                             </h3>
-                            <p className="text-slate-400 leading-relaxed">
+                            <p className="text-theme-muted leading-relaxed">
                                 {project.solution}
                             </p>
                         </motion.div>
@@ -420,7 +414,7 @@ const CaseStudy = ({ projectId, onBack }: CaseStudyProps) => {
                             {project.tech.map((tech: string) => (
                                 <span
                                     key={tech}
-                                    className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-bold text-slate-300 hover:bg-white/10 transition-colors"
+                                    className="px-4 py-2 rounded-lg bg-theme-surface/50 border border-theme-border text-sm font-bold text-theme-text hover:bg-white/10 transition-colors"
                                 >
                                     {tech}
                                 </span>
@@ -447,13 +441,13 @@ const CaseStudy = ({ projectId, onBack }: CaseStudyProps) => {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.1 }}
-                                    className="p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all group"
+                                    className="p-6 rounded-2xl bg-theme-surface/50 border border-theme-border hover:border-indigo-500/30 transition-all group"
                                 >
                                     <div className="text-3xl mb-4 text-indigo-400 group-hover:scale-110 transition-transform">
                                         {feature.icon}
                                     </div>
                                     <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                                    <p className="text-slate-400 text-sm leading-relaxed">
+                                    <p className="text-theme-muted text-sm leading-relaxed">
                                         {feature.description}
                                     </p>
                                 </motion.div>
@@ -480,7 +474,7 @@ const CaseStudy = ({ projectId, onBack }: CaseStudyProps) => {
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.1 }}
-                                    className="p-6 rounded-2xl bg-white/5 border border-white/5"
+                                    className="p-6 rounded-2xl bg-theme-surface/50 border border-theme-border"
                                 >
                                     <div className="flex items-start gap-4">
                                         <div className="flex-shrink-0 w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold">
@@ -488,9 +482,9 @@ const CaseStudy = ({ projectId, onBack }: CaseStudyProps) => {
                                         </div>
                                         <div className="flex-grow">
                                             <h4 className="font-bold mb-2 text-amber-400">Challenge:</h4>
-                                            <p className="text-slate-400 mb-3">{item.problem}</p>
+                                            <p className="text-theme-muted mb-3">{item.problem}</p>
                                             <h4 className="font-bold mb-2 text-emerald-400">Solution:</h4>
-                                            <p className="text-slate-300">{item.solution}</p>
+                                            <p className="text-theme-text">{item.solution}</p>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -511,9 +505,9 @@ const CaseStudy = ({ projectId, onBack }: CaseStudyProps) => {
                         </h2>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                             {Object.entries(project.impact).map(([key, value]) => (
-                                <div key={key} className="p-6 rounded-2xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-white/10 text-center">
+                                <div key={key} className="p-6 rounded-2xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-theme-border text-center">
                                     <div className="text-4xl font-black text-white mb-2">{String(value)}</div>
-                                    <div className="text-xs uppercase tracking-widest text-slate-400 font-bold">
+                                    <div className="text-xs uppercase tracking-widest text-theme-muted font-bold">
                                         {key.replace(/([A-Z])/g, ' $1').trim()}
                                     </div>
                                 </div>
@@ -526,10 +520,10 @@ const CaseStudy = ({ projectId, onBack }: CaseStudyProps) => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-center p-12 rounded-3xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-white/10"
+                        className="text-center p-12 rounded-3xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-theme-border"
                     >
                         <h3 className="text-2xl font-bold mb-4">Interested in this project?</h3>
-                        <p className="text-slate-400 mb-8 max-w-2xl mx-auto">
+                        <p className="text-theme-muted mb-8 max-w-2xl mx-auto">
                             Explore the live demo or dive into the source code to see how it works.
                         </p>
                         <div className="flex gap-4 justify-center flex-wrap">
@@ -549,7 +543,7 @@ const CaseStudy = ({ projectId, onBack }: CaseStudyProps) => {
                                     href={project.links.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="px-8 py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors font-bold flex items-center gap-2"
+                                    className="px-8 py-4 rounded-xl bg-theme-surface/50 border border-theme-border hover:bg-theme-surface transition-colors font-bold flex items-center gap-2"
                                 >
                                     <HiOutlineCodeBracket />
                                     View Source Code

@@ -7,14 +7,25 @@ export const defaultTransition: Transition = {
     ease: easeOut,
 };
 
+export const reducedMotionTransition: Transition = {
+    duration: 0,
+};
+
 export const defaultViewport = {
     once: true,
     margin: '-80px',
 } as const;
 
+const noMotion = { opacity: 1, x: 0, y: 0, scale: 1 };
+
 export const fadeUp: Variants = {
     hidden: { opacity: 0, y: 48 },
     visible: { opacity: 1, y: 0 },
+};
+
+export const fadeUpReduced: Variants = {
+    hidden: noMotion,
+    visible: noMotion,
 };
 
 export const fadeDown: Variants = {
@@ -47,6 +58,16 @@ export const staggerContainer: Variants = {
     },
 };
 
+export const staggerContainerReduced: Variants = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0,
+            delayChildren: 0,
+        },
+    },
+};
+
 export const lineGrow: Variants = {
     hidden: { scaleY: 0 },
     visible: {
@@ -54,3 +75,11 @@ export const lineGrow: Variants = {
         transition: { duration: 1.2, ease: easeOut },
     },
 };
+
+export function motionVariants(reduced: boolean) {
+    return {
+        fadeUp: reduced ? fadeUpReduced : fadeUp,
+        staggerContainer: reduced ? staggerContainerReduced : staggerContainer,
+        transition: reduced ? reducedMotionTransition : defaultTransition,
+    };
+}

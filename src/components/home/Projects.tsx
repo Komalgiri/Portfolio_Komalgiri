@@ -90,6 +90,8 @@ const Projects = () => {
                             ].map((t) => (
                                 <button
                                     key={t.id}
+                                    type="button"
+                                    aria-pressed={filter === t.id}
                                     onClick={() => {
                                         setFilter(t.id as any);
                                         setActiveIndex(0);
@@ -152,6 +154,7 @@ const Projects = () => {
                                                 key={topProjects[activeIndex]?.id}
                                                 src={topProjects[activeIndex].image}
                                                 alt={topProjects[activeIndex].title}
+                                                loading="lazy"
                                                 className={`h-full w-full object-cover ${topProjects[activeIndex]?.type === 'Mobile App' ? 'object-top' : ''}`}
                                             />
                                         ) : (
@@ -232,6 +235,7 @@ const Projects = () => {
                                         <img
                                             src={project.image}
                                             alt={project.title}
+                                            loading="lazy"
                                             className={`h-full w-full object-cover ${project.type === 'Mobile App' ? 'object-top' : ''}`}
                                         />
                                     ) : (
@@ -294,7 +298,7 @@ const Projects = () => {
                                         )}
                                         <button
                                             onClick={() => window.location.hash = `case-study/${project.id}`}
-                                            className="flex items-center gap-4 rounded-full bg-white px-10 py-5 text-xs font-black uppercase tracking-widest text-black transition-transform hover:scale-105"
+                                            className="flex items-center gap-4 rounded-full border border-theme-border bg-theme-surface px-10 py-5 text-xs font-black uppercase tracking-widest text-theme-text transition-transform hover:scale-105 hover:bg-theme-card"
                                         >
                                             Open Case Study
                                             <HiOutlineArrowRight className="h-4 w-4" />

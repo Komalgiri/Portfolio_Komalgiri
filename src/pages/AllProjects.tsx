@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import SubpageHeader from "../components/layout/SubpageHeader";
 import {
-    HiOutlineArrowLeft,
     HiOutlineCodeBracket,
     HiOutlineGlobeAlt,
     HiOutlineArrowRight,
@@ -21,23 +21,8 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
     });
 
     return (
-        <div className="min-h-screen bg-[#0f172a] text-white selection:bg-indigo-500/30">
-            {/* Header */}
-            <header className="fixed top-0 left-0 right-0 z-50 bg-[#0f172a]/80 backdrop-blur-xl border-b border-white/5 py-4">
-                <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                    <button
-                        onClick={onBack}
-                        className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group"
-                    >
-                        <HiOutlineArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-                        Back to Home
-                    </button>
-                    <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded flex items-center justify-center font-bold text-sm">P</div>
-                        <span className="font-bold tracking-tight hidden sm:block">Portfolio</span>
-                    </div>
-                </div>
-            </header>
+        <div className="min-h-screen bg-theme-bg text-theme-text selection:bg-indigo-500/30 transition-colors duration-300">
+            <SubpageHeader onBack={onBack} />
 
             <main className="pt-32 pb-24 px-6">
                 <div className="max-w-7xl mx-auto">
@@ -46,7 +31,7 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="text-5xl md:text-7xl font-black mb-6 bg-gradient-to-r from-white via-white to-slate-500 bg-clip-text text-transparent"
+                            className="text-5xl md:text-7xl font-black mb-6 bg-gradient-to-r from-theme-text via-theme-text to-theme-muted bg-clip-text text-transparent"
                         >
                             Complete <br />
                             <span className="text-indigo-400">Project Archive</span>
@@ -55,7 +40,7 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="text-slate-400 max-w-2xl text-lg md:text-xl font-light leading-relaxed"
+                            className="text-theme-muted max-w-2xl text-lg md:text-xl font-light leading-relaxed"
                         >
                             A comprehensive collection of my professional work, open-source contributions, and experimental lab projects.
                         </motion.p>
@@ -67,7 +52,7 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
                             transition={{ delay: 0.2 }}
                             className="mt-8 flex flex-wrap gap-2"
                         >
-                            <div className="bg-[#1e293b]/50 backdrop-blur-md p-1 rounded-xl border border-white/5 inline-flex gap-1">
+                            <div className="bg-theme-card/50 backdrop-blur-md p-1 rounded-xl border border-theme-border inline-flex gap-1">
                                 {[
                                     { id: 'all', label: 'All', icon: <HiOutlineSquares2X2 /> },
                                     { id: 'web', label: 'Web', icon: <HiOutlineGlobeAlt /> },
@@ -76,7 +61,8 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
                                     <button
                                         key={tab.id}
                                         onClick={() => setFilter(tab.id as any)}
-                                        className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${filter === tab.id ? "text-white" : "text-slate-400 hover:text-slate-200"
+                                        aria-pressed={filter === tab.id}
+                                        className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${filter === tab.id ? "text-white" : "text-theme-muted hover:text-theme-text"
                                             }`}
                                     >
                                         {filter === tab.id && (
@@ -105,7 +91,7 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.05 }}
-                                    className="group relative flex flex-col h-full rounded-3xl bg-[#1e293b]/40 border border-white/5 hover:border-indigo-500/30 transition-all duration-500 overflow-hidden"
+                                    className="group relative flex flex-col h-full rounded-3xl bg-theme-card/40 border border-theme-border hover:border-indigo-500/30 transition-all duration-500 overflow-hidden"
                                 >
                                     {/* Card Header / Visual */}
                                     <div className={`h-52 bg-gradient-to-br ${project.color} opacity-20 relative overflow-hidden group-hover:opacity-30 transition-all duration-500`}>
@@ -115,10 +101,10 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
                                                     initial={{ y: "25%" }}
                                                     whileHover={{ y: "0%" }}
                                                     transition={{ duration: 0.4, ease: "easeOut" }}
-                                                    className="w-3/4 aspect-video bg-[#0f172a] rounded-t-xl border-t border-x border-white/10 shadow-2xl relative overflow-hidden"
+                                                    className="w-3/4 aspect-video bg-theme-surface rounded-t-xl border-t border-x border-theme-border shadow-2xl relative overflow-hidden"
                                                 >
                                                     {/* Browser Header */}
-                                                    <div className="h-6 bg-white/5 border-b border-white/5 flex items-center px-3 gap-1.5">
+                                                    <div className="h-6 bg-theme-surface/50 border-b border-theme-border flex items-center px-3 gap-1.5">
                                                         <div className="w-1.5 h-1.5 rounded-full bg-red-400/60" />
                                                         <div className="w-1.5 h-1.5 rounded-full bg-amber-400/60" />
                                                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-400/60" />
@@ -129,10 +115,11 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
                                                             <img
                                                                 src={project.image}
                                                                 alt={project.title}
+                                                                loading="lazy"
                                                                 className="h-full w-full object-cover object-top"
                                                             />
                                                         ) : (
-                                                            <div className="flex h-full w-full items-center justify-center text-4xl text-slate-600 transition-colors group-hover:text-indigo-400">
+                                                            <div className="flex h-full w-full items-center justify-center text-4xl text-theme-muted transition-colors group-hover:text-indigo-400">
                                                                 {project.icon}
                                                             </div>
                                                         )}
@@ -143,20 +130,21 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
                                                     initial={{ y: "25%" }}
                                                     whileHover={{ y: "0%" }}
                                                     transition={{ duration: 0.4, ease: "easeOut" }}
-                                                    className="w-1/3 aspect-[9/18] bg-[#0f172a] rounded-t-[1.5rem] border-t-[4px] border-x-[4px] border-[#1e293b] shadow-2xl relative overflow-hidden"
+                                                    className="w-1/3 aspect-[9/18] bg-theme-surface rounded-t-[1.5rem] border-t-[4px] border-x-[4px] border-theme-border shadow-2xl relative overflow-hidden"
                                                 >
                                                     {/* Notch */}
-                                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-[#1e293b] rounded-b-xl z-20" />
+                                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-theme-card rounded-b-xl z-20" />
                                                     {/* Content */}
                                                     <div className="h-full w-full overflow-hidden">
                                                         {project.image ? (
                                                             <img
                                                                 src={project.image}
                                                                 alt={project.title}
+                                                                loading="lazy"
                                                                 className="h-full w-full object-cover object-top"
                                                             />
                                                         ) : (
-                                                            <div className="flex h-full w-full items-center justify-center text-3xl text-slate-600 transition-colors group-hover:text-purple-400">
+                                                            <div className="flex h-full w-full items-center justify-center text-3xl text-theme-muted transition-colors group-hover:text-purple-400">
                                                                 {project.icon}
                                                             </div>
                                                         )}
@@ -174,23 +162,23 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
                                         <h3 className="text-2xl font-bold mb-3 group-hover:text-indigo-400 transition-colors">
                                             {project.title}
                                         </h3>
-                                        <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                                        <p className="text-theme-muted text-sm leading-relaxed mb-6 flex-grow">
                                             {project.description}
                                         </p>
 
                                         {/* Tech Stack */}
                                         <div className="flex flex-wrap gap-2 mb-8">
                                             {project.tech.map(t => (
-                                                <span key={t} className="px-3 py-1 rounded-full bg-white/5 border border-white/5 text-[10px] font-bold text-slate-300 uppercase tracking-widest">
+                                                <span key={t} className="px-3 py-1 rounded-full bg-theme-surface/50 border border-theme-border text-xs font-bold text-theme-muted uppercase tracking-widest">
                                                     {t}
                                                 </span>
                                             ))}
                                         </div>
 
                                         {/* Link */}
-                                        <div className="flex items-center justify-between pt-6 border-t border-white/5">
+                                        <div className="flex items-center justify-between pt-6 border-t border-theme-border">
                                             <div className="flex gap-4">
-                                                <HiOutlineCodeBracket className="cursor-pointer text-slate-500 transition-colors hover:text-white" />
+                                                <HiOutlineCodeBracket className="cursor-pointer text-theme-muted transition-colors hover:text-theme-text" />
                                                 {project.liveUrl ? (
                                                     <a
                                                         href={project.liveUrl}
@@ -198,15 +186,15 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
                                                         rel="noopener noreferrer"
                                                         aria-label={`Visit ${project.title}`}
                                                     >
-                                                        <HiOutlineGlobeAlt className="cursor-pointer text-slate-500 transition-colors hover:text-white" />
+                                                        <HiOutlineGlobeAlt className="cursor-pointer text-theme-muted transition-colors hover:text-theme-text" />
                                                     </a>
                                                 ) : (
-                                                    <HiOutlineGlobeAlt className="cursor-pointer text-slate-500 transition-colors hover:text-white" />
+                                                    <HiOutlineGlobeAlt className="cursor-pointer text-theme-muted transition-colors hover:text-theme-text" />
                                                 )}
                                             </div>
                                             <button
                                                 onClick={() => window.location.hash = `case-study/${project.id}`}
-                                                className="text-sm font-bold flex items-center gap-2 text-indigo-400 group/btn hover:text-white transition-colors"
+                                                className="text-sm font-bold flex items-center gap-2 text-indigo-400 group/btn hover:text-indigo-300 transition-colors"
                                             >
                                                 Case Study
                                                 <HiOutlineArrowRight className="group-hover/btn:translate-x-1 transition-transform" />
@@ -221,9 +209,9 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
             </main>
 
             {/* Footer */}
-            <footer className="py-20 border-t border-white/5 text-center px-6">
+            <footer className="py-20 border-t border-theme-border text-center px-6">
                 <div className="max-w-7xl mx-auto">
-                    <p className="text-slate-500 text-sm mb-4">Built with React, Framer Motion & Tailwind</p>
+                    <p className="text-theme-muted text-sm mb-4">Built with React, Framer Motion & Tailwind</p>
                     <button
                         onClick={onBack}
                         className="text-indigo-400 font-bold hover:underline"
