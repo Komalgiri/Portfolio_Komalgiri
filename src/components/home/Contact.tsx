@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { HiOutlineArrowRight, HiOutlineArrowPath, HiOutlineCheckCircle } from 'react-icons/hi2';
+import { HiOutlineArrowRight, HiOutlineArrowPath, HiOutlineCheckCircle, HiOutlineMapPin } from 'react-icons/hi2';
+import { WORK_LOCATIONS_LABEL } from '../../constants/site';
 
 type FormState = {
     name: string;
@@ -240,7 +241,7 @@ const Contact = () => {
                             </form>
                         )}
 
-                        <div className="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8 md:mt-20">
+                        <div className="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8 md:mt-20">
                             <div>
                                 <p className="contact-detail-label">Email</p>
                                 <a
@@ -266,6 +267,14 @@ const Contact = () => {
                                 >
                                     +91-7850056842
                                 </a>
+                            </div>
+                            <div>
+                                <p className="contact-detail-label">Locations</p>
+                                <p className="mt-3 flex items-start gap-2 text-sm leading-relaxed text-theme-muted">
+                                    <HiOutlineMapPin className="mt-0.5 shrink-0 text-indigo-500" />
+                                    {WORK_LOCATIONS_LABEL}
+                                </p>
+                                <p className="mt-1 text-xs text-theme-muted/80">Remote-friendly · India</p>
                             </div>
                         </div>
                     </div>

@@ -112,7 +112,7 @@ const Hero = () => {
     return (
         <section
             ref={sectionRef}
-            className="relative min-h-[92vh] overflow-x-clip bg-theme-bg pt-28 pb-16 transition-colors duration-300 md:pt-32 md:pb-20"
+            className="relative min-h-[92vh] overflow-x-clip bg-theme-bg pt-32 pb-16 transition-colors duration-300 md:pt-36 md:pb-20"
             onMouseMove={handlePointerMove}
         >
             <div className="absolute inset-0 opacity-40" aria-hidden="true">

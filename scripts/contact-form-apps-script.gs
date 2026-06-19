@@ -1,33 +1,18 @@
 /**
  * Portfolio contact form — Google Apps Script
- *
- * SETUP:
- * 1. Create a Google Sheet with row 1 headers:
- *    Timestamp | Name | Email | Phone | Message
- * 2. Extensions → Apps Script → paste this file → Save
- * 3. Edit SHEET_NAME, SECRET, and NOTIFY_EMAIL below
- * 4. Deploy → New deployment → Web app
- *    - Execute as: Me
- *    - Who has access: Anyone
- * 5. Copy the Web app URL into your portfolio .env:
- *    VITE_CONTACT_SCRIPT_URL=<that URL>
- *    VITE_CONTACT_SECRET=<same SECRET as below>
+ * Uses whichever sheet tab is open (no tab name required).
  */
 
-const SHEET_NAME = 'Portfolio'; // Must match the tab name at the bottom of your spreadsheet (case-sensitive)
 const SECRET = 'Portfolio_Komal_2026_x7Kp2mNq';
 const NOTIFY_EMAIL = 'komalgiri789@gmail.com';
 
 function getContactSheet() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  const namedSheet = spreadsheet.getSheetByName(SHEET_NAME);
-  if (namedSheet) return namedSheet;
-  // Fallback: use whichever tab is open / first tab if name doesn't match
-  const activeSheet = spreadsheet.getActiveSheet();
-  if (activeSheet) return activeSheet;
+  const active = spreadsheet.getActiveSheet();
+  if (active) return active;
   const sheets = spreadsheet.getSheets();
   if (sheets.length > 0) return sheets[0];
-  throw new Error('No sheets found in this spreadsheet.');
+  throw new Error('No sheets in this spreadsheet.');
 }
 
 function doPost(e) {
@@ -89,16 +74,13 @@ function doPost(e) {
 }
 
 function jsonResponse(body, statusCode) {
-  const output = ContentService.createTextOutput(JSON.stringify(body)).setMimeType(
-    ContentService.MimeType.JSON,
-  );
-
-  // Apps Script doesn't expose HTTP status codes; encode in body when needed
   if (statusCode && statusCode >= 400) {
     return ContentService.createTextOutput(
       JSON.stringify({ ...body, status: statusCode }),
     ).setMimeType(ContentService.MimeType.JSON);
   }
 
-  return output;
+  return ContentService.createTextOutput(JSON.stringify(body)).setMimeType(
+    ContentService.MimeType.JSON,
+  );
 }
