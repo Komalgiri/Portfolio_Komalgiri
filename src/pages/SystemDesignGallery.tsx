@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import SubpageHeader from '../components/layout/SubpageHeader';
-import MediaGallery from '../components/gallery/MediaGallery';
-import { systemDesignItems } from '../constants/systemDesign';
+import CodePodArchitecture from '../components/system-design/CodePodArchitecture';
 import { HiOutlineCpuChip } from 'react-icons/hi2';
 
 const SystemDesignGallery = ({ onBack }: { onBack: () => void }) => (
@@ -9,7 +8,7 @@ const SystemDesignGallery = ({ onBack }: { onBack: () => void }) => (
         <SubpageHeader onBack={onBack} />
 
         <main className="px-6 pt-32 pb-20">
-            <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-6xl">
                 <div className="mb-12 md:mb-14">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
@@ -27,7 +26,7 @@ const SystemDesignGallery = ({ onBack }: { onBack: () => void }) => (
                     </motion.h1>
                 </div>
 
-                <MediaGallery items={systemDesignItems} />
+                <CodePodArchitecture detail="diagram" />
             </div>
         </main>
     </div>

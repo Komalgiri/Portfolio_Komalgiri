@@ -5,4 +5,5 @@ export type GalleryMediaItem = {
     src: string;
     type: 'image' | 'video';
     poster?: string;
+    size?: 'default' | 'compact' | 'mobile';
 };

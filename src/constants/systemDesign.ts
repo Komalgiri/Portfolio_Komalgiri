@@ -13,9 +13,9 @@ export const systemDesignItems: GalleryMediaItem[] = [
         type: 'image',
     },
     {
-        id: 'api-system-design',
-        title: 'REST API System Design',
-        caption: 'Service layers, auth & data flow for scalable backends',
+        id: 'codepod-architecture',
+        title: 'CodePodAI — System Architecture',
+        caption: 'React + Express + Prisma, GitHub OAuth & Gemini AI flows',
         src: codpod,
         type: 'image',
     },

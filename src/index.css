@@ -390,4 +390,750 @@ body {
   .dark .iphone-ground-shadow {
     background: radial-gradient(ellipse, rgba(0, 0, 0, 0.5) 0%, transparent 72%);
   }
+
+  /* ── Case study document (UX case study layout) ── */
+  .case-study-page {
+    --cs-accent: #7c3aed;
+    --cs-accent-soft: #a78bfa;
+    --cs-teal: #5eead4;
+    --cs-teal-soft: rgba(94, 234, 212, 0.22);
+  }
+
+  .case-study-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+    backdrop-filter: blur(12px);
+  }
+
+  .case-study-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    transition: color 0.2s ease;
+  }
+
+  .case-study-back:hover {
+    color: var(--cs-accent);
+  }
+
+  .case-study-icon-btn {
+    display: flex;
+    height: 2.5rem;
+    width: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    transition: background 0.2s ease;
+  }
+
+  .case-study-icon-btn:hover {
+    background: var(--color-card);
+  }
+
+  .case-study-live-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.75rem;
+    background: var(--cs-accent);
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #fff;
+    transition: background 0.2s ease;
+  }
+
+  .case-study-live-btn:hover {
+    background: #6d28d9;
+  }
+
+  .case-study-secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 0.875rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-text);
+    transition: background 0.2s ease;
+  }
+
+  .case-study-secondary-btn:hover {
+    background: var(--color-card);
+  }
+
+  .case-study-main {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 5rem;
+  }
+
+  @media (min-width: 768px) {
+    .case-study-main {
+      padding: 3rem 2.5rem 6rem;
+    }
+  }
+
+  .case-study-hero {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 900px) {
+    .case-study-hero {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 3rem;
+      margin-bottom: 5rem;
+    }
+  }
+
+  .case-study-brand {
+    margin: 0 0 0.75rem;
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    line-height: 1.1;
+    color: var(--cs-accent);
+  }
+
+  .case-study-headline {
+    margin: 0 0 1.25rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--color-text);
+  }
+
+  .case-study-overview {
+    margin: 0;
+    max-width: 34rem;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-text-muted);
+  }
+
+  .case-study-hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .case-study-hero-frame {
+    overflow: hidden;
+    border-radius: 1.25rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    box-shadow: 0 24px 48px rgba(124, 58, 237, 0.08);
+  }
+
+  .dark .case-study-hero-frame {
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+  }
+
+  .case-study-hero-image {
+    display: block;
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .case-study-hero-accent {
+    position: absolute;
+    right: -0.5rem;
+    top: -0.75rem;
+    display: flex;
+    height: 4rem;
+    width: 4rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: var(--cs-teal-soft);
+  }
+
+  .case-study-block {
+    margin-bottom: 4rem;
+  }
+
+  .case-study-section-title {
+    margin: 0 0 1.25rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-text);
+  }
+
+  .case-study-emphasis {
+    font-weight: 800;
+    color: var(--cs-accent);
+  }
+
+  .dark .case-study-emphasis {
+    color: var(--cs-accent-soft);
+  }
+
+  .case-study-prose p {
+    margin: 0 0 1rem;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: var(--color-text-muted);
+  }
+
+  .case-study-prose p:last-child {
+    margin-bottom: 0;
+  }
+
+  .case-study-meta-grid {
+    display: grid;
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .case-study-meta-grid {
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+    }
+  }
+
+  .case-study-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+  }
+
+  .case-study-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .case-study-stat-value {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--color-text);
+  }
+
+  .case-study-stat-unit {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+
+  .case-study-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem 1.5rem;
+  }
+
+  .case-study-tool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 4.5rem;
+  }
+
+  .case-study-tool-icon {
+    display: flex;
+    height: 3.25rem;
+    width: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.875rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .dark .case-study-tool-icon .dark\:brightness-0 {
+    filter: brightness(0) invert(1);
+  }
+
+  .case-study-tool-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--color-text-muted);
+  }
+
+  /* ── Design process timeline ── */
+  .process-timeline-intro {
+    margin: 0 0 1.75rem;
+    max-width: 40rem;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text-muted);
+  }
+
+  .process-timeline-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .process-timeline-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+  }
+
+  .process-timeline-step {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .process-timeline-step-head {
+    position: relative;
+    display: none;
+    align-items: center;
+    height: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .process-timeline-step-head {
+      display: flex;
+    }
+  }
+
+  .process-timeline-num {
+    position: relative;
+    z-index: 1;
+    font-family: ui-monospace, monospace;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-text-muted);
+  }
+
+  .process-timeline-rail {
+    position: absolute;
+    left: 2rem;
+    right: -0.375rem;
+    top: 50%;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .process-timeline-card {
+    flex: 1;
+    padding: 1.125rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .process-timeline-card:hover {
+    border-color: color-mix(in srgb, #6366f1 40%, var(--color-border));
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08);
+  }
+
+  .process-timeline-icon {
+    display: flex;
+    height: 2.5rem;
+    width: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+    border-radius: 0.75rem;
+    background: color-mix(in srgb, #6366f1 12%, var(--color-surface));
+    color: #6366f1;
+  }
+
+  .dark .process-timeline-icon {
+    color: #a5b4fc;
+  }
+
+  .process-timeline-label {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--color-text);
+  }
+
+  .case-study-features {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .case-study-features {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .case-study-feature-card {
+    padding: 1.25rem 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .case-study-feature-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--color-text);
+  }
+
+  .case-study-feature-card p {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+  }
+
+  .case-study-cta {
+    margin-top: 2rem;
+    padding: 2.5rem 1.5rem;
+    border-radius: 1.5rem;
+    border: 1px solid color-mix(in srgb, var(--cs-accent) 25%, var(--color-border));
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.06), rgba(94, 234, 212, 0.08));
+    text-align: center;
+  }
+
+  .case-study-cta h3 {
+    margin: 0 0 0.75rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-text);
+  }
+
+  .case-study-cta p {
+    margin: 0 auto 1.5rem;
+    max-width: 32rem;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+  }
+
+  /* ── CodePodAI architecture ── */
+  .codepod-arch-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .codepod-arch-eyebrow {
+    margin: 0;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #6366f1;
+  }
+
+  .codepod-arch-title {
+    margin: 0.5rem 0 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .codepod-arch-lead {
+    margin: 0.75rem 0 0;
+    max-width: 42rem;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+  }
+
+  .codepod-arch-section-title {
+    margin: 0 0 1.25rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
+    font-weight: 400;
+    color: var(--color-text);
+  }
+
+  .codepod-arch-section-title span {
+    font-weight: 800;
+    color: #7c3aed;
+  }
+
+  .dark .codepod-arch-section-title span {
+    color: #a78bfa;
+  }
+
+  .codepod-arch-sub {
+    margin: -0.5rem 0 1rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  .codepod-diagram {
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+    border: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-surface) 90%, var(--color-bg));
+  }
+
+  @media (min-width: 768px) {
+    .codepod-diagram {
+      padding: 2rem;
+    }
+  }
+
+  .codepod-diagram-node {
+    padding: 1rem 1.125rem;
+    border-radius: 0.875rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-card);
+  }
+
+  .codepod-diagram-node-head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .codepod-diagram-node-head h4 {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text);
+  }
+
+  .codepod-diagram-node ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .codepod-diagram-node li {
+    padding: 0.375rem 0;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .codepod-diagram-node li:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .codepod-diagram-connector {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 0;
+  }
+
+  .codepod-diagram-connector-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, #6366f1 50%, var(--color-border)),
+      transparent
+    );
+  }
+
+  .codepod-diagram-connector-label {
+    flex-shrink: 0;
+    font-family: ui-monospace, monospace;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .codepod-diagram-row {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .codepod-diagram-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .codepod-diagram-footnote {
+    margin: 0.875rem 0 0;
+    padding-top: 0.875rem;
+    border-top: 1px dashed var(--color-border);
+    font-size: 0.75rem;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .codepod-flow-panel {
+    overflow: hidden;
+    border-radius: 1.25rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .codepod-flow-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-bg) 50%, var(--color-surface));
+  }
+
+  .codepod-flow-tab {
+    flex: 1 1 auto;
+    min-width: fit-content;
+    padding: 0.875rem 1.125rem;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .codepod-flow-tab:hover {
+    color: var(--color-text);
+    background: color-mix(in srgb, #6366f1 5%, transparent);
+  }
+
+  .codepod-flow-tab.is-active {
+    border-bottom-color: #6366f1;
+    color: var(--color-text);
+    background: var(--color-surface);
+  }
+
+  .codepod-flow-steps {
+    margin: 0;
+    padding: 1.25rem 1.25rem 1.5rem;
+    list-style: none;
+  }
+
+  @media (min-width: 768px) {
+    .codepod-flow-steps {
+      padding: 1.5rem 1.75rem 1.75rem;
+    }
+  }
+
+  .codepod-flow-step {
+    display: grid;
+    grid-template-columns: 1.75rem 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    padding: 0.75rem 0;
+  }
+
+  .codepod-flow-step:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .codepod-flow-step-num {
+    display: flex;
+    height: 1.75rem;
+    width: 1.75rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: color-mix(in srgb, #6366f1 14%, var(--color-surface));
+    font-size: 0.6875rem;
+    font-weight: 800;
+    color: #6366f1;
+  }
+
+  .dark .codepod-flow-step-num {
+    color: #a5b4fc;
+  }
+
+  .codepod-flow-step-text {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  .codepod-schema-relations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .codepod-schema-chip {
+    padding: 0.375rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    font-family: ui-monospace, monospace;
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+  }
+
+  .codepod-entity-grid {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .codepod-entity-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .codepod-entity-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .codepod-entity-card {
+    padding: 1rem 1.125rem;
+    border-radius: 0.875rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    transition: border-color 0.2s ease;
+  }
+
+  .codepod-entity-card:hover {
+    border-color: color-mix(in srgb, #6366f1 35%, var(--color-border));
+  }
+
+  .codepod-entity-card h4 {
+    margin: 0 0 0.375rem;
+    font-size: 0.9375rem;
+    font-weight: 800;
+    color: var(--color-text);
+  }
+
+  .codepod-entity-card p {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
 }

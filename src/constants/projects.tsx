@@ -8,17 +8,19 @@ import {
 import codpodImage from "../assets/codpod.png";
 import mentoraImage from "../assets/mentora.png";
 import agetechImage from "../assets/agetech.jpg";
+import udyampathImage from "../assets/udyampath.png";
+import aisewaImage from "../assets/aisewa.png";
 
 export const projects = [
     {
         id: "codepod",
-        title: "Codepod",
+        title: "CodePodAI",
         type: "Web",
-        description: "An advanced real-time collaborative code editor and execution environment with built-in project management and roadmap tracking.",
-        tech: ["Next.js", "Supabase", "Monaco Editor", "Tailwind"],
+        description: "AI-driven project orchestration for dev teams — GitHub-linked pods, Gemini roadmaps, task boards, and contribution rewards in one platform.",
+        tech: ["React", "Node.js", "PostgreSQL", "Gemini AI", "GitHub OAuth"],
         color: "from-indigo-600 via-blue-500 to-cyan-400",
         icon: <HiOutlineCodeBracket className="text-indigo-400" />,
-        features: ["Live Code Editor", "Roadmap Voting", "Community Forums"],
+        features: ["AI Roadmaps", "GitHub Sync", "Pod Workspaces", "Rewards & Leaderboards"],
         image: codpodImage,
         liveUrl: "https://codepod-six.vercel.app/"
     },
@@ -30,7 +32,8 @@ export const projects = [
         tech: ["React JS", "Node.js", "REST APIs", "Database Management", "GitHub"],
         color: "from-blue-600 via-indigo-500 to-blue-400",
         icon: <HiOutlineBuildingOffice2 className="text-blue-400" />,
-        features: ["Job & Course Discovery", "Search & Filters", "Admin Workflows"]
+        features: ["Job & Course Discovery", "Search & Filters", "Admin Workflows"],
+        image: udyampathImage
     },
     {
         id: "mentora",
@@ -52,7 +55,8 @@ export const projects = [
         tech: ["React Native", "APIs", "Firebase", "AI Services", "GitHub"],
         color: "from-purple-600 via-violet-500 to-fuchsia-400",
         icon: <HiOutlineShieldCheck className="text-purple-400" />,
-        features: ["Disaster Alerts", "AI Complaint Filing", "Agricultural Tools"]
+        features: ["Disaster Alerts", "AI Complaint Filing", "Agricultural Tools"],
+        image: aisewaImage
     },
     {
         id: "agetech-app",

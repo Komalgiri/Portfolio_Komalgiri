@@ -27,7 +27,7 @@ const UIDesignGallery = ({ onBack }: { onBack: () => void }) => (
                     </motion.h1>
                 </div>
 
-                <MediaGallery items={uiDesignItems} />
+                <MediaGallery items={uiDesignItems} layout="masonry" />
             </div>
         </main>
     </div>

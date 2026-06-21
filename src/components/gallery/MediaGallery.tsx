@@ -1,17 +1,23 @@
 import { motion } from 'framer-motion';
 import type { GalleryMediaItem } from '../../constants/mediaGallery';
+import MasonryGallery from './MasonryGallery';
 
 interface MediaGalleryProps {
     items: GalleryMediaItem[];
+    layout?: 'grid' | 'masonry';
 }
 
-const MediaGallery = ({ items }: MediaGalleryProps) => {
+const MediaGallery = ({ items, layout = 'grid' }: MediaGalleryProps) => {
     if (items.length === 0) {
         return (
             <p className="rounded-2xl border border-dashed border-theme-border py-16 text-center text-theme-muted">
                 Gallery items coming soon.
             </p>
         );
+    }
+
+    if (layout === 'masonry') {
+        return <MasonryGallery items={items} />;
     }
 
     return (
