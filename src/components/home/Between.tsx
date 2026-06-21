@@ -9,6 +9,7 @@ import {
     HiOutlinePuzzlePiece,
 } from 'react-icons/hi2';
 import { SiFirebase, SiReact, SiExpo, SiGooglegemini } from 'react-icons/si';
+import { US_REMOTE_LABEL } from '../../constants/site';
 import betweenLogo from '../../assets/logo_between.png';
 import app1 from '../../assets/app1.jpg';
 import app2 from '../../assets/app2.jpg';
@@ -73,7 +74,7 @@ const FreelanceCta = ({ id, className = '' }: { id?: string; className?: string 
             Let&apos;s build yours
             <HiOutlineArrowRight className="text-lg" />
         </a>
-        <p className="mt-2 text-xs text-theme-muted">Open for freelance & contract work · Remote-friendly</p>
+        <p className="mt-2 text-xs text-theme-muted">{US_REMOTE_LABEL}</p>
     </div>
 );
 
@@ -110,7 +111,7 @@ const Between = () => (
                         />
                         <div>
                             <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-violet-400">
-                                Signature Build · Open for freelance
+                                Signature Build · Open to work
                             </p>
                             <h2 className="text-4xl font-black tracking-tight text-theme-text md:text-5xl">
                                 BETWEEN

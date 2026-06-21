@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { HiOutlineArrowRight, HiOutlineArrowPath, HiOutlineCheckCircle, HiOutlineMapPin } from 'react-icons/hi2';
-import { WORK_LOCATIONS_LABEL } from '../../constants/site';
+import { WORK_LOCATIONS_LABEL, US_REMOTE_LABEL } from '../../constants/site';
 
 type FormState = {
     name: string;
@@ -106,7 +106,7 @@ const Contact = () => {
         }`;
 
     return (
-        <section id="contact" className="border-t border-theme-border bg-theme-bg py-20 md:py-28">
+        <section id="contact" className="bg-theme-bg py-20 md:py-28">
             <div className="mx-auto max-w-7xl px-6">
                 <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-20">
                     {/* Left — serif heading */}
@@ -124,6 +124,10 @@ const Contact = () => {
                                 <span className="contact-ornament-arc" />
                             </div>
                         </div>
+                        <p className="mt-8 max-w-sm text-sm leading-relaxed text-theme-muted">
+                            Hiring for a full-time role or a freelance project? Share the role, scope, timeline,
+                            and stack — I respond within 1–2 business days.
+                        </p>
                     </div>
 
                     {/* Right — form + details */}
@@ -212,7 +216,7 @@ const Contact = () => {
                                             value={form.message}
                                             onChange={handleChange}
                                             rows={3}
-                                            placeholder="Tell me about your app idea..."
+                                            placeholder="Project scope, timeline, and tech stack..."
                                             className={`${fieldClass(!!errors.message)} resize-none`}
                                         />
                                         <span className="contact-field-required">*</span>
@@ -269,12 +273,12 @@ const Contact = () => {
                                 </a>
                             </div>
                             <div>
-                                <p className="contact-detail-label">Locations</p>
+                                <p className="contact-detail-label">Work with</p>
                                 <p className="mt-3 flex items-start gap-2 text-sm leading-relaxed text-theme-muted">
                                     <HiOutlineMapPin className="mt-0.5 shrink-0 text-indigo-500" />
                                     {WORK_LOCATIONS_LABEL}
                                 </p>
-                                <p className="mt-1 text-xs text-theme-muted/80">Remote-friendly · India</p>
+                                <p className="mt-1 text-xs text-theme-muted/80">{US_REMOTE_LABEL}</p>
                             </div>
                         </div>
                     </div>

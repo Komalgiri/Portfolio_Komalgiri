@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { fadeUp, staggerContainer } from '../../utils/scrollAnimations';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { US_REMOTE_LABEL } from '../../constants/site';
 import {
     HiOutlineArrowRight,
     HiOutlineArrowDownTray,
@@ -11,7 +12,7 @@ import {
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import profilePhoto from '../../assets/profile_port.png';
 
-const roles = ['Full Stack Developer', 'React Native Builder', 'API-Focused Engineer'];
+const roles = ['Full Stack Developer', 'React Native Engineer', 'API & Mobile Developer'];
 
 const cardBase =
     'w-full rounded-2xl border border-theme-border bg-[var(--color-card-glass)] p-4 shadow-lg backdrop-blur-sm';
@@ -40,9 +41,9 @@ const infoCards = [
                     <HiOutlineGlobeAlt className="text-base" />
                     <span className="text-xs font-bold uppercase tracking-[0.22em] text-theme-muted">Availability</span>
                 </div>
-                <p className="mt-1.5 text-sm font-black text-theme-text">Open to freelance & full-time</p>
+                <p className="mt-1.5 text-sm font-black text-theme-text">Full-time & freelance</p>
                 <p className="mt-1 text-xs leading-relaxed text-theme-muted">
-                    Mobile apps, full-stack products & contract builds — remote-friendly.
+                    {US_REMOTE_LABEL}
                 </p>
             </>
         ),
@@ -135,7 +136,7 @@ const Hero = () => {
                         className="inline-flex items-center gap-3 rounded-full border border-theme-border bg-theme-surface/50 px-5 py-2 text-sm font-medium text-indigo-500 dark:text-indigo-300"
                     >
                         <span className="h-2 w-2 rounded-full bg-green-400" />
-                        Open for freelance & full-time
+                        Open for full-time & freelance
                     </motion.div>
 
                     <motion.h1
@@ -171,7 +172,8 @@ const Hero = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="mt-8 max-w-lg text-lg leading-relaxed text-theme-muted"
                     >
-                        I design and ship web and mobile applications with React, React Native, Node.js, and backend APIs.
+                        React Native & full-stack developer for US startups and remote teams.
+                        Open to full-time roles and contract work — mobile apps, Node.js APIs, and polished UI with EST/PST overlap.
                     </motion.p>
 
                     <motion.div

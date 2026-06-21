@@ -1,5 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import Home from './pages/Home';
+import { usePageMeta } from './hooks/usePageMeta';
+import { caseStudies } from './constants/caseStudies';
 
 const AllProjects = lazy(() => import('./pages/AllProjects'));
 const GithubStats = lazy(() => import('./pages/GithubStats'));
@@ -16,6 +18,10 @@ const PageLoader = () => (
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedProjectId, setSelectedProjectId] = useState<string>('');
+
+  const caseStudyTitle =
+    currentPage === 'case-study' ? caseStudies[selectedProjectId]?.title : undefined;
+  usePageMeta(currentPage, caseStudyTitle);
 
   useEffect(() => {
     const handleNavigation = () => {

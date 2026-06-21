@@ -7,6 +7,7 @@ import DesignPathBridge from '../components/home/DesignPathBridge';
 import Projects from '../components/home/Projects';
 import GithubFootprint from '../components/home/GithubFootprint';
 import Achievements from '../components/home/Achievements';
+import AvailabilityBanner from '../components/home/AvailabilityBanner';
 import Contact from '../components/home/Contact';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
@@ -40,11 +41,12 @@ const Home = () => {
                 <Projects />
                 <GithubFootprint />
                 <Achievements />
+                <AvailabilityBanner />
                 <Contact />
             </main>
             <ScrollReveal as="footer" variant="fadeUp" className="py-12 border-t border-theme-border text-center text-theme-muted text-sm">
                 <p>
-                    © {new Date().getFullYear()} Komal Giri · React · React Native · Node.js
+                    © {new Date().getFullYear()} Komal Giri · US remote · full-time & freelance · React · React Native · Node.js
                 </p>
                 <div className="mt-4 flex items-center justify-center gap-4">
                     <a
