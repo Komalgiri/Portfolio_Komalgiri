@@ -18,18 +18,20 @@ const DiagramNode = ({
     title,
     nodes,
     icon: Icon,
+    compact,
 }: {
     title: string;
     nodes: { label: string }[];
     icon: typeof HiOutlineCloud;
+    compact?: boolean;
 }) => (
-    <article className="codepod-diagram-node">
+    <article className={`codepod-diagram-node ${compact ? 'is-compact' : ''}`}>
         <div className="codepod-diagram-node-head">
             <Icon className="text-base text-indigo-400" />
             <h4>{title}</h4>
         </div>
         <ul>
-            {nodes.map((node) => (
+            {(compact ? nodes.slice(0, 2) : nodes).map((node) => (
                 <li key={node.label}>{node.label}</li>
             ))}
         </ul>
@@ -48,15 +50,17 @@ interface CodePodArchitectureProps {
     showHeader?: boolean;
     /** diagram = architecture only; full = includes request flows + database (case study) */
     detail?: 'diagram' | 'full';
+    /** gallery view — tighter nodes, less spacing */
+    compact?: boolean;
 }
 
-const CodePodArchitecture = ({ showHeader = true, detail = 'full' }: CodePodArchitectureProps) => {
+const CodePodArchitecture = ({ showHeader = true, detail = 'full', compact = false }: CodePodArchitectureProps) => {
     const [activeFlow, setActiveFlow] = useState(0);
     const flow = codepodRequestFlows[activeFlow];
     const showDetails = detail === 'full';
 
     return (
-        <div className="codepod-arch space-y-16">
+        <div className={`codepod-arch ${compact ? 'space-y-6' : 'space-y-16'}`}>
             {showHeader && (
                 <motion.div
                     initial={{ opacity: 0, y: 12 }}
@@ -73,20 +77,24 @@ const CodePodArchitecture = ({ showHeader = true, detail = 'full' }: CodePodArch
             )}
 
             <section>
-                <h3 className="codepod-arch-section-title">
-                    <span>System</span> architecture
-                </h3>
-                <div className="codepod-diagram">
+                {!compact && (
+                    <h3 className="codepod-arch-section-title">
+                        <span>System</span> architecture
+                    </h3>
+                )}
+                <div className={`codepod-diagram ${compact ? 'is-compact' : ''}`}>
                     <DiagramNode
                         title={codepodLayers.client.title}
                         nodes={codepodLayers.client.nodes}
                         icon={HiOutlineCloud}
+                        compact={compact}
                     />
                     <DiagramConnector label="REST + Bearer JWT" />
                     <DiagramNode
                         title={codepodLayers.api.title}
                         nodes={codepodLayers.api.nodes}
                         icon={HiOutlineServerStack}
+                        compact={compact}
                     />
                     <DiagramConnector label="Routes → Auth · Prisma · GitHub · Gemini" />
                     <div className="codepod-diagram-row">
@@ -94,21 +102,26 @@ const CodePodArchitecture = ({ showHeader = true, detail = 'full' }: CodePodArch
                             title={codepodLayers.auth.title}
                             nodes={codepodLayers.auth.nodes}
                             icon={HiOutlineShieldCheck}
+                            compact={compact}
                         />
                         <DiagramNode
                             title={codepodLayers.data.title}
                             nodes={codepodLayers.data.nodes}
                             icon={HiOutlineCircleStack}
+                            compact={compact}
                         />
                         <DiagramNode
                             title={codepodLayers.external.title}
                             nodes={codepodLayers.external.nodes}
                             icon={HiOutlineGlobeAlt}
+                            compact={compact}
                         />
                     </div>
-                    <p className="codepod-diagram-footnote">
-                        GitHub OAuth callback encrypts token and links to GitHub API for repo sync
-                    </p>
+                    {!compact && (
+                        <p className="codepod-diagram-footnote">
+                            GitHub OAuth callback encrypts token and links to GitHub API for repo sync
+                        </p>
+                    )}
                 </div>
             </section>
 

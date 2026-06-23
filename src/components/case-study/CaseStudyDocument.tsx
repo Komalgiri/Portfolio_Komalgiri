@@ -7,7 +7,15 @@ import {
 } from 'react-icons/hi2';
 import type { CaseStudyData } from '../../constants/caseStudies';
 import CodePodArchitecture from '../system-design/CodePodArchitecture';
+import UdyampathArchitecture from '../system-design/UdyampathArchitecture';
+import MentoraArchitecture from '../system-design/MentoraArchitecture';
 import ProcessTimeline from './ProcessTimeline';
+
+const architectureById = {
+    codepod: CodePodArchitecture,
+    udyampath: UdyampathArchitecture,
+    mentora: MentoraArchitecture,
+} as const;
 
 interface CaseStudyDocumentProps {
     project: CaseStudyData;
@@ -154,14 +162,17 @@ const CaseStudyDocument = ({ project, onBack }: CaseStudyDocumentProps) => (
                 <ProcessTimeline intro={project.processIntro} steps={project.processSteps} />
             </motion.section>
 
-            {project.showArchitecture && (
+            {project.architectureId && (
                 <motion.section
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-60px' }}
                     className="case-study-block"
                 >
-                    <CodePodArchitecture showHeader={false} detail="full" />
+                    {(() => {
+                        const Architecture = architectureById[project.architectureId];
+                        return <Architecture showHeader={false} detail="full" />;
+                    })()}
                 </motion.section>
             )}
 

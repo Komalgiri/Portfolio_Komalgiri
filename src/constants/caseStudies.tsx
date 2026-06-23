@@ -8,12 +8,13 @@ import {
     HiOutlineLightBulb,
     HiOutlineDevicePhoneMobile,
     HiOutlinePaintBrush,
-    HiOutlineBeaker,
     HiOutlineUserGroup,
     HiOutlineShieldCheck,
     HiOutlineGlobeAlt,
     HiOutlineHeart,
     HiOutlineArrowPath,
+    HiOutlineChartBar,
+    HiOutlineSparkles,
 } from 'react-icons/hi2';
 import {
     SiReact,
@@ -23,10 +24,7 @@ import {
     SiGithub,
     SiDocker,
     SiVite,
-    SiTailwindcss,
     SiFirebase,
-    SiExpress,
-    SiNetlify,
     SiExpo,
     SiGooglegemini,
     SiFigma,
@@ -74,7 +72,7 @@ export type CaseStudyData = {
         live?: string;
         github?: string;
     };
-    showArchitecture?: boolean;
+    architectureId?: 'codepod' | 'udyampath' | 'mentora';
 };
 
 export const caseStudies: Record<string, CaseStudyData> = {
@@ -136,64 +134,81 @@ export const caseStudies: Record<string, CaseStudyData> = {
             live: 'https://codepod-six.vercel.app/',
             github: 'https://github.com/Komalgiri/codepods-backend',
         },
-        showArchitecture: true,
+        architectureId: 'codepod',
     },
     udyampath: {
         title: 'UdyamPath',
-        studyLabel: 'Product Case Study',
+        studyLabel: 'Team Project Case Study',
         overview:
-            'UdyamPath connects students with jobs, internships, and courses — plus productivity and wellness tools — in one career growth platform with 50+ active listings.',
+            'UdyamPath is a team-built career platform — courses, tools, and recruiter flows by teammates. I owned the job portal: city-aware listings where salary is compared to cost of living across 9 Indian metros, plus an AI resume analysis tool for application readiness.',
         heroImage: udyampathImage,
         problem: [
-            'Students struggle to find relevant jobs and upskilling paths. Listings, courses, and career tools live on separate platforms with no shared context.',
-            'Early-career users need filters, recommendations, and admin workflows that traditional job boards do not offer out of the box.',
+            'Students applying in unfamiliar cities rarely know if a job’s salary covers rent, food, and transport — listings show packages, not purchasing power.',
+            'Without quick resume feedback, candidates apply blind and miss gaps in skills, formatting, or role fit before submissions.',
         ],
         solution: [
-            'A unified discovery platform with job & course search, cost-of-living tools, admin dashboards, and REST APIs designed for scale and clear role-based access.',
+            'I built the job portal module end-to-end: city expense lookup, affordable-job badges (salary > total_expense), filters, apply flows, and the /base budget explorer — alongside an AI resume analyzer integrated into the job sidebar.',
         ],
         durationStats: [
             { value: '4+', unit: 'months' },
-            { value: '30+', unit: 'screens' },
+            { value: '12+', unit: 'screens owned' },
         ],
         tools: [
             { name: 'React', Icon: SiReact, color: '#61DAFB' },
-            { name: 'Node.js', Icon: SiNodedotjs, color: '#339933' },
-            { name: 'Express', Icon: SiExpress, color: '#000000' },
-            { name: 'PostgreSQL', Icon: SiPostgresql, color: '#4169E1' },
+            { name: 'Firebase', Icon: SiFirebase, color: '#FFCA28' },
+            { name: 'Recharts', Icon: HiOutlineChartBar, color: '#8884d8' },
+            { name: 'Gemini', Icon: SiGooglegemini, color: '#8E75B2' },
             { name: 'GitHub', Icon: SiGithub, color: '#181717' },
             { name: 'Figma', Icon: SiFigma, color: '#F24E1E' },
         ],
         processIntro:
-            'I led frontend UX, API design, and database modeling — from user research through deployment of search, filters, and admin flows.',
+            'On a cross-functional team, I scoped and shipped the job portal — from city expense research and Recharts visualizations through AI resume analysis and integration with the shared React app.',
         processSteps: [
-            { label: 'Research', Icon: HiOutlineMagnifyingGlass },
-            { label: 'Wireframes', Icon: HiOutlinePaintBrush },
-            { label: 'API Design', Icon: HiOutlineCodeBracket },
-            { label: 'Build & Test', Icon: HiOutlineBeaker },
-            { label: 'Launch', Icon: HiOutlineRocketLaunch },
+            { label: 'City Research', Icon: HiOutlineMagnifyingGlass },
+            { label: 'Job Portal UX', Icon: HiOutlinePaintBrush },
+            { label: 'Expense Logic', Icon: HiOutlineCodeBracket },
+            { label: 'AI Resume Tool', Icon: HiOutlineCpuChip },
+            { label: 'Team Ship', Icon: HiOutlineUserGroup },
         ],
         features: [
-            { title: 'Job & Course Discovery', description: 'Search, filters, and listings for students and employers.' },
-            { title: 'City Budget Tool', description: 'Cost-of-living breakdown by rent, food, transport, and more.' },
-            { title: 'Admin Workflows', description: 'Role-based dashboards for managing listings and users.' },
-            { title: 'REST APIs', description: 'Structured backend with auth, pagination, and validation.' },
+            {
+                title: 'City-Aware Job Portal',
+                description:
+                    '/jobpage listings with type & level filters, internship tabs, and affordable-job badges when salary beats city expenses.',
+            },
+            {
+                title: 'City Budget Explorer',
+                description:
+                    '/base cost-of-living page — expense category cards and monthly variation charts for 9 metros via citydata.json.',
+            },
+            {
+                title: 'AI Resume Analysis',
+                description:
+                    '/resume-check tool in the job sidebar — upload a resume for AI-powered feedback on skills, gaps, and role fit.',
+            },
+            {
+                title: 'Team Platform Context',
+                description:
+                    'Courses, interview prep, and recruiter tools built by teammates on the same React + Firebase codebase.',
+            },
         ],
         links: {
             github: 'https://github.com/Komalgiri',
         },
+        architectureId: 'udyampath',
     },
     mentora: {
         title: 'Mentora',
         studyLabel: 'Product Case Study',
         overview:
-            'Mentora is a mental well-being hub with mood tracking, an AI chatbot companion, mentor support, and self-care resources for students and professionals.',
+            'Mentora.AI is a mental wellness web app — five guided mentor personas, Mood Studio with 30-day charts, journaling, sleep tracking, self-care mini-tools, and XP gamification. Guest mode lets users explore without an account; moods and journals persist via Firebase when signed in.',
         heroImage: mentoraImage,
         problem: [
-            'Mental health resources are fragmented, expensive, or hard to access when users need immediate support.',
-            'Students lack a single place to track mood patterns, get guided help, and discover self-care content.',
+            'Mental health support is fragmented and often behind paywalls — students need immediate, low-friction access without committing to an account first.',
+            'Tracking mood, sleep, and journal patterns in one place is rare; most tools either chat or chart, not both with a reward loop.',
         ],
         solution: [
-            'An integrated web app combining AI chat support, visual mood analytics, mentor connections, and a curated wellness library — built with React and Firebase.',
+            'A dark, mobile-first React SPA with guest + auth flows, Firestore-backed wellness data, scripted mentor chat via decision trees, and gamification that ties mood logs, meditation, and sleep into levels and insights.',
         ],
         durationStats: [
             { value: '3+', unit: 'months' },
@@ -202,29 +217,46 @@ export const caseStudies: Record<string, CaseStudyData> = {
         tools: [
             { name: 'React', Icon: SiReact, color: '#61DAFB' },
             { name: 'Firebase', Icon: SiFirebase, color: '#FFCA28' },
-            { name: 'Netlify', Icon: SiNetlify, color: '#00C7B7' },
+            { name: 'Recharts', Icon: HiOutlineChartBar, color: '#8884d8' },
+            { name: 'Framer Motion', Icon: HiOutlineSparkles, color: '#a78bfa' },
             { name: 'GitHub', Icon: SiGithub, color: '#181717' },
-            { name: 'Tailwind', Icon: SiTailwindcss, color: '#06B6D4' },
         ],
         processIntro:
-            'I designed and built the product experience — from empathy mapping and UI flows through Firebase integration and Netlify deployment.',
+            'I designed and built the full product — landing page, app shell, AuthContext, Firestore schema, mentor chat trees, Mood Studio charts, and the gamification loop.',
         processSteps: [
             { label: 'Empathize', Icon: HiOutlineHeart },
-            { label: 'Define', Icon: HiOutlineLightBulb },
-            { label: 'Design', Icon: HiOutlinePaintBrush },
-            { label: 'Develop', Icon: HiOutlineCodeBracket },
-            { label: 'Deploy', Icon: HiOutlineRocketLaunch },
+            { label: 'Guest UX', Icon: HiOutlineUserGroup },
+            { label: 'Firebase', Icon: HiOutlineShieldCheck },
+            { label: 'Mood Studio', Icon: HiOutlineChartBar },
+            { label: 'Ship', Icon: HiOutlineRocketLaunch },
         ],
         features: [
-            { title: 'AI Chatbot', description: 'Conversational support with moderation and safe fallbacks.' },
-            { title: 'Mood Tracker', description: 'Visual analytics for emotional patterns over time.' },
-            { title: 'Mentor Network', description: 'Connect users with mentors and peer support.' },
-            { title: 'Self-Care Library', description: 'Guides, exercises, and wellness articles.' },
+            {
+                title: 'Mentor Chat',
+                description:
+                    'Five personas (Mood, Stress, Dream, Anxiety, Relationship) — nested decision tree from chatresponse.json with GIF responses.',
+            },
+            {
+                title: 'Mood Studio',
+                description:
+                    'Emoji mood logs, wellness quiz, daily journal, breathing modal, and 30-day Recharts area chart with streak stats.',
+            },
+            {
+                title: 'Self-Care & Sleep',
+                description:
+                    'Hub for meditation timer, sleep logging, creative prompts, and 5-4-3-2-1 grounding — Firestore or localStorage.',
+            },
+            {
+                title: 'Gamification',
+                description:
+                    'XP for mood, journal, meditation, and sleep — levels, Neural Insight (sleep vs mood correlation), and profile insights.',
+            },
         ],
         links: {
             live: 'https://mentora-gray-eight.vercel.app/',
             github: 'https://github.com/Komalgiri',
         },
+        architectureId: 'mentora',
     },
     'ai-sewa': {
         title: 'AI Sewa',

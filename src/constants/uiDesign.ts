@@ -37,9 +37,9 @@ const uiDesignItemsBase: GalleryMediaItem[] = [
     { id: 'ui-9', title: 'Athena — Learning Platform', caption: 'Educational landing page with search & course discovery', src: ui9, type: 'image' },
     { id: 'ui-10', title: 'Beyond the Page — Library Hero', caption: 'AI-powered digital library landing section', src: ui10, type: 'image' },
     { id: 'ui-11', title: 'UI Design', caption: 'Visual design exploration', src: ui11, type: 'image' },
-    { id: 'ui-12', title: 'UdyamPath — Homepage', caption: 'Career growth platform with jobs, courses & tools', src: ui12, type: 'image' },
+    { id: 'ui-12', title: 'UdyamPath — Homepage', caption: 'Team career platform — jobs, courses & tools', src: ui12, type: 'image' },
     { id: 'ui-13', title: 'UI Design', caption: 'Visual design exploration', src: ui13, type: 'image' },
-    { id: 'ui-14', title: 'UdyamPath — City Budget Tool', caption: 'Cost-of-living calculator with expense breakdown', src: ui14, type: 'image' },
+    { id: 'ui-14', title: 'UdyamPath — City Budget Tool', caption: 'Job portal module I built — salary vs cost of living', src: ui14, type: 'image' },
     {
         id: 'between-home',
         title: 'BETWEEN — Home & Mood Sync',
@@ -98,14 +98,14 @@ const uiDesignItemsBase: GalleryMediaItem[] = [
     {
         id: 'project-udyampath',
         title: 'UdyamPath',
-        caption: 'Job & course discovery for students',
+        caption: 'Team project — job portal, city expenses & AI resume analysis',
         src: udyampath,
         type: 'image',
     },
     {
         id: 'project-mentora',
         title: 'Mentora',
-        caption: 'Mental well-being & mood tracking hub',
+        caption: 'Wellness SPA — mentor chat, mood studio & gamification',
         src: mentora,
         type: 'image',
     },
