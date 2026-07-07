@@ -25,6 +25,13 @@ import agetech from '../assets/agetech.jpg';
 import udyampath from '../assets/udyampath.png';
 import aisewa from '../assets/aisewa.png';
 
+import cafe1 from '../assets/cafe.png';
+import cafe2 from '../assets/cafe2.png';
+import havenstay1 from '../assets/Havanstay.png';
+import havenstay2 from '../assets/Havenstay2.png';
+import velora1 from '../assets/Velora.png';
+import velora2 from '../assets/Velora2.png';
+
 const uiDesignItemsBase: GalleryMediaItem[] = [
     { id: 'ui-1', title: 'UI Design', caption: 'Visual design exploration', src: ui1, type: 'image' },
     { id: 'ui-2', title: 'UI Design', caption: 'Visual design exploration', src: ui2, type: 'image' },
@@ -125,10 +132,54 @@ const uiDesignItemsBase: GalleryMediaItem[] = [
         type: 'image',
         size: 'mobile',
     },
+    {
+        id: 'pitch-cafe-1',
+        title: 'Bean & Brew',
+        caption: 'Coffee Shop Landing Page Design',
+        src: cafe1,
+        type: 'image',
+    },
+    {
+        id: 'pitch-cafe-2',
+        title: 'Bean & Brew Menu',
+        caption: 'Coffee Shop Menu UI',
+        src: cafe2,
+        type: 'image',
+    },
+    {
+        id: 'pitch-havenstay-1',
+        title: 'HavenStay',
+        caption: 'Luxury Hotel Booking Platform',
+        src: havenstay1,
+        type: 'image',
+    },
+    {
+        id: 'pitch-havenstay-2',
+        title: 'HavenStay Rooms',
+        caption: 'Luxury Hotel Room Listing UI',
+        src: havenstay2,
+        type: 'image',
+    },
+    {
+        id: 'pitch-velora-1',
+        title: 'Velora',
+        caption: 'Luxury E-commerce Storefront',
+        src: velora1,
+        type: 'image',
+    },
+    {
+        id: 'pitch-velora-2',
+        title: 'Velora Collections',
+        caption: 'Luxury Fashion Product Gallery',
+        src: velora2,
+        type: 'image',
+    },
 ];
 
 /** UI_9/10/12/14 sit in row 2 (just below the fold); rest mixed randomly */
 const shuffledOrder = [
+    'pitch-cafe-1', 'pitch-havenstay-1', 'pitch-velora-1',
+    'pitch-cafe-2', 'pitch-havenstay-2', 'pitch-velora-2',
     'ui-7', 'between-play-hub', 'ui-10',
     'ui-12', 'ui-14', 'between-home',
     'ui-3', 'ui-1', 'project-udyampath',
@@ -137,7 +188,7 @@ const shuffledOrder = [
     'project-codepod', 'ui-8', 'project-agetech',
     'ui-9', 'ui-4', 'between-anniversary',
     'between-live-canvas', 'ui-6', 'ui-13',
-    'project-ai-sewa',
+    'project-ai-sewa'
 ];
 
 const itemById = new Map(uiDesignItemsBase.map((item) => [item.id, item]));

@@ -7,6 +7,7 @@ import DesignPathBridge from '../components/home/DesignPathBridge';
 import Projects from '../components/home/Projects';
 import GithubFootprint from '../components/home/GithubFootprint';
 import Achievements from '../components/home/Achievements';
+import WebDevPitches from '../components/home/WebDevPitches';
 import AvailabilityBanner from '../components/home/AvailabilityBanner';
 import Contact from '../components/home/Contact';
 import ScrollReveal from '../components/ui/ScrollReveal';
@@ -41,6 +42,7 @@ const Home = () => {
                 <Projects />
                 <GithubFootprint />
                 <Achievements />
+                <WebDevPitches />
                 <AvailabilityBanner />
                 <Contact />
             </main>
