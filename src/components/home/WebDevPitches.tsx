@@ -1,5 +1,5 @@
 import ScrollReveal from '../ui/ScrollReveal';
-import { FiExternalLink, FiArrowRight } from 'react-icons/fi';
+import { FiArrowRight } from 'react-icons/fi';
 
 import cafe1 from '../../assets/cafe.png';
 import cafe2 from '../../assets/cafe2.png';
