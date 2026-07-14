@@ -172,8 +172,8 @@ const Hero = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="mt-8 max-w-lg text-lg leading-relaxed text-theme-muted"
                     >
-                        React Native & full-stack developer for US startups and remote teams.
-                        Open to full-time roles and contract work — mobile apps, Node.js APIs, and polished UI with EST/PST overlap.
+                        I build what I can't find. React Native & full-stack — mobile, web, and everything in between.
+                        Open to full-time roles and contract work with US startups and remote teams. EST/PST overlap.
                     </motion.p>
 
                     <motion.div

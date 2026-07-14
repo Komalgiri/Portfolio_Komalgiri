@@ -12,6 +12,10 @@ import {
     HiOutlineChartBar,
     HiOutlinePaintBrush,
     HiOutlineDevicePhoneMobile,
+    HiOutlineLightBulb,
+    HiOutlineWrenchScrewdriver,
+    HiOutlineArrowTrendingUp,
+    HiOutlineArrowTopRightOnSquare,
 } from 'react-icons/hi2';
 import {
     SiReact,
@@ -299,6 +303,44 @@ const skillCategories: SkillCategory[] = [
     },
 ];
 
+// ── Narrative belief cards ────────────────────────────────────────────────────
+const beliefCards = [
+    {
+        id: 'ship',
+        icon: HiOutlineWrenchScrewdriver,
+        accent: 'text-indigo-400',
+        borderAccent: 'border-indigo-500/20 hover:border-indigo-500/40',
+        glowAccent: 'bg-indigo-500/5',
+        headline: 'Ship rough. Make it good.',
+        body: "I'd rather build the rough version today than plan the perfect one forever. Most of what I know came from getting something to work, breaking it, and figuring out why.",
+    },
+    {
+        id: 'angle',
+        icon: HiOutlineLightBulb,
+        accent: 'text-amber-400',
+        borderAccent: 'border-amber-500/20 hover:border-amber-500/40',
+        glowAccent: 'bg-amber-500/5',
+        headline: 'Find the angle no one took.',
+        body: "What pulls me in isn't building what everyone else builds. StockSahi exists because I refused to make just another stock app — it teaches how the market actually works.",
+    },
+    {
+        id: 'arc',
+        icon: HiOutlineArrowTrendingUp,
+        accent: 'text-emerald-400',
+        borderAccent: 'border-emerald-500/20 hover:border-emerald-500/40',
+        glowAccent: 'bg-emerald-500/5',
+        headline: 'Own the whole arc.',
+        body: 'I like deciding what\'s worth building, who it\'s for, and where to draw the line — as much as the implementation itself.',
+    },
+];
+
+// ── "What I'm looking for" items ─────────────────────────────────────────────
+const lookingFor = [
+    { label: 'Harder problems', sub: 'Not just more of the same' },
+    { label: 'Better people', sub: 'Someone three steps ahead' },
+    { label: 'End-to-end ownership', sub: 'From decision to deployment' },
+];
+
 const About = () => {
     const [index, setIndex] = useState(0);
     const reducedMotion = useReducedMotion();
@@ -318,7 +360,7 @@ const About = () => {
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
 
-                {/* Section Header */}
+                {/* ── Section Header ──────────────────────────────────────── */}
                 <div className="mb-14 md:mb-16">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -327,49 +369,58 @@ const About = () => {
                         className="space-y-4"
                     >
                         <h2 className="text-5xl md:text-7xl font-black text-theme-text flex items-center gap-6">
-                            <span className="w-16 h-[2px] bg-indigo-500"></span>
+                            <span className="w-16 h-[2px] bg-indigo-500" />
                             A little bit about me
                         </h2>
                     </motion.div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                {/* ── Main 3-column grid ──────────────────────────────────── */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 xl:gap-16 items-start">
 
-                    {/* Column 1: Condensed Bio */}
-                    <ScrollReveal variant="fadeLeft" className="lg:col-span-4 space-y-10">
-                        <div className="space-y-6">
-                            <p className="text-lg text-theme-muted font-medium leading-relaxed">
-                                I build <span className="text-theme-text">scalable web and mobile applications</span> integrating AI-driven features and clean, responsive interfaces.
-                                Specializing in React, React Native, and Node.js.
-                            </p>
-                            <p className="text-slate-500 text-sm leading-relaxed">
-                                B.Tech CSE graduate (CGPA 8.9) from Roorkee College of Engineering, actively seeking full-time software development roles.
+                    {/* Column 1: Narrative ───────────────────────────────── */}
+                    <ScrollReveal variant="fadeLeft" className="lg:col-span-4 space-y-8">
+
+                        {/* Pull-quote */}
+                        <div className="relative pl-5 border-l-2 border-indigo-500">
+                            <p className="text-xl md:text-2xl font-black text-theme-text leading-snug tracking-tight">
+                                "I don't wait around for ideas — I come up with my own, and the first thing I want to do is make them real."
                             </p>
                         </div>
 
+                        {/* Belief cards */}
                         <motion.div
-                            className="space-y-4"
+                            className="space-y-3"
                             variants={staggerContainer}
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: '-60px' }}
                         >
-                            <motion.p variants={fadeUp} className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Soft Skills</motion.p>
-                            <div className="flex flex-wrap gap-2">
-                                {['Problem-solving', 'Team Collaboration', 'Adaptability', 'Communication'].map(skill => (
-                                    <motion.span
-                                        key={skill}
-                                        variants={fadeUp}
-                                        className="px-3 py-1.5 rounded-md bg-theme-surface/50 border border-theme-border text-theme-muted text-[10px] font-bold uppercase tracking-wider"
-                                    >
-                                        {skill}
-                                    </motion.span>
-                                ))}
-                            </div>
+                            {beliefCards.map(({ id, icon: Icon, accent, borderAccent, glowAccent, headline, body }) => (
+                                <motion.div
+                                    key={id}
+                                    variants={fadeUp}
+                                    className={`relative rounded-xl border bg-theme-surface/30 p-4 transition-all duration-300 ${borderAccent} overflow-hidden group`}
+                                >
+                                    <div className={`pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${glowAccent} blur-xl`} />
+                                    <div className="relative z-10 flex gap-3 items-start">
+                                        <div className="shrink-0 mt-0.5">
+                                            <Icon className={`text-lg ${accent}`} />
+                                        </div>
+                                        <div>
+                                            <p className="text-sm font-bold text-theme-text leading-snug">{headline}</p>
+                                            <p className="mt-1 text-xs text-theme-muted leading-relaxed">{body}</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
                         </motion.div>
+
+                        
+
                     </ScrollReveal>
 
-                    {/* Column 2: Focused Tech Stack */}
+                    {/* Column 2: Rotating skill stack ───────────────────── */}
                     <ScrollReveal variant="scaleIn" delay={0.1} className="lg:col-span-4 relative">
                         <AnimatePresence mode="wait">
                             <motion.div
@@ -429,33 +480,67 @@ const About = () => {
                         </div>
                     </ScrollReveal>
 
-                    {/* Column 3: Professional Metrics */}
-                    <motion.div
-                        className="lg:col-span-4 grid grid-cols-2 gap-y-12 gap-x-8 pl-8"
-                        variants={staggerContainer}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: '-80px' }}
-                    >
-                        {[
-                            { id: 'experience', value: 1.5, decimals: 1, suffix: '+', label: <>Years Professional<br />Experience</> },
-                            { id: 'projects', value: 10, decimals: 0, suffix: '+', label: <>Projects &<br />Deployments</> },
-                            { id: 'certs', value: 8, decimals: 0, suffix: '+', label: <>Certifications<br />Earned</> },
-                            { id: 'awards', value: 3, decimals: 0, suffix: '+', label: <>Major Awards &<br />Recognitions</> },
-                        ].map((metric) => (
-                            <motion.div key={metric.id} variants={fadeUp} className="space-y-1">
-                                <h4 className="text-4xl font-black text-theme-text italic tracking-tighter">
-                                    <AnimatedCounter
-                                        value={metric.value}
-                                        decimals={metric.decimals}
-                                        suffix={metric.suffix}
-                                    />
-                                </h4>
-                                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] leading-tight">{metric.label}</p>
-                            </motion.div>
-                        ))}
+                    {/* Column 3: Metrics + Looking for ──────────────────── */}
+                    <div className="lg:col-span-4 space-y-10">
 
-                    </motion.div>
+                        {/* Metrics */}
+                        <motion.div
+                            className="grid grid-cols-2 gap-y-10 gap-x-8"
+                            variants={staggerContainer}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: '-80px' }}
+                        >
+                            {[
+                                { id: 'experience', value: 1.5, decimals: 1, suffix: '+', label: <><span>Years Professional</span><br /><span>Experience</span></> },
+                                { id: 'projects', value: 10, decimals: 0, suffix: '+', label: <><span>Projects &</span><br /><span>Deployments</span></> },
+                                { id: 'certs', value: 8, decimals: 0, suffix: '+', label: <><span>Certifications</span><br /><span>Earned</span></> },
+                                { id: 'awards', value: 3, decimals: 0, suffix: '+', label: <><span>Major Awards &</span><br /><span>Recognitions</span></> },
+                            ].map((metric) => (
+                                <motion.div key={metric.id} variants={fadeUp} className="space-y-1">
+                                    <h4 className="text-4xl font-black text-theme-text italic tracking-tighter">
+                                        <AnimatedCounter
+                                            value={metric.value}
+                                            decimals={metric.decimals}
+                                            suffix={metric.suffix}
+                                        />
+                                    </h4>
+                                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] leading-tight">{metric.label}</p>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+
+                        {/* What I'm looking for */}
+                        <ScrollReveal variant="fadeUp" delay={0.2}>
+                            <div className="rounded-2xl border border-theme-border bg-theme-surface/20 p-6 space-y-5">
+                                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-400">
+                                    What I'm chasing
+                                </p>
+                                <div className="space-y-3">
+                                    {lookingFor.map(({ label, sub }, i) => (
+                                        <motion.div
+                                            key={label}
+                                            initial={{ opacity: 0, x: -8 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: i * 0.1 }}
+                                            className="flex items-start gap-3"
+                                        >
+                                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500" />
+                                            <div>
+                                                <p className="text-sm font-bold text-theme-text">{label}</p>
+                                                <p className="text-xs text-theme-muted">{sub}</p>
+                                            </div>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                                <p className="text-xs text-theme-muted leading-relaxed border-t border-theme-border pt-4">
+                                    I do my best work when I own something end-to-end and there's someone in the room who's three steps ahead of me.
+                                </p>
+                            </div>
+                        </ScrollReveal>
+
+                    </div>
 
                 </div>
             </div>
