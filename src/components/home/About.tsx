@@ -15,7 +15,6 @@ import {
     HiOutlineLightBulb,
     HiOutlineWrenchScrewdriver,
     HiOutlineArrowTrendingUp,
-    HiOutlineArrowTopRightOnSquare,
 } from 'react-icons/hi2';
 import {
     SiReact,
