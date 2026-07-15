@@ -24,6 +24,7 @@ import mentora from '../assets/mentora.png';
 import agetech from '../assets/agetech.jpg';
 import udyampath from '../assets/udyampath.png';
 import aisewa from '../assets/aisewa.png';
+import paletteverse from '../assets/paletteverse.png';
 
 import cafe1 from '../assets/cafe.png';
 import cafe2 from '../assets/cafe2.png';
@@ -133,6 +134,13 @@ const uiDesignItemsBase: GalleryMediaItem[] = [
         size: 'mobile',
     },
     {
+        id: 'project-paletteverse',
+        title: 'PaletteVerse',
+        caption: 'UI/UX design tool & color generator workspace',
+        src: paletteverse,
+        type: 'image',
+    },
+    {
         id: 'pitch-cafe-1',
         title: 'Bean & Brew',
         caption: 'Coffee Shop Landing Page Design',
@@ -178,7 +186,7 @@ const uiDesignItemsBase: GalleryMediaItem[] = [
 
 /** UI_9/10/12/14 sit in row 2 (just below the fold); rest mixed randomly */
 const shuffledOrder = [
-    'pitch-cafe-1', 'pitch-havenstay-1', 'pitch-velora-1',
+    'project-paletteverse', 'pitch-cafe-1', 'pitch-havenstay-1', 'pitch-velora-1',
     'pitch-cafe-2', 'pitch-havenstay-2', 'pitch-velora-2',
     'ui-7', 'between-play-hub', 'ui-10',
     'ui-12', 'ui-14', 'between-home',

@@ -6,6 +6,7 @@ import Between from '../components/home/Between';
 import DesignPathBridge from '../components/home/DesignPathBridge';
 import Projects from '../components/home/Projects';
 import GithubFootprint from '../components/home/GithubFootprint';
+import PaletteVerse from '../components/home/PaletteVerse';
 import Achievements from '../components/home/Achievements';
 import WebDevPitches from '../components/home/WebDevPitches';
 import AvailabilityBanner from '../components/home/AvailabilityBanner';
@@ -41,6 +42,7 @@ const Home = () => {
                 <DesignPathBridge />
                 <Projects />
                 <GithubFootprint />
+                <PaletteVerse />
                 <Achievements />
                 <WebDevPitches />
                 <AvailabilityBanner />

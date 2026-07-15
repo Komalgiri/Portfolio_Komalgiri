@@ -3,7 +3,7 @@ import {
     HiOutlineShieldCheck,
     HiOutlineSparkles,
     HiOutlineCodeBracket,
-    HiOutlineDevicePhoneMobile
+    HiOutlineDevicePhoneMobile,
 } from "react-icons/hi2";
 import codpodImage from "../assets/codpod.png";
 import mentoraImage from "../assets/mentora.png";
