@@ -94,8 +94,9 @@ const AllProjects = ({ onBack }: { onBack: () => void }) => {
                                     className="group relative flex flex-col h-full rounded-3xl bg-theme-card/40 border border-theme-border hover:border-indigo-500/30 transition-all duration-500 overflow-hidden"
                                 >
                                     {/* Card Header / Visual */}
-                                    <div className={`h-52 bg-gradient-to-br ${project.color} opacity-20 relative overflow-hidden group-hover:opacity-30 transition-all duration-500`}>
-                                        <div className="absolute inset-x-0 bottom-0 flex justify-center items-end h-full">
+                                    <div className="h-52 relative overflow-hidden group-hover:bg-theme-surface/30 transition-colors duration-500">
+                                        <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-40 transition-opacity duration-500`} />
+                                        <div className="absolute inset-x-0 bottom-0 flex justify-center items-end h-full z-10">
                                             {project.type === 'Web' ? (
                                                 <motion.div
                                                     initial={{ y: "25%" }}

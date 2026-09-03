@@ -37,8 +37,8 @@ const pitches = [
 
 const WebDevPitches = () => {
     return (
-        <section className="py-32 bg-theme-bg" id="freelance-pitches">
-            <div className="container mx-auto px-4 max-w-7xl">
+        <section className="py-32 bg-theme-bg overflow-hidden" id="freelance-pitches">
+            <div className="mx-auto px-6 lg:px-12 max-w-[90rem]">
                 <ScrollReveal>
                     <div className="mb-24 max-w-3xl">
                         <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-theme-text mb-6">
@@ -54,10 +54,10 @@ const WebDevPitches = () => {
                     {pitches.map((pitch, index) => {
                         const isEven = index % 2 === 0;
                         return (
-                            <div key={pitch.id} className={`flex flex-col lg:flex-row gap-12 lg:gap-20 items-center ${isEven ? '' : 'lg:flex-row-reverse'}`}>
+                            <div key={pitch.id} className={`flex flex-col lg:flex-row gap-12 lg:gap-16 xl:gap-24 items-center ${isEven ? '' : 'lg:flex-row-reverse'}`}>
                                 
                                 {/* Text Content */}
-                                <div className="w-full lg:w-5/12 flex flex-col justify-center">
+                                <div className="w-full lg:w-[35%] xl:w-1/3 flex flex-col justify-center">
                                     <ScrollReveal variant={isEven ? "fadeRight" : "fadeLeft"}>
                                         <div className="flex flex-wrap gap-2 mb-6">
                                             {pitch.tags.map(tag => (
@@ -88,7 +88,7 @@ const WebDevPitches = () => {
                                 </div>
 
                                 {/* Images */}
-                                <div className="w-full lg:w-7/12">
+                                <div className="w-full lg:w-[65%] xl:w-2/3">
                                     <ScrollReveal variant={isEven ? "fadeLeft" : "fadeRight"} className="w-full">
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
                                             {pitch.images.map((img, imgIndex) => (

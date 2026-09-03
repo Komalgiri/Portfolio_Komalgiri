@@ -4,13 +4,24 @@ import { HiOutlineBars3, HiOutlineXMark } from 'react-icons/hi2';
 import ThemeToggle from '../ui/ThemeToggle';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
-const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'About', href: '#about' },
-    { name: 'Work', href: '#experience' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
-];
+const getNavLinks = () => {
+    if (typeof window !== 'undefined' && (window.location.pathname.includes('/freelance') || window.location.hash.includes('freelance'))) {
+        return [
+            { name: 'Home', href: '#freelance' },
+            { name: 'About', href: '#about' },
+            { name: 'Services', href: '#freelance-pitches' },
+            { name: 'Projects', href: '#projects' },
+            { name: 'Contact', href: '#contact' },
+        ];
+    }
+    return [
+        { name: 'Home', href: '#' },
+        { name: 'About', href: '#about' },
+        { name: 'Work', href: '#experience' },
+        { name: 'Projects', href: '#projects' },
+        { name: 'Contact', href: '#contact' },
+    ];
+};
 
 const ctaLabels = ['Hire Me', 'Contact Me'] as const;
 
@@ -124,7 +135,7 @@ const Navbar = () => {
 
                     <div className="hidden items-center gap-1 lg:flex">
                         <div className="flex items-center gap-0.5 rounded-xl border border-theme-border/60 bg-theme-surface/40 p-1">
-                            {navLinks.map((link) => (
+                            {getNavLinks().map((link) => (
                                 <a
                                     key={link.name}
                                     href={link.href}
@@ -186,7 +197,7 @@ const Navbar = () => {
                             <p className="mt-1 text-xs text-theme-muted">Freelance, contract & full-time</p>
                         </div>
                         <div className="flex flex-col gap-0.5 p-3">
-                            {navLinks.map((link, i) => (
+                            {getNavLinks().map((link, i) => (
                                 <a
                                     key={link.name}
                                     ref={i === 0 ? firstLinkRef : undefined}

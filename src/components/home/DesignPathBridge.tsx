@@ -85,7 +85,7 @@ const CenterScrollText = ({
             Scroll for
         </p>
         <p className="text-lg font-black uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-400 sm:text-xl md:text-2xl">
-            more projects
+            client work
         </p>
         <motion.span
             aria-hidden="true"

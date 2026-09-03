@@ -10,6 +10,7 @@ import mentoraImage from "../assets/mentora.png";
 import agetechImage from "../assets/agetech.jpg";
 import udyampathImage from "../assets/udyampath.png";
 import aisewaImage from "../assets/aisewa.png";
+import paletteverseImage from "../assets/paletteverse.png";
 
 export const projects = [
     {
@@ -69,4 +70,17 @@ export const projects = [
         features: ["Care Matching", "Trusted Providers", "Mobile-First UX"],
         image: agetechImage
     },
+    {
+        id: "paletteverse",
+        title: "PaletteVerse",
+        type: "Web",
+        description: "The ultimate UI/UX design tool and color generator. Craft palettes, test WCAG accessibility instantly, and cure creative block with built-in mini-games.",
+        tech: ["React", "UI/UX", "Tailwind CSS"],
+        color: "from-pink-600 via-rose-500 to-orange-400",
+        icon: <HiOutlineSparkles className="text-pink-400" />,
+        features: ["Color Generator", "WCAG Testing", "Mini-Games"],
+        image: paletteverseImage,
+        liveUrl: "https://palette-verse.vercel.app/",
+        archiveOnly: true
+    }
 ];

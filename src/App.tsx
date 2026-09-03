@@ -8,6 +8,7 @@ const GithubStats = lazy(() => import('./pages/GithubStats'));
 const CaseStudy = lazy(() => import('./pages/CaseStudy'));
 const SystemDesignGallery = lazy(() => import('./pages/SystemDesignGallery'));
 const UIDesignGallery = lazy(() => import('./pages/UIDesignGallery'));
+const FreelanceHome = lazy(() => import('./pages/FreelanceHome'));
 
 const PageLoader = () => (
     <div className="flex min-h-screen items-center justify-center bg-theme-bg">
@@ -26,6 +27,7 @@ function App() {
   useEffect(() => {
     const handleNavigation = () => {
       const hash = window.location.hash;
+      const pathname = window.location.pathname;
 
       if (hash.includes('case-study/')) {
         const projectId = hash.split('case-study/')[1];
@@ -43,6 +45,9 @@ function App() {
         window.scrollTo(0, 0);
       } else if (hash.includes('ui-design')) {
         setCurrentPage('ui-design');
+        window.scrollTo(0, 0);
+      } else if (pathname.includes('/freelance') || hash.includes('freelance')) {
+        setCurrentPage('freelance');
         window.scrollTo(0, 0);
       } else {
         setCurrentPage('home');
@@ -88,6 +93,13 @@ function App() {
       return (
         <Suspense fallback={<PageLoader />}>
           <UIDesignGallery onBack={() => window.location.hash = ''} />
+        </Suspense>
+      );
+    }
+    if (currentPage === 'freelance') {
+      return (
+        <Suspense fallback={<PageLoader />}>
+          <FreelanceHome />
         </Suspense>
       );
     }

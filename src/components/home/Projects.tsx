@@ -14,6 +14,9 @@ const Projects = () => {
     const [filter, setFilter] = useState<'all' | 'web' | 'mobile'>('all');
 
     const filteredProjects = projects.filter(p => {
+        // @ts-ignore
+        if (p.archiveOnly) return false;
+        
         if (filter === 'all') return true;
         if (filter === 'web') return p.type === 'Web';
         if (filter === 'mobile') return p.type === 'Mobile App';

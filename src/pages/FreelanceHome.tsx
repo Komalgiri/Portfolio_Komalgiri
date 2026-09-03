@@ -1,10 +1,12 @@
 import { lazy, Suspense } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Hero from '../components/home/Hero';
-import Experience from '../components/home/Experience';
-import Projects from '../components/home/Projects';
-import GithubFootprint from '../components/home/GithubFootprint';
-import Achievements from '../components/home/Achievements';
+import Between from '../components/home/Between';
+import DesignPathBridge from '../components/home/DesignPathBridge';
+import ClientFeedback from '../components/home/ClientFeedback';
+import PaletteVerse from '../components/home/PaletteVerse';
+import WebDevPitches from '../components/home/WebDevPitches';
+import AvailabilityBanner from '../components/home/AvailabilityBanner';
 import Contact from '../components/home/Contact';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
@@ -17,7 +19,7 @@ const SectionFallback = () => (
     </div>
 );
 
-const Home = () => {
+const FreelanceHome = () => {
     return (
         <div className="bg-theme-bg min-h-screen transition-colors duration-300">
             <a
@@ -32,10 +34,12 @@ const Home = () => {
                 <Suspense fallback={<SectionFallback />}>
                     <About />
                 </Suspense>
-                <Experience />
-                <Projects />
-                <GithubFootprint />
-                <Achievements />
+                <Between />
+                <DesignPathBridge />
+                <PaletteVerse />
+                <WebDevPitches />
+                <ClientFeedback />
+                <AvailabilityBanner />
                 <Contact />
             </main>
             <ScrollReveal as="footer" variant="fadeUp" className="py-12 border-t border-theme-border text-center text-theme-muted text-sm">
@@ -73,4 +77,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default FreelanceHome;
