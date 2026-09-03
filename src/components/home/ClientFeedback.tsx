@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { fadeUp } from '../../utils/scrollAnimations';
-import { HiArrowLeft, HiArrowRight } from 'react-icons/hi2';
+
 
 const ClientFeedback = () => {
     return (
