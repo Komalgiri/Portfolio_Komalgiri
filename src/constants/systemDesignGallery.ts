@@ -1,4 +1,4 @@
-import codpod from '../assets/codpod.png';
+import orbivai from '../assets/orbivai.png';
 import udyampath from '../assets/udyampath.png';
 import mentora from '../assets/mentora.png';
 
@@ -14,10 +14,10 @@ export const systemDesignProjects: {
 }[] = [
     {
         id: 'codepod',
-        title: 'CodePodAI',
-        tagline: 'GitHub-linked pods, JWT auth & Gemini roadmaps',
-        image: codpod,
-        gradient: 'from-indigo-600 via-blue-500 to-cyan-400',
+        title: 'OrbiVAI',
+        tagline: 'Collaborative Pods, GitHub sync & Gemini roadmaps',
+        image: orbivai,
+        gradient: 'from-emerald-600 via-teal-500 to-cyan-400',
         stack: ['React', 'Express', 'Prisma', 'PostgreSQL'],
     },
     {

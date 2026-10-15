@@ -35,9 +35,9 @@
 | :---: | :---: |
 | ![Velora Showcase](screenshots/velora-showcase.png) | ![HavenStay Showcase](screenshots/havenstay-showcase.png) |
 
-| PaletteVerse (Design System Tool) | CodePod (Collaborative Dev Workspace) |
+| PaletteVerse (Design System Tool) | OrbiVAI (AI Team Execution Platform) |
 | :---: | :---: |
-| ![PaletteVerse Showcase](screenshots/paletteverse-showcase.png) | ![CodePod Showcase](screenshots/codepod-showcase.png) |
+| ![PaletteVerse Showcase](screenshots/paletteverse-showcase.png) | ![OrbiVAI Showcase](screenshots/orbivai-showcase.png) |
 
 | System Architecture & UI/UX Gallery |
 | :---: |
@@ -134,7 +134,7 @@ Portfolio_Komalgiri/
 │   ├── velora-showcase.png
 │   ├── havenstay-showcase.png
 │   ├── paletteverse-showcase.png
-│   ├── codepod-showcase.png
+│   ├── orbivai-showcase.png
 │   └── ui-design-showcase.png
 ├── scripts/                    # Automation scripts
 │   └── contact-form-apps-script.gs  # Google Apps Script email/sheets webhook
@@ -239,6 +239,7 @@ npm run preview
 - **Home:** `https://portfolio-komalgiri.onrender.com/`
 - **Freelance & Contract Hub:** `https://portfolio-komalgiri.onrender.com/#freelance`
 - **All Projects:** `https://portfolio-komalgiri.onrender.com/#all-projects`
+- **OrbiVAI Case Study:** `https://portfolio-komalgiri.onrender.com/#case-study/codepod`
 - **Velora Case Study:** `https://portfolio-komalgiri.onrender.com/#case-study/velora`
 - **HavenStay Case Study:** `https://portfolio-komalgiri.onrender.com/#case-study/havenstay`
 - **PaletteVerse Case Study:** `https://portfolio-komalgiri.onrender.com/#case-study/paletteverse`

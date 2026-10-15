@@ -68,10 +68,10 @@ const CodePodArchitecture = ({ showHeader = true, detail = 'full', compact = fal
                     className="codepod-arch-header"
                 >
                     <p className="codepod-arch-eyebrow">Featured architecture</p>
-                    <h2 className="codepod-arch-title">CodePodAI system design</h2>
+                    <h2 className="codepod-arch-title">OrbiVAI system design</h2>
                     <p className="codepod-arch-lead">
                         React client, Express API, Prisma/PostgreSQL, GitHub OAuth, and Gemini —
-                        wired for collaborative software pods.
+                        wired for collaborative Pods, roadmaps, and execution insights.
                     </p>
                 </motion.div>
             )}

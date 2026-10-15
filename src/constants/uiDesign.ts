@@ -19,7 +19,7 @@ import app4 from '../assets/app4.png';
 import app6 from '../assets/app6.jpg';
 import app7 from '../assets/app7.jpg';
 import app8 from '../assets/app8.jpg';
-import codpod from '../assets/codpod.png';
+import orbivai from '../assets/orbivai.png';
 import mentora from '../assets/mentora.png';
 import agetech from '../assets/agetech.jpg';
 import udyampath from '../assets/udyampath.png';
@@ -98,9 +98,9 @@ const uiDesignItemsBase: GalleryMediaItem[] = [
     },
     {
         id: 'project-codepod',
-        title: 'CodePodAI',
-        caption: 'AI project orchestration — pods, roadmaps & GitHub sync',
-        src: codpod,
+        title: 'OrbiVAI',
+        caption: 'AI-assisted engineering collaboration — Pods, Gemini roadmaps & GitHub execution',
+        src: orbivai,
         type: 'image',
     },
     {

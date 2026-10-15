@@ -15,7 +15,7 @@ const PAGE_META: Record<string, { title: string; description: string }> = {
     'system-design': {
         title: 'System Design & Architecture | Komal Giri',
         description:
-            'Backend architecture, API flows, and system design for production apps including CodePodAI — freelance full-stack developer portfolio.',
+            'Backend architecture, API flows, and system design for production apps including OrbiVAI — freelance full-stack developer portfolio.',
     },
     'ui-design': {
         title: 'UI Design Gallery | Komal Giri',

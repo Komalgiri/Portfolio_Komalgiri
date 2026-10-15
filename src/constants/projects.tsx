@@ -5,7 +5,7 @@ import {
     HiOutlineCodeBracket,
     HiOutlineDevicePhoneMobile,
 } from "react-icons/hi2";
-import codpodImage from "../assets/codpod.png";
+import orbivaiImage from "../assets/orbivai.png";
 import mentoraImage from "../assets/mentora.png";
 import agetechImage from "../assets/agetech.jpg";
 import udyampathImage from "../assets/udyampath.png";
@@ -15,14 +15,14 @@ import paletteverseImage from "../assets/paletteverse.png";
 export const projects = [
     {
         id: "codepod",
-        title: "CodePodAI",
+        title: "OrbiVAI",
         type: "Web",
-        description: "AI-driven project orchestration for dev teams — GitHub-linked pods, Gemini roadmaps, task boards, and contribution rewards in one platform.",
+        description: "From GitHub activity to AI-powered team execution — AI-assisted collaboration platform for engineering teams: Pod workspaces, GitHub sync, Gemini roadmaps, task management, and developer rewards.",
         tech: ["React", "Node.js", "PostgreSQL", "Gemini AI", "GitHub OAuth"],
-        color: "from-indigo-600 via-blue-500 to-cyan-400",
-        icon: <HiOutlineCodeBracket className="text-indigo-400" />,
-        features: ["AI Roadmaps", "GitHub Sync", "Pod Workspaces", "Rewards & Leaderboards"],
-        image: codpodImage,
+        color: "from-emerald-600 via-teal-500 to-cyan-400",
+        icon: <HiOutlineCodeBracket className="text-emerald-400" />,
+        features: ["Collaborative Pods", "GitHub Integration", "Gemini Roadmaps", "Task & Rewards", "Team Activity & Insights"],
+        image: orbivaiImage,
         liveUrl: "https://codepod-six.vercel.app/"
     },
     {

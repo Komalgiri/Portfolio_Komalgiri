@@ -29,7 +29,7 @@ import {
     SiGooglegemini,
     SiFigma,
 } from 'react-icons/si';
-import codpodImage from '../assets/codpod.png';
+import orbivaiImage from '../assets/orbivai.png';
 import mentoraImage from '../assets/mentora.png';
 import agetechImage from '../assets/agetech.jpg';
 import udyampathImage from '../assets/udyampath.png';
@@ -77,17 +77,17 @@ export type CaseStudyData = {
 
 export const caseStudies: Record<string, CaseStudyData> = {
     codepod: {
-        title: 'CodePodAI',
+        title: 'OrbiVAI',
         studyLabel: 'Product Case Study',
         overview:
-            'CodePodAI is an AI-driven project orchestration platform for small engineering teams. Link GitHub repos to collaborative pods, generate Gemini roadmaps, sync tasks with commits and PRs, and reward real shipping behavior.',
-        heroImage: codpodImage,
+            'From GitHub activity to AI-powered team execution. OrbiVAI is an AI-assisted collaboration platform designed to help small engineering teams plan projects, organize development work, understand team activity, and turn progress into actionable insights. It brings together project workspaces called Pods, GitHub integration, AI-generated development roadmaps, task management, team activity tracking, and developer rewards in one workspace.',
+        heroImage: orbivaiImage,
         problem: [
-            'Modern dev teams split planning (Notion, Jira) from execution (GitHub). Context scatters across repos, tasks, and skills profiles — especially painful for distributed pods across time zones.',
-            'Commits and PRs rarely map to project progress or recognition. Teams lack a single view of who is shipping and whether the roadmap reflects reality.',
+            'Software development involves more than writing code. Teams must decide what to build, divide work, coordinate responsibilities, track progress, review contributions, and identify blockers across disconnected tools (Jira, GitHub, chat, and separate task lists).',
+            'This causes fragmented workflows: disconnected planning and execution where roadmaps drift from real codebase activity, manual coordination overhead, limited visibility into team workload/blockers, unclear task ownership, generic planning, and low team engagement.',
         ],
         solution: [
-            'A unified pod workspace that links GitHub repos to AI-generated roadmaps, Kanban task boards, team allocation, and a gamification layer — turning live repository activity into points, badges, and pod health metrics.',
+            'OrbiVAI connects planning, execution, and team progress in a unified workspace. Teams create a Pod, invite collaborators, connect GitHub, generate AI-assisted roadmaps via Gemini, track tasks across pending/in-progress/done states with automated notifications, and review real-time team insights alongside gamified developer rewards.',
         ],
         durationStats: [
             { value: '6+', unit: 'months' },
@@ -104,30 +104,38 @@ export const caseStudies: Record<string, CaseStudyData> = {
             { name: 'Vite', Icon: SiVite, color: '#646CFF' },
         ],
         processIntro:
-            'I designed the system around four core request flows — authentication, pod lifecycle, AI planning, and GitHub sync — before shipping the React dashboard and Express API layer.',
+            'I designed the platform around an integrated end-to-end workflow: Pod workspace creation, GitHub activity synchronization, Gemini-powered roadmap generation, task management, and developer reward calculations.',
         processSteps: [
-            { label: 'Auth Flow', Icon: HiOutlineShieldCheck },
-            { label: 'Pod Lifecycle', Icon: HiOutlineRectangleStack },
-            { label: 'AI Planning', Icon: HiOutlineCpuChip },
+            { label: 'Collaborative Pods', Icon: HiOutlineRectangleStack },
             { label: 'GitHub Sync', Icon: HiOutlineArrowPath },
-            { label: 'Beta Launch', Icon: HiOutlineRocketLaunch },
+            { label: 'Gemini Roadmaps', Icon: HiOutlineCpuChip },
+            { label: 'Task Execution', Icon: HiOutlineCodeBracket },
+            { label: 'Team Insights', Icon: HiOutlineChartBar },
         ],
         features: [
             {
-                title: 'AI Roadmaps & Project Brain',
-                description: 'Gemini generates strategic roadmaps, phases, and PM insights from live pod state.',
+                title: 'Collaborative Pods & Workspaces',
+                description: 'Central collaboration unit with role-based access, member invitations, join-request workflows, and GitHub repo bindings.',
             },
             {
-                title: 'GitHub-Native Pods',
-                description: 'OAuth, repo linking, commit/PR tracking, and profile-based role inference.',
+                title: 'GitHub Integration & Sync',
+                description: 'OAuth account linking, commit and repository sync via Octokit/Axios, profile role inference, and activity-to-reward tracking.',
             },
             {
-                title: 'Task Boards & Teams',
-                description: 'Kanban boards, invitations, notifications, and public pod exploration.',
+                title: 'AI-Powered Gemini Roadmaps',
+                description: 'Strategic plans generated from Pod state, tech stacks, and team context, cached with a 7-day TTL.',
             },
             {
-                title: 'Rewards & Pod Health',
-                description: 'Points, badges, leaderboards, reliability scores, and health index.',
+                title: 'Task Management & Notifications',
+                description: 'Kanban boards across pending, in-progress, and done, with automated notifications and role-based permissions.',
+            },
+            {
+                title: 'Developer Rewards & Gamification',
+                description: 'Points, badges, Pod leaderboards, and achievement views celebrating real shipping momentum.',
+            },
+            {
+                title: 'Team Activity & Operational Insights',
+                description: 'Developer reliability scores, role analysis, deadline tracking, task-rescue metrics, and execution signals.',
             },
         ],
         links: {
@@ -343,3 +351,5 @@ export const caseStudies: Record<string, CaseStudyData> = {
         },
     },
 };
+
+caseStudies.orbivai = caseStudies.codepod;

@@ -1,5 +1,5 @@
 import type { GalleryMediaItem } from './mediaGallery';
-import codpod from '../assets/codpod.png';
+import orbivai from '../assets/orbivai.png';
 import mentora from '../assets/mentora.png';
 import agetech from '../assets/agetech.jpg';
 import udyampath from '../assets/udyampath.png';
@@ -15,9 +15,9 @@ export const systemDesignItems: GalleryMediaItem[] = [
     },
     {
         id: 'codepod-architecture',
-        title: 'CodePodAI — System Architecture',
-        caption: 'React + Express + Prisma, GitHub OAuth & Gemini AI flows',
-        src: codpod,
+        title: 'OrbiVAI — System Architecture',
+        caption: 'React + Express + Prisma, GitHub OAuth, Gemini roadmaps & Pod workflows',
+        src: orbivai,
         type: 'image',
     },
     {
