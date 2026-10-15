@@ -27,7 +27,7 @@
 ## 📸 Visual Walkthrough & Screenshots
 
 ### Portfolio Overview & Hero
-![Portfolio Overview](screenshots/portfolio-overview.png)
+![Portfolio Overview](screenshots/portfolio-hero-banner.png)
 
 ### Key Project & System Showcase
 
@@ -130,7 +130,7 @@ Portfolio_Komalgiri/
 │   ├── robots.txt              # Search crawler directives
 │   └── sitemap.xml             # Search engine sitemap
 ├── screenshots/                # Showcase captures for README & documentation
-│   ├── portfolio-overview.png
+│   ├── portfolio-hero-banner.png
 │   ├── velora-showcase.png
 │   ├── havenstay-showcase.png
 │   ├── paletteverse-showcase.png
