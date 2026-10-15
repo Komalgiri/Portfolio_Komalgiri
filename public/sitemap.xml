@@ -2,26 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://portfolio-komalgiri.onrender.com/</loc>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://portfolio-komalgiri.onrender.com/#availability</loc>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://portfolio-komalgiri.onrender.com/#freelance</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://portfolio-komalgiri.onrender.com/#all-projects</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://portfolio-komalgiri.onrender.com/#case-study/orbivai</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://portfolio-komalgiri.onrender.com/#case-study/velora</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://portfolio-komalgiri.onrender.com/#case-study/havenstay</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://portfolio-komalgiri.onrender.com/#case-study/paletteverse</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://portfolio-komalgiri.onrender.com/#system-design</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://portfolio-komalgiri.onrender.com/#ui-design</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://portfolio-komalgiri.onrender.com/#github-stats</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://portfolio-komalgiri.onrender.com/#contact</loc>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://portfolio-komalgiri.onrender.com/resume.pdf</loc>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 </urlset>
